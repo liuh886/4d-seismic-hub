@@ -1,0 +1,15 @@
+name: Link Check
+on:
+  schedule:
+    - cron: "0 1 * * *"   # run daily at 01:00 UTC
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Lychee link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --accept 200,206,429 --retry-wait-time 2 --max-retries 3 .

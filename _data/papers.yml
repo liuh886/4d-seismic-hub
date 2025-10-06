@@ -1,0 +1,86 @@
+- id: obn-hybrid-carbonates
+  title: OBN Hybrid Concept and 4D Used in Carbonates Middle East Environment
+  authors:
+    - F. Achilli
+    - Y. Ellabad
+    - O. Lamerain
+    - Z. Yu
+    - L. Junchao
+  year: 2023
+  description: >
+    This presentation demonstrates a hybrid ocean‑bottom node (OBN) acquisition concept applied to carbonate reservoirs in the Middle East.  It highlights the feasibility of extracting repeatable 4D signals from a challenging environment by combining sparse nodes with streamer acquisition, and discusses lessons learned for monitoring strategy.
+  link: https://www.earthdoc.org/content/papers/obn-hybrid-concept-and-4d-used-in-carbonates-middle-east-environment
+  tags:
+    - OBN
+    - 4D
+    - carbonate
+    - Middle East
+
+- id: use-of-4d-seismic-reservoir-management
+  title: The Use of 4D Seismic in Reservoir Management
+  authors:
+    - J.M. Marsh
+    - G. Bagley
+    - A. Lewis
+    - J. McGarrity
+    - T. Nash
+    - R. Parr
+    - I. Saxby
+    - D. Whitcombe
+  year: 2001
+  description: >
+    Presented at the EAGE 63rd Conference & Technical Exhibition (Amsterdam, 2001), this seminal paper illustrates how time‑lapse seismic data can be integrated into reservoir management workflows.  The authors discuss practical considerations such as survey repeatability, processing, and the impact of 4D information on infill drilling and field surveillance.
+  link: https://www.earthdoc.org/content/papers/the-use-of-4d-seismic-in-reservoir-management
+  tags:
+    - 4D
+    - reservoir management
+    - EAGE
+    - time‑lapse
+
+- id: middle-east-carbonate-4d-obn-case-study
+  title: Middle East Carbonate 4D OBN Case Study: Steering 4D Processing with Iterative 4D Inversion
+  authors:
+    - S. Secker
+    - J. Fasterling
+    - A. Lafram
+    - C. Others
+  year: 2024
+  description: >
+    This case study from a Middle East carbonate field presents lessons from an ocean‑bottom node survey and its repeat monitor.  It emphasises the importance of iterative inversion in driving 4D processing, delivering improved sensitivity to saturation and pressure changes and enabling actionable insights for reservoir surveillance.
+  link: https://www.earthdoc.org/content/papers/middle-east-carbonate-4d-obn-case-study-steering-4d-processing-with-iterative-4d-inversion
+  tags:
+    - OBN
+    - 4D
+    - iterative inversion
+    - case study
+
+- id: 4d-sensitivity-carbonate-monitoring-strategy
+  title: 4D Sensitivity to Dynamic Reservoir Properties on a Carbonate Field: An Insight Into 4D Monitoring Strategy
+  authors:
+    - Authors Unknown
+  year: 2023
+  description: >
+    This presentation explores the sensitivity of 4D seismic attributes to dynamic changes in a carbonate reservoir.  By analysing synthetic and field data, the authors show which properties (saturation, pressure) can be detected reliably and propose an optimised monitoring strategy tailored to carbonate settings.
+  link: https://www.earthdoc.org/content/papers/4d-sensitivity-to-dynamic-reservoir-properties-on-a-carbonate-field-an-insight-into-4d-monitoring-strategy
+  tags:
+    - 4D
+    - sensitivity analysis
+    - carbonate
+    - monitoring strategy
+
+- id: processing-imaging-4c-obn-giant-field
+  title: Processing and Imaging of Four‑Component Ocean‑Bottom Node Data over a Giant Middle Eastern Field
+  authors:
+    - E. Saragoussi
+    - A. Alemam
+    - S. Sioni
+    - Others
+  year: 2023
+  description: >
+    Focussing on a large‑scale 3D survey, this paper details the processing and imaging of four‑component ocean‑bottom node (OBN) data acquired over a giant Middle Eastern field.  Although not a 4D monitor, the results lay the foundation for future time‑lapse projects by delivering high‑fidelity PS‑wave images and accurate velocity models.
+  link: https://www.earthdoc.org/content/papers/processing-and-imaging-of-four-component-ocean-bottom-node-data-over-a-giant-middle-eastern-field
+  tags:
+    - OBN
+    - processing
+    - imaging
+    - four‑component
