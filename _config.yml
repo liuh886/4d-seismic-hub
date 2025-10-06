@@ -10,7 +10,7 @@ plugins:
 
 # Enable relative links so that pages work both locally and on GitHub Pages
 repository: liuh886/4d-seismic-hub
-url: ""https://liuh886.github.io""
+url: "https://liuh886.github.io"
 baseurl: "/4d-seismic-hub"
 markdown: kramdown
 
