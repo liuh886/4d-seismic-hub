@@ -1,5 +1,5 @@
 - id: obn-hybrid-carbonates
-  title: "OBN Hybrid Concept and 4D Used in Carbonates Middle East Environment"
+  title: OBN Hybrid Concept and 4D Used in Carbonates Middle East Environment
   authors:
     - F. Achilli
     - Y. Ellabad
@@ -17,7 +17,7 @@
     - Middle East
 
 - id: use-of-4d-seismic-reservoir-management
-  title: "The Use of 4D Seismic in Reservoir Management"
+  title: The Use of 4D Seismic in Reservoir Management
   authors:
     - J.M. Marsh
     - G. Bagley
@@ -38,6 +38,7 @@
     - time‑lapse
 
 - id: middle-east-carbonate-4d-obn-case-study
+  # Wrap titles containing a colon in quotes to avoid YAML parsing errors
   title: "Middle East Carbonate 4D OBN Case Study: Steering 4D Processing with Iterative 4D Inversion"
   authors:
     - S. Secker
@@ -55,6 +56,7 @@
     - case study
 
 - id: 4d-sensitivity-carbonate-monitoring-strategy
+  # Wrap titles containing a colon in quotes to avoid YAML parsing errors
   title: "4D Sensitivity to Dynamic Reservoir Properties on a Carbonate Field: An Insight Into 4D Monitoring Strategy"
   authors:
     - Authors Unknown
@@ -69,7 +71,7 @@
     - monitoring strategy
 
 - id: processing-imaging-4c-obn-giant-field
-  title: "Processing and Imaging of Four‑Component Ocean‑Bottom Node Data over a Giant Middle Eastern Field"
+  title: Processing and Imaging of Four‑Component Ocean‑Bottom Node Data over a Giant Middle Eastern Field
   authors:
     - E. Saragoussi
     - A. Alemam

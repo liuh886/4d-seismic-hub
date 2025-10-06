@@ -1,24 +1,12 @@
 title: "4D Seismic Hub"
 description: "An online abstract of best practices for 4D seismic monitoring"
 author: "4D Seismic Hub Working Group"
-theme: jekyll-theme-cayman
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+minimal_mistakes_skin: "air"
+plugins:
+  - jekyll-include-cache
 
-# Navigation links appearing in the header
-nav:
-  - title: "Home"
-    url: "/"
-  - title: "About"
-    url: "/pages/about"
-  - title: "Resources"
-    url: "/pages/resources"
-  - title: "Case Studies"
-    url: "/pages/case-studies"
-  - title: "Working Group"
-    url: "/pages/working-group"
-  - title: "Contribute"
-    url: "/pages/contribute"
-  - title: "FAQ"
-    url: "/pages/faq"
+# Navigation is now defined in `_data/navigation.yml`.
 
 # Enable relative links so that pages work both locally and on GitHub Pages
 repository: your-organisation/4D-Seismic-Hub

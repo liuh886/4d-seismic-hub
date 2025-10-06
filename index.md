@@ -1,6 +1,7 @@
 ---
 title: "Welcome"
-layout: default
+layout: home
+author_profile: false
 ---
 
 # Welcome to the 4D Seismic Hub
