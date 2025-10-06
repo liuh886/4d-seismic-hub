@@ -9,9 +9,9 @@ plugins:
 # Navigation is now defined in `_data/navigation.yml`.
 
 # Enable relative links so that pages work both locally and on GitHub Pages
-repository: your-organisation/4D-Seismic-Hub
-url: ""
-baseurl: ""
+repository: liuh886/4d-seismic-hub
+url: ""https://liuh886.github.io""
+baseurl: "/4d-seismic-hub"
 markdown: kramdown
 
 # Where to find data and collections
