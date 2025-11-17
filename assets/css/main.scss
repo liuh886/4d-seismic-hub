@@ -4,17 +4,29 @@
 @import "minimal-mistakes/skins/air";
 @import "minimal-mistakes";
 
-$site-content-max-width: 960px;
+$site-content-max-width: 880px;
+$site-content-gutter: 1.5rem;
 
-body:not(.layout--home) .page,
-body:not(.layout--home) .page__inner-wrap,
-body:not(.layout--home) .page__content {
+@mixin constrained-column {
   max-width: $site-content-max-width;
   margin-left: auto;
   margin-right: auto;
+  padding-left: $site-content-gutter;
+  padding-right: $site-content-gutter;
 }
 
-body:not(.layout--home) .page__content {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+body:not(.layout--home) .initial-content,
+body:not(.layout--home) .page,
+body:not(.layout--home) .page__inner-wrap,
+body:not(.layout--home) .page__content,
+body:not(.layout--home) .archive,
+body:not(.layout--home) .archive__item {
+  @include constrained-column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body:not(.layout--home) .page__inner-wrap > *:not(.page__content),
+body:not(.layout--home) .page__content > * {
+  max-width: 100%;
 }
