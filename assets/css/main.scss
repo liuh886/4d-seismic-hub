@@ -1,0 +1,25 @@
+---
+# Only the main Sass file needs front matter so Jekyll processes it.
+---
+@import "minimal-mistakes/skins/air";
+@import "minimal-mistakes";
+
+$site-content-max-width: 960px;
+$site-content-gutter: 1.5rem;
+
+body:not(.layout--home) .initial-content {
+  max-width: $site-content-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $site-content-gutter;
+  padding-right: $site-content-gutter;
+}
+
+body:not(.layout--home) .initial-content .page,
+body:not(.layout--home) .initial-content .page__inner-wrap,
+body:not(.layout--home) .initial-content .page__content {
+  width: 100%;
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
