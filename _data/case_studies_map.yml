@@ -1,0 +1,15 @@
+- name: Middle East Carbonate OBN Monitor
+  location: Abu Dhabi, United Arab Emirates
+  latitude: 24.4539
+  longitude: 54.3773
+  summary: "Repeatable ocean-bottom node surveys to track pressure depletion and saturation changes in a mature carbonate field."
+- name: Hybrid OBN/Streamer Concept in Carbonates
+  location: Arabian Gulf
+  latitude: 25.0000
+  longitude: 52.0000
+  summary: "Feasibility study that blended sparse nodes with conventional streamer acquisition to improve 4D coverage at lower cost."
+- name: West Africa Deepwater 4D Pilot
+  location: Offshore Angola
+  latitude: -8.8383
+  longitude: 13.2344
+  summary: "First monitor survey over a deepwater turbidite system to evaluate gas breakthrough near long-reach producers."
