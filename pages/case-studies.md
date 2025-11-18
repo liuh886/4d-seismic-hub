@@ -12,7 +12,7 @@ Case studies illustrate how 4D seismic data were used to answer specific reserv
 Explore the locations of each case study on the interactive map below.  Hover or tap on a marker to see a short description, or zoom the map to focus on a specific region.  Markers are data-driven—just add additional entries to `_data/case_studies_map.yml` (each with a `name`, `location`, `latitude`, `longitude`, and `summary`) to display as many pinpoints as you need.
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-o9N1j7kG8GkZsG32MRuX3HyCu+a0LYX1fV9XYbO9w5w=" crossorigin="" />
-<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-VuZ0p71g+p8vLw+sE7cQ8ZkH7CjQwlWvnkpIBu0zYJ0=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-VuZ0p71g+p8vLw+sE7cQ8ZkH7CjQwlWvnkpIBu0zYJ0=" crossorigin=""></script>
 
 <div id="case-studies-map" class="case-studies-map"></div>
 

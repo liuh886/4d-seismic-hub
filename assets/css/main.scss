@@ -44,3 +44,17 @@ body:not(.layout--home) .page__content > * {
     height: 520px;
   }
 }
+
+.case-studies-map {
+  height: 420px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .case-studies-map {
+    height: 520px;
+  }
+}
