@@ -17,7 +17,7 @@ Explore the locations of each case study on the interactive map below.  Hover or
 <div id="case-studies-map" class="case-studies-map"></div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  function initializeCaseStudiesMap() {
     var mapContainer = document.getElementById('case-studies-map');
     if (!mapContainer || !window.L) {
       return;
@@ -56,7 +56,13 @@ Explore the locations of each case study on the interactive map below.  Hover or
     if (bounds.length) {
       map.fitBounds(bounds, { padding: [40, 40] });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCaseStudiesMap);
+  } else {
+    initializeCaseStudiesMap();
+  }
 </script>
 
 ### Case Study 1: Middle East Carbonate OBN Monitor
