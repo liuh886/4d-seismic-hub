@@ -31,6 +31,32 @@ body:not(.layout--home) .page__content > * {
   max-width: 100%;
 }
 
+body.layout--home .initial-content,
+body.layout--home .page,
+body.layout--home .page__inner-wrap,
+body.layout--home .page__content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+body.layout--home .page__inner-wrap .page__content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: $site-content-gutter;
+  padding-right: $site-content-gutter;
+}
+
+body.layout--home .page__content > * {
+  max-width: 100%;
+}
+
 .case-studies-map {
   height: 420px;
   border: 1px solid #d9d9d9;
