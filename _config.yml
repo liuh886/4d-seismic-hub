@@ -1,14 +1,15 @@
-title: "4D Seismic Hub"
+﻿title: "4D Seismic Hub"
 description: "An online abstract of best practices for 4D seismic monitoring"
-author: "4D Seismic Hub Working Group"
+author: "4D Seismic Hub Working Group"
+logo: "/assets/images/logo.svg"
 remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 minimal_mistakes_skin: "air"
 plugins:
   - jekyll-include-cache
 
-# Navigation is now defined in `_data/navigation.yml`.
+# Navigation is now defined in _data/navigation.yml.
 
-# Enable relative links so that pages work both locally and on GitHub Pages
+# Enable relative links so that pages work both locally and on GitHub Pages
 repository: liuh886/4d-seismic-hub
 url: "https://liuh886.github.io"
 baseurl: "/4d-seismic-hub"
