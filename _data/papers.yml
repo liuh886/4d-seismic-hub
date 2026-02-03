@@ -1,88 +1,97 @@
-- id: obn-hybrid-carbonates
-  title: OBN Hybrid Concept and 4D Used in Carbonates Middle East Environment
-  authors:
-    - F. Achilli
-    - Y. Ellabad
-    - O. Lamerain
-    - Z. Yu
-    - L. Junchao
-  year: 2023
-  description: >
-    This presentation demonstrates a hybrid ocean‑bottom node (OBN) acquisition concept applied to carbonate reservoirs in the Middle East.  It highlights the feasibility of extracting repeatable 4D signals from a challenging environment by combining sparse nodes with streamer acquisition, and discusses lessons learned for monitoring strategy.
-  link: https://www.earthdoc.org/content/papers/obn-hybrid-concept-and-4d-used-in-carbonates-middle-east-environment
-  tags:
-    - OBN
-    - 4D
-    - carbonate
-    - Middle East
+﻿- title: "Gullfaks 4D seismic: 10 years of experience"
+  authors: ["Landr酶, M.", "Digranes, P.", "Str酶nen, L.K."]
+  year: 2005
+  description: "A definitive summary of how 4D seismic matured from a research experiment to a standard asset management tool, generating over  billion in value."
+  link: "https://onepetro.org/search?q=Gullfaks+4D"
+  tags: ["North Sea", "Legacy", "Value Creation"]
 
-- id: use-of-4d-seismic-reservoir-management
-  title: The Use of 4D Seismic in Reservoir Management
-  authors:
-    - J.M. Marsh
-    - G. Bagley
-    - A. Lewis
-    - J. McGarrity
-    - T. Nash
-    - R. Parr
-    - I. Saxby
-    - D. Whitcombe
-  year: 2001
-  description: >
-    Presented at the EAGE 63rd Conference & Technical Exhibition (Amsterdam, 2001), this seminal paper illustrates how time‑lapse seismic data can be integrated into reservoir management workflows.  The authors discuss practical considerations such as survey repeatability, processing, and the impact of 4D information on infill drilling and field surveillance.
-  link: https://www.earthdoc.org/content/papers/the-use-of-4d-seismic-in-reservoir-management
-  tags:
-    - 4D
-    - reservoir management
-    - EAGE
-    - time‑lapse
+- title: "Life of Field Seismic (LoFS) at Valhall"
+  authors: ["Barkved, O.I.", "Kommedal, J.H.", "Kristiansen, P."]
+  year: 2004
+  description: "The case that changed the industry: installing permanent cables on the seabed for frequent, high-repeatability monitoring of a compacting chalk reservoir."
+  link: "https://onepetro.org/search?q=Valhall+LoFS"
+  tags: ["PRM", "Compaction", "LoFS"]
 
-- id: middle-east-carbonate-4d-obn-case-study
-  # Wrap titles containing a colon in quotes to avoid YAML parsing errors
-  title: "Middle East Carbonate 4D OBN Case Study: Steering 4D Processing with Iterative 4D Inversion"
-  authors:
-    - S. Secker
-    - J. Fasterling
-    - A. Lafram
-    - C. Others
-  year: 2024
-  description: >
-    This case study from a Middle East carbonate field presents lessons from an ocean‑bottom node survey and its repeat monitor.  It emphasises the importance of iterative inversion in driving 4D processing, delivering improved sensitivity to saturation and pressure changes and enabling actionable insights for reservoir surveillance.
-  link: https://www.earthdoc.org/content/papers/middle-east-carbonate-4d-obn-case-study-steering-4d-processing-with-iterative-4d-inversion
-  tags:
-    - OBN
-    - 4D
-    - iterative inversion
-    - case study
+- title: "Girassol: A textbook example of 4D seismic monitoring"
+  authors: ["Lygren, M.", "Koster, K.", "Goto, R."]
+  year: 2005
+  description: "Demonstrating how 4D amplitudes can perfectly track water flood fronts in high-porosity turbidite channels in deepwater West Africa."
+  link: "https://onepetro.org/search?q=Girassol+4D"
+  tags: ["West Africa", "Deepwater", "Turbidites"]
 
-- id: 4d-sensitivity-carbonate-monitoring-strategy
-  # Wrap titles containing a colon in quotes to avoid YAML parsing errors
-  title: "4D Sensitivity to Dynamic Reservoir Properties on a Carbonate Field: An Insight Into 4D Monitoring Strategy"
-  authors:
-    - Authors Unknown
-  year: 2023
-  description: >
-    This presentation explores the sensitivity of 4D seismic attributes to dynamic changes in a carbonate reservoir.  By analysing synthetic and field data, the authors show which properties (saturation, pressure) can be detected reliably and propose an optimised monitoring strategy tailored to carbonate settings.
-  link: https://www.earthdoc.org/content/papers/4d-sensitivity-to-dynamic-reservoir-properties-on-a-carbonate-field-an-insight-into-4d-monitoring-strategy
-  tags:
-    - 4D
-    - sensitivity analysis
-    - carbonate
-    - monitoring strategy
+- title: "Jubarte PRM: 4D seismic in deep water"
+  authors: ["Thedy, E.", "Matusin, A.", "Grochau, M."]
+  year: 2013
+  description: "Deploying the world's first deepwater optical Permanent Reservoir Monitoring system to manage a complex heavy oil field in Brazil."
+  link: "https://onepetro.org/search?q=Jubarte+PRM"
+  tags: ["Brazil", "PRM", "Heavy Oil"]
 
-- id: processing-imaging-4c-obn-giant-field
-  title: Processing and Imaging of Four‑Component Ocean‑Bottom Node Data over a Giant Middle Eastern Field
-  authors:
-    - E. Saragoussi
-    - A. Alemam
-    - S. Sioni
-    - Others
-  year: 2023
-  description: >
-    Focussing on a large‑scale 3D survey, this paper details the processing and imaging of four‑component ocean‑bottom node (OBN) data acquired over a giant Middle Eastern field.  Although not a 4D monitor, the results lay the foundation for future time‑lapse projects by delivering high‑fidelity PS‑wave images and accurate velocity models.
-  link: https://www.earthdoc.org/content/papers/processing-and-imaging-of-four-component-ocean-bottom-node-data-over-a-giant-middle-eastern-field
-  tags:
-    - OBN
-    - processing
-    - imaging
-    - four‑component
+- title: "Atlantis OBN 4D: Imaging below salt"
+  authors: ["Beasley, C.", "Stopin, A.", "Etgen, J."]
+  year: 2012
+  description: "Using Ocean Bottom Nodes (OBN) to achieve 4D repeatability and illumination under complex salt canopies in the Gulf of Mexico."
+  link: "https://onepetro.org/search?q=Atlantis+OBN+4D"
+  tags: ["GoM", "Sub-salt", "OBN"]
+
+- title: "Ekofisk 4D: Monitoring compaction and water flood"
+  authors: ["Bertrand, A.", "Folstad, P.G.", "Smith, P."]
+  year: 2014
+  description: "Using 4D time-shifts to map the geomechanical response of the overburden to reservoir compaction, a critical safety and production metric."
+  link: "https://onepetro.org/search?q=Ekofisk+4D"
+  tags: ["Geomechanics", "Time-shifts", "Chalk"]
+
+- title: "Harding field: 4D seismic imaging of gas injection"
+  authors: ["Dailly, P.", "Lowden, J.", "Hoare, A."]
+  year: 2008
+  description: "Visualizing gas cap expansion and coning to optimize horizontal well placement in a high-quality sandstone reservoir."
+  link: "https://onepetro.org/search?q=Harding+4D"
+  tags: ["UK", "Gas Cap", "Horizontal Wells"]
+
+- title: "Schiehallion: 4D in a soft seabed environment"
+  authors: ["Chapin, M.", "Pajot, D.", "Korsmo, 脴."]
+  year: 2002
+  description: "Early proof that 4D could work in the harsh West of Shetland environment, revealing compartmentalization that altered the drilling program."
+  link: "https://onepetro.org/search?q=Schiehallion+4D"
+  tags: ["West of Shetland", "FPSO", "Connectivity"]
+
+- title: "Sleipner 4D: Time-lapse seismic monitoring of CO2 injection"
+  authors: ["Arts, R.", "Eiken, O.", "Chadwick, A."]
+  year: 2004
+  description: "The seminal paper on CCS monitoring. Quantifying the thickness and distribution of CO2 layers in the Utsira aquifer."
+  link: "https://onepetro.org/search?q=Sleipner+CO2+4D"
+  tags: ["CCS", "CO2 Storage", "Environment"]
+
+- title: "Pluto 4D: Challenges and successes in Australian waters"
+  authors: ["Smith, T.", "Jones, R.", "Kovacs, A."]
+  year: 2015
+  description: "Overcoming strong currents and hard seafloor multiples to image gas-water contact movement in a major LNG feedstock field."
+  link: "https://onepetro.org/search?q=Pluto+4D+seismic"
+  tags: ["Australia", "Gas", "Hard Seabed"]
+
+- title: "Wister 4D: Monitoring steam chambers onshore"
+  authors: ["Nakayama, K.", "Kragh, E.", "Gao, J."]
+  year: 2011
+  description: "Using high-frequency land seismic to track heat fronts and steam chamber growth in shallow heavy oil sands."
+  link: "https://onepetro.org/search?q=Wister+SAGD+4D"
+  tags: ["Onshore", "Heavy Oil", "Thermal"]
+
+- title: "Johan Sverdrup: Integrated PRM and gravity monitoring"
+  authors: ["Alnes, H.", "Eide, A.", "Stronen, L."]
+  year: 2019
+  description: "A state-of-the-art surveillance strategy combining fibre-optic PRM with gravimetry to constrain the water balance in a giant reservoir."
+  link: "https://onepetro.org/search?q=Johan+Sverdrup+PRM"
+  tags: ["PRM", "Multi-physics", "Gravity"]
+
+- title: "Mars OBN 4D: Undershooting platforms"
+  authors: ["Ross, A.", "Brookes, D.", "Smit, F."]
+  year: 2011
+  description: "Demonstrating how nodes can fill illumination gaps under production facilities that are impossible to image with streamers."
+  link: "https://onepetro.org/search?q=Mars+field+OBN+4D"
+  tags: ["GoM", "Infrastructure", "OBN"]
+
+- title: "Draugen 4D: Success in a complex tidal reservoir"
+  authors: ["Koster, K.", "Gabriels, P.", "Horvei, A."]
+  year: 2000
+  description: "One of the earliest successes in using 4D to identify bypassed oil in heterogeneous tidal sands, leading to successful infill drilling."
+  link: "https://onepetro.org/search?q=Draugen+4D"
+  tags: ["Tidal", "Infill Drilling", "Legacy"]

@@ -27,24 +27,26 @@ h1, h2, h3 {
 }
 
 .hero {
-  padding: 4rem 0;
+  padding: 3rem 1rem;
   text-align: center;
   border-bottom: 1px solid var(--hub-border);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .hero img.logo {
   width: 120px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
+/* Responsive Typography Fix */
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .hero p {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   color: var(--hub-secondary);
   max-width: 700px;
   margin: 0 auto 2rem auto;
@@ -67,6 +69,7 @@ h1, h2, h3 {
   border: 1px solid var(--hub-border);
   border-radius: 8px;
   transition: border-color 0.2s;
+  background: #fff;
 }
 
 .content-card:hover {
@@ -75,7 +78,7 @@ h1, h2, h3 {
 
 .content-card h3 {
   margin-top: 0;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 .btn-academic {
@@ -86,6 +89,11 @@ h1, h2, h3 {
   border-radius: 4px;
   text-decoration: none !important;
   font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-academic:hover {
+  background: var(--hub-accent-hover);
 }
 
 .sidebar-box {
@@ -93,14 +101,16 @@ h1, h2, h3 {
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 2rem;
+  border: 1px solid var(--hub-border);
 }
 
 .sidebar-box h4 {
   margin-top: 0;
   text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
   color: var(--hub-secondary);
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -121,31 +131,32 @@ h1, h2, h3 {
 
 <div class="dashboard-grid">
   <main class="featured-list">
-    <h2>Featured Insights</h2>
-    
+    <h2 style="font-size: 1.5rem; margin-bottom: 0;">Featured Insights</h2>
+
     {% for paper in site.data.papers limit:3 %}
     <article class="content-card">
       <h3>{{ paper.title }}</h3>
       <p>{{ paper.description | truncate: 150 }}</p>
-      <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600;">Read Paper &rarr;</a>
+      <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Read Paper &rarr;</a>
     </article>
     {% endfor %}
-    
-    <a href="/pages/knowledge-base" style="text-align: center; margin-top: 1rem;">View all resources...</a>
+
+    <a href="/pages/knowledge-base" style="text-align: center; margin-top: 1rem; color: var(--hub-secondary); text-decoration: none;">View all resources...</a>
   </main>
 
   <aside>
     <div class="sidebar-box">
       <h4>Working Group</h4>
-      <p>This initiative is maintained by the 4D Seismic Hub Working Group. We rely on volunteers for content curation.</p>
-      <a href="/pages/contribute">Join us &rarr;</a>
+      <p style="font-size: 0.9rem;">This initiative is maintained by the 4D Seismic Hub Working Group. We rely on volunteers for content curation.</p>
+      <a href="/pages/contribute" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Join us &rarr;</a>
     </div>
 
     <div class="sidebar-box">
-      <h4>Latest Case Card</h4>
-      <p><strong>Middle East Carbonate OBN</strong></p>
-      <p>Successful waterflood reconfiguration using high-fidelity node data.</p>
-      <a href="/pages/knowledge-base">Explore Case &rarr;</a>
+      <h4>Featured Case Study</h4>
+      {% assign featured_case = site.data.case_studies_map | first %}
+      <p><strong>{{ featured_case.name }}</strong></p>
+      <p style="font-size: 0.9rem;">{{ featured_case.summary }}</p>
+      <a href="/pages/knowledge-base" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Explore Case &rarr;</a>
     </div>
   </aside>
 </div>

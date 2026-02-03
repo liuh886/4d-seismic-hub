@@ -1,15 +1,89 @@
-- name: Middle East Carbonate OBN Monitor
-  location: Abu Dhabi, United Arab Emirates
-  latitude: 24.4539
-  longitude: 54.3773
-  summary: "Repeatable ocean-bottom node surveys to track pressure depletion and saturation changes in a mature carbonate field."
-- name: Hybrid OBN/Streamer Concept in Carbonates
-  location: Arabian Gulf
-  latitude: 25.0000
-  longitude: 52.0000
-  summary: "Feasibility study that blended sparse nodes with conventional streamer acquisition to improve 4D coverage at lower cost."
-- name: West Africa Deepwater 4D Pilot
-  location: Offshore Angola
-  latitude: -8.8383
-  longitude: 13.2344
-  summary: "First monitor survey over a deepwater turbidite system to evaluate gas breakthrough near long-reach producers."
+﻿- name: "Middle East Carbonate OBN"
+  location: "Offshore UAE/Qatar"
+  latitude: 24.5
+  longitude: 52.5
+  summary: "Detecting subtle pressure depletion in stiff carbonates using high-repeatability OBN."
+
+- name: "Gullfaks Main Field"
+  location: "North Sea, Norway"
+  latitude: 61.17
+  longitude: 2.27
+  summary: "The pioneer of 4D. Identified undrained compartments leading to over  in added value since 1996."
+
+- name: "Valhall LoFS"
+  location: "North Sea, Norway"
+  latitude: 56.27
+  longitude: 3.39
+  summary: "First Life-of-Field Seismic (PRM). Over 20 surveys acquired, driving virtually every infill well decision."
+
+- name: "Girassol"
+  location: "Offshore Angola (Block 17)"
+  latitude: -7.5
+  longitude: 11.5
+  summary: "Deepwater turbidite monitoring. Textbook example of tracking water flood fronts in complex channels."
+
+- name: "Jubarte PRM"
+  location: "Campos Basin, Brazil"
+  latitude: -22.78
+  longitude: -40.05
+  summary: "First deepwater optical PRM. Monitoring heavy oil production and geomechanical effects."
+
+- name: "Atlantis OBN"
+  location: "Gulf of Mexico, USA"
+  latitude: 27.2
+  longitude: -90.0
+  summary: "Sub-salt 4D imaging. Using OBN to see through complex salt bodies where streamers failed."
+
+- name: "Ekofisk"
+  location: "North Sea, Norway"
+  latitude: 56.54
+  longitude: 3.21
+  summary: "Compaction monitoring. Using 4D time-shifts to map pressure depletion and geomechanical arching."
+
+- name: "Harding"
+  location: "North Sea, UK"
+  latitude: 59.28
+  longitude: 1.5
+  summary: "Gas cap and aquifer monitoring. Critical for steering horizontal wells in thin sands."
+
+- name: "Schiehallion"
+  location: "West of Shetland, UK"
+  latitude: 60.34
+  longitude: -4.1
+  summary: "4D in a soft seabed environment. Proven capability to monitor connectivity in complex reservoirs."
+
+- name: "Sleipner CCS"
+  location: "North Sea, Norway"
+  latitude: 58.37
+  longitude: 1.91
+  summary: "The world's first industrial-scale CO2 storage monitoring. 4D seismic proved the safety of geological storage since 1996."
+
+- name: "Pluto LNG"
+  location: "North West Shelf, Australia"
+  latitude: -19.7
+  longitude: 115.3
+  summary: "Asia-Pacific deepwater gas monitoring. Identifying aquifer drive strength and compartment connectivity in a hard seabed setting."
+
+- name: "Wister SAGD"
+  location: "Alberta, Canada"
+  latitude: 55.0
+  longitude: -110.0
+  summary: "Onshore heavy oil monitoring. Using 4D to track steam chambers in shallow sands for thermal recovery optimization."
+
+- name: "Johan Sverdrup"
+  location: "North Sea, Norway"
+  latitude: 58.83
+  longitude: 2.55
+  summary: "Next-gen PRM & Gravity. Combining permanent seismic sensors with borehole gravity to monitor a giant field from day one."
+
+- name: "Mars OBN"
+  location: "Gulf of Mexico, USA"
+  latitude: 28.17
+  longitude: -89.22
+  summary: "Infrastructure-constrained imaging. Using nodes to undershoot the Mars TLP platform, revealing bypassed oil near the facility."
+
+- name: "Draugen"
+  location: "Norwegian Sea"
+  latitude: 64.35
+  longitude: 7.8
+  summary: "Complex tidal reservoir monitoring. Tracking water injection sweeping through heterogeneous Rogn formation sands."
