@@ -14,27 +14,29 @@ author_profile: false
   --hub-bg: #ffffff;
   --hub-section-bg: #f8fafc;
   --hub-border: #e2e8f0;
-  --hub-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --hub-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body {
   font-family: 'Inter', sans-serif;
   color: var(--hub-primary);
-  font-size: 15px; /* Slightly smaller base font for a crisper look */
+  font-size: 14px; /* Very crisp base font */
+  line-height: 1.45; /* Tighter line height */
 }
 
 h1, h2, h3 {
   font-family: 'Merriweather', serif;
+  margin-top: 0;
 }
 
-/* Rolling Map Hero - Scaled for better 100% zoom appearance */
+/* Rolling Map Hero - Original Height, Compact Content */
 .hero-banner {
   position: relative;
-  height: 400px; /* Reduced from 500px */
+  height: 500px; /* Restored to original */
   width: 100%;
   overflow: hidden;
-  margin-bottom: 2.5rem;
-  border-radius: 0 0 20px 20px;
+  margin-bottom: 3rem;
+  border-radius: 0 0 24px 24px;
   background: #000;
 }
 
@@ -45,7 +47,7 @@ h1, h2, h3 {
   height: 100%;
   width: 100%;
   z-index: 1;
-  opacity: 0.65;
+  opacity: 0.6;
 }
 
 .hero-overlay {
@@ -66,32 +68,32 @@ h1, h2, h3 {
 }
 
 .hero-overlay img.logo {
-  width: 80px; /* Scaled down */
-  margin-bottom: 1.25rem;
+  width: 80px; 
+  margin-bottom: 1.5rem;
   filter: drop-shadow(0 0 10px rgba(181, 9, 172, 0.4));
 }
 
 .hero-overlay h1 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem); /* Scaled down */
+  font-size: clamp(2rem, 5vw, 3rem); /* Slightly larger for the big banner but still crisp */
   margin-bottom: 0.75rem;
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .hero-overlay p {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem); /* Scaled down */
-  max-width: 650px;
-  margin: 0 auto 2rem auto;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  opacity: 0.85;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  opacity: 0.9;
+  line-height: 1.5;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 2.5rem;
-  margin-bottom: 3rem;
-  max-width: 1100px;
+  gap: 3rem; 
+  margin-bottom: 4rem;
+  max-width: 1200px; /* Restored to original expansive width */
   margin-left: auto;
   margin-right: auto;
 }
@@ -99,73 +101,69 @@ h1, h2, h3 {
 .featured-list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 /* Compact Card Styling */
 .content-card {
-  padding: 1.4rem;
+  padding: 1.25rem;
   border: 1px solid var(--hub-border);
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  transition: all 0.2s ease;
   background: #fff;
 }
 
 .content-card:hover {
   border-color: var(--hub-accent);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--hub-shadow);
 }
 
 .content-card h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
+  font-size: 1.05rem; /* Much smaller titles */
   color: var(--hub-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.content-card p {
+  font-size: 0.85rem;
+  color: var(--hub-secondary);
 }
 
 .btn-academic {
   display: inline-block;
-  padding: 0.7rem 1.6rem;
+  padding: 0.6rem 1.4rem;
   background: var(--hub-accent);
   color: #fff !important;
-  border-radius: 6px;
+  border-radius: 4px;
   text-decoration: none !important;
   font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(181, 9, 172, 0.3);
-}
-
-.btn-academic:hover {
-  background: var(--hub-accent-hover);
-  transform: translateY(-1px);
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(181, 9, 172, 0.2);
 }
 
 .sidebar-box {
-  background: #fff;
-  padding: 1.4rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
   border: 1px solid var(--hub-border);
 }
 
 .sidebar-box h4 {
-  margin-top: 0;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--hub-secondary);
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--hub-section-bg);
-  padding-bottom: 0.4rem;
+  font-size: 0.65rem; /* Tiny headers for professional look */
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-box p {
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-  .hero-banner { height: 350px; }
 }
 </style>
 
