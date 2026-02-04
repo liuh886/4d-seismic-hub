@@ -77,6 +77,11 @@ permalink: /pages/knowledge-base/
 
 A unified collection of case studies, research papers, and technical reports. Use this repository to benchmark workflows and discover operational insights.
 
+<div style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+  <input type="text" id="kb-search" placeholder="🔍 Search by title, author, or tags..." 
+    style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;">
+</div>
+
 ---
 
 <div class="section-header">
@@ -96,16 +101,45 @@ Explore the locations of the 4D monitoring projects documented in this hub. Clic
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
     var studies = {{ site.data.case_studies_map | jsonify }};
-    var bounds = [];
+    var markers = [];
     studies.forEach(function (study) {
       if (study.latitude && study.longitude) {
         var marker = L.marker([study.latitude, study.longitude]).addTo(map);
         marker.bindPopup('<strong>' + study.name + '</strong><br>' + study.location + '<p style="font-size:0.8rem; margin-top:0.5rem;">' + study.summary + '</p>');
-        bounds.push([study.latitude, study.longitude]);
+        markers.push(marker);
       }
     });
-    // Optional: Fit bounds if you want auto-zoom, but world view is often better for this map
-    // if (bounds.length) map.fitBounds(bounds, { padding: [50, 50] });
+    
+    // Auto-fit bounds if markers exist
+    if (markers.length > 0) {
+      var group = new L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.1));
+    }
+
+    // Live Search Logic
+    const searchInput = document.getElementById('kb-search');
+    const cards = document.querySelectorAll('.kb-card');
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'flex' : 'none';
+      });
+      
+      // Hide headers if no cards visible in a section
+      document.querySelectorAll('.section-header').forEach(header => {
+        let next = header.nextElementSibling;
+        let hasVisible = false;
+        while(next && !next.classList.contains('section-header')) {
+          if(next.classList.contains('kb-grid')) {
+             if([...next.children].some(c => c.style.display !== 'none')) hasVisible = true;
+          }
+          next = next.nextElementSibling;
+        }
+        header.style.display = hasVisible ? 'flex' : 'none';
+      });
+    });
   });
 </script>
 

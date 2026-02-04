@@ -32,4 +32,4 @@ To join, please open an issue labeled `wg-join` or submit a pull request adding 
 
 ### Charter
 
-For a detailed description of our scope and decision-making process, see the [charter document](/docs/charter).
+For a detailed description of our scope and decision-making process, see the [charter document]({{ '/docs/charter' | relative_url }}).

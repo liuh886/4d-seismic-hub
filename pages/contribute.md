@@ -50,4 +50,4 @@ To add a pinpoint to the Global Case Study Map, edit `_data/case_studies_map.yml
 
 ## License
 
-By contributing, you agree that your work will be licensed under the [MIT License](/LICENSE).
+By contributing, you agree that your work will be licensed under the [MIT License]({{ '/LICENSE' | relative_url }}).
