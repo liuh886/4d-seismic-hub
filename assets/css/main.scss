@@ -1,9 +1,14 @@
 ---
 # Only the main Sass file needs front matter so Jekyll processes it.
 ---
+
+/* Site Typography Variables */
+$doc-font-size: 11px; /* ~70% of 16px */
+
 @import "minimal-mistakes/skins/air";
 @import "minimal-mistakes";
 
+/* Site Layout Overrides */
 $site-content-max-width: 880px;
 $site-content-gutter: 1.5rem;
 
@@ -55,6 +60,7 @@ body.layout--home .page__content > * {
   width: 100%;
 }
 
+/* Custom Components */
 .case-studies-map {
   height: 420px;
   border: 1px solid #d9d9d9;
@@ -69,30 +75,7 @@ body.layout--home .page__content > * {
   }
 }
 
-.case-studies-map {
-  height: 420px;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .case-studies-map {
-    height: 520px;
-  }
-}
-
-.case-studies-map {
-  height: 420px;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .case-studies-map {
-    height: 520px;
-  }
+/* Global 70% Scale - Creating a high-density, professional engineering look */
+html {
+  font-size: 70% !important;
 }
