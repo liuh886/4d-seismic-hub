@@ -1,5 +1,4 @@
 ﻿---
-title: "Dashboard"
 layout: home
 author_profile: false
 ---
