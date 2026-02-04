@@ -13,6 +13,8 @@ plugins:
 repository: liuh886/4d-seismic-hub
 url: "https://liuh886.github.io"
 baseurl: "/4d-seismic-hub"
+serve_og_meta: true
+og_image: "/assets/images/logo.svg"
 markdown: kramdown
 
 # Where to find data and collections

@@ -6,6 +6,11 @@ author_profile: false
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap');
 
+/* GLOBAL 75% SCALE FIX */
+html {
+  font-size: 14px !important; /* This scales rem units across the entire theme */
+}
+
 :root {
   --hub-primary: #1a202c;
   --hub-secondary: #4a5568;
@@ -14,25 +19,22 @@ author_profile: false
   --hub-bg: #ffffff;
   --hub-section-bg: #f8fafc;
   --hub-border: #e2e8f0;
-  --hub-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body {
   font-family: 'Inter', sans-serif;
   color: var(--hub-primary);
-  font-size: 14px; /* Very crisp base font */
-  line-height: 1.45; /* Tighter line height */
+  line-height: 1.5;
 }
 
 h1, h2, h3 {
   font-family: 'Merriweather', serif;
-  margin-top: 0;
 }
 
-/* Rolling Map Hero - Original Height, Compact Content */
+/* Rolling Map Hero - Restored original proportions but internal content is scaled */
 .hero-banner {
   position: relative;
-  height: 500px; /* Restored to original */
+  height: 500px;
   width: 100%;
   overflow: hidden;
   margin-bottom: 3rem;
@@ -68,96 +70,85 @@ h1, h2, h3 {
 }
 
 .hero-overlay img.logo {
-  width: 80px; 
+  width: 100px; 
   margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 10px rgba(181, 9, 172, 0.4));
+  filter: drop-shadow(0 0 12px rgba(181, 9, 172, 0.5));
 }
 
 .hero-overlay h1 {
-  font-size: clamp(2rem, 5vw, 3rem); /* Slightly larger for the big banner but still crisp */
-  margin-bottom: 0.75rem;
+  font-size: 3rem; 
+  margin-bottom: 1rem;
   font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero-overlay p {
-  font-size: 1.1rem;
-  max-width: 700px;
+  font-size: 1.2rem;
+  max-width: 800px;
   margin: 0 auto 2.5rem auto;
   opacity: 0.9;
-  line-height: 1.5;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem; 
+  gap: 3rem;
   margin-bottom: 4rem;
-  max-width: 1200px; /* Restored to original expansive width */
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .featured-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-/* Compact Card Styling */
 .content-card {
-  padding: 1.25rem;
+  padding: 1.75rem;
   border: 1px solid var(--hub-border);
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border-radius: 12px;
+  transition: all 0.3s ease;
   background: #fff;
 }
 
 .content-card:hover {
   border-color: var(--hub-accent);
-  transform: translateY(-1px);
-  box-shadow: var(--hub-shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .content-card h3 {
-  font-size: 1.05rem; /* Much smaller titles */
+  font-size: 1.35rem;
   color: var(--hub-accent);
-  margin-bottom: 0.4rem;
-}
-
-.content-card p {
-  font-size: 0.85rem;
-  color: var(--hub-secondary);
+  margin-bottom: 0.75rem;
 }
 
 .btn-academic {
   display: inline-block;
-  padding: 0.6rem 1.4rem;
+  padding: 1rem 2.2rem;
   background: var(--hub-accent);
   color: #fff !important;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none !important;
   font-weight: 600;
-  font-size: 0.85rem;
-  box-shadow: 0 2px 8px rgba(181, 9, 172, 0.2);
+  transition: all 0.2s;
 }
 
 .sidebar-box {
-  padding: 1.25rem;
-  border-radius: 8px;
-  margin-bottom: 1.25rem;
+  padding: 1.75rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
   border: 1px solid var(--hub-border);
+  background: #fff;
 }
 
 .sidebar-box h4 {
-  font-size: 0.65rem; /* Tiny headers for professional look */
-  letter-spacing: 0.12em;
-  margin-bottom: 0.75rem;
-}
-
-.sidebar-box p {
-  font-size: 0.8rem;
-  line-height: 1.5;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--hub-secondary);
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--hub-section-bg);
+  padding-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -174,7 +165,7 @@ h1, h2, h3 {
 <section class="hero-banner">
   <div id="hero-map"></div>
   <div class="hero-overlay">
-    <img src="{{ '/assets/images/logo.svg' | relative_url }}" alt="4D Seismic Hub Logo" class="logo">
+    <img src="{{ '/assets/images/logo.svg' | relative_url }}" alt="4D Seismic Hub Logo" class="logo" loading="lazy">
     <h1>4D Seismic Knowledge Hub</h1>
     <p>Discover the pulse of time-lapse monitoring across the world's most complex reservoirs.</p>
     <a href="{{ '/pages/knowledge-base' | relative_url }}" class="btn-academic">Explore Knowledge Base</a>
@@ -183,12 +174,14 @@ h1, h2, h3 {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   var heroMap = L.map('hero-map', {
     zoomControl: false,
     attributionControl: false,
     scrollWheelZoom: false,
-    dragging: false,
-    touchZoom: false
+    dragging: !isTouchDevice,
+    touchZoom: false,
+    tap: false
   }).setView([20, 0], 3);
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -201,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
   locations.forEach(function(loc) {
     if (loc.latitude) {
       L.circleMarker([loc.latitude, loc.longitude], {
-        radius: 5,
+        radius: 6,
         fillColor: "#B509AC",
         color: "#fff",
         weight: 1,
@@ -229,34 +222,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="dashboard-grid">
   <main class="featured-list">
-    <h2 style="font-size: 1.35rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-      <span style="font-size: 1.1rem;">✨</span> Featured Insights
+    <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 1.3rem;">✨</span> Featured Insights
     </h2>
 
     {% for paper in site.data.papers limit:3 %}
     <article class="content-card">
-      <h3 style="margin-bottom: 0.5rem; color: var(--hub-accent);">{{ paper.title }}</h3>
-      <p style="color: var(--hub-secondary); line-height: 1.5; font-size: 0.9rem;">{{ paper.description | truncate: 160 }}</p>
-      <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600; text-decoration: none; font-size: 0.85rem;">Read Paper &rarr;</a>
+      <h3>{{ paper.title }}</h3>
+      <p style="color: var(--hub-secondary); line-height: 1.5;">{{ paper.description | truncate: 160 }}</p>
+      <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600; text-decoration: none;">Read Paper &rarr;</a>
     </article>
     {% endfor %}
 
-    <a href="{{ '/pages/knowledge-base' | relative_url }}" style="text-align: center; margin-top: 1rem; color: var(--hub-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500;">View all resources...</a>
+    <a href="{{ '/pages/knowledge-base' | relative_url }}" style="text-align: center; margin-top: 1rem; color: var(--hub-secondary); text-decoration: none; font-weight: 500;">View all resources...</a>
   </main>
 
   <aside>
     <div class="sidebar-box">
       <h4>Working Group</h4>
-      <p style="font-size: 0.85rem; line-height: 1.6;">Maintainers of the 4D Seismic Hub. We rely on volunteers for peer-reviewed content curation.</p>
-      <a href="{{ '/pages/contribute' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none; font-size: 0.85rem;">Join the Initiative &rarr;</a>
+      <p style="line-height: 1.6;">Maintainers of the 4D Seismic Hub. We rely on volunteers for peer-reviewed content curation.</p>
+      <a href="{{ '/pages/contribute' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Join the Initiative &rarr;</a>
     </div>
 
     <div class="sidebar-box" style="border-left: 4px solid var(--hub-accent);">
       <h4>Featured Case</h4>
       {% assign featured_case = site.data.case_studies_map | first %}
-      <p style="margin-bottom: 0.4rem; font-size: 0.95rem;"><strong>{{ featured_case.name }}</strong></p>
-      <p style="font-size: 0.85rem; color: var(--hub-secondary); line-height: 1.5;">{{ featured_case.summary }}</p>
-      <a href="{{ '/pages/knowledge-base' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none; font-size: 0.85rem;">Explore Full Map &rarr;</a>
+      <p style="margin-bottom: 0.5rem;"><strong>{{ featured_case.name }}</strong></p>
+      <p style="color: var(--hub-secondary); line-height: 1.5;">{{ featured_case.summary }}</p>
+      <a href="{{ '/pages/knowledge-base' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Explore Full Map &rarr;</a>
     </div>
   </aside>
 </div>
