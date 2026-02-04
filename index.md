@@ -6,11 +6,6 @@ author_profile: false
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap');
 
-/* GLOBAL 75% SCALE FIX */
-html {
-  font-size: 14px !important; /* This scales rem units across the entire theme */
-}
-
 :root {
   --hub-primary: #1a202c;
   --hub-secondary: #4a5568;
@@ -19,19 +14,15 @@ html {
   --hub-bg: #ffffff;
   --hub-section-bg: #f8fafc;
   --hub-border: #e2e8f0;
+  --hub-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Inherit font-family and line-height from theme (same as Knowledge Base) */
 body {
-  font-family: 'Inter', sans-serif;
   color: var(--hub-primary);
-  line-height: 1.5;
 }
 
-h1, h2, h3 {
-  font-family: 'Merriweather', serif;
-}
-
-/* Rolling Map Hero - Restored original proportions but internal content is scaled */
+/* Rolling Map Hero - Restored Proportions */
 .hero-banner {
   position: relative;
   height: 500px;
@@ -94,6 +85,9 @@ h1, h2, h3 {
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
   margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .featured-list {
@@ -102,6 +96,7 @@ h1, h2, h3 {
   gap: 1.5rem;
 }
 
+/* Card Styling - Using rem to respect global scaling */
 .content-card {
   padding: 1.75rem;
   border: 1px solid var(--hub-border);
@@ -117,6 +112,7 @@ h1, h2, h3 {
 }
 
 .content-card h3 {
+  margin-top: 0;
   font-size: 1.35rem;
   color: var(--hub-accent);
   margin-bottom: 0.75rem;
@@ -134,14 +130,15 @@ h1, h2, h3 {
 }
 
 .sidebar-box {
+  background: #fff;
   padding: 1.75rem;
   border-radius: 12px;
   margin-bottom: 2rem;
   border: 1px solid var(--hub-border);
-  background: #fff;
 }
 
 .sidebar-box h4 {
+  margin-top: 0;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
