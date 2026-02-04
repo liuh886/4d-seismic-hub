@@ -1,4 +1,4 @@
-﻿---
+---
 title: Knowledge Base
 layout: default
 permalink: /pages/knowledge-base/
@@ -52,11 +52,15 @@ permalink: /pages/knowledge-base/
   margin-top: 1rem;
 }
 .tag {
-  font-size: 0.7rem;
-  background: #f1f5f9;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  color: #475569;
+  font-size: 0.65rem;
+  background: rgba(181, 9, 172, 0.05);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  color: var(--hub-accent, #B509AC);
+  border: 1px solid rgba(181, 9, 172, 0.15);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 .section-header {
   display: flex;
@@ -64,8 +68,8 @@ permalink: /pages/knowledge-base/
   gap: 0.75rem;
   border-bottom: 2px solid #f1f5f9;
   padding-bottom: 0.5rem;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
 }
 .section-header h2 {
   margin: 0;
@@ -97,15 +101,28 @@ Explore the locations of the 4D monitoring projects documented in this hub. Clic
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var map = L.map('case-studies-map', { scrollWheelZoom: false }).setView([20, 0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; CartoDB'
     }).addTo(map);
     var studies = {{ site.data.case_studies_map | jsonify }};
     var markers = [];
     studies.forEach(function (study) {
       if (study.latitude && study.longitude) {
-        var marker = L.marker([study.latitude, study.longitude]).addTo(map);
-        marker.bindPopup('<strong>' + study.name + '</strong><br>' + study.location + '<p style="font-size:0.8rem; margin-top:0.5rem;">' + study.summary + '</p>');
+        // Custom circle markers instead of default blue pins
+        var marker = L.circleMarker([study.latitude, study.longitude], {
+          radius: 7,
+          fillColor: "#B509AC",
+          color: "#fff",
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).addTo(map);
+        
+        marker.bindPopup('<div style="font-family:Inter, sans-serif; padding:5px;">' +
+          '<strong style="color:#B509AC; font-size:1rem;">' + study.name + '</strong><br>' +
+          '<span style="color:#64748b; font-size:0.8rem; font-weight:600;">' + study.location + '</span>' +
+          '<p style="font-size:0.85rem; line-height:1.4; margin-top:8px; border-top:1px solid #eee; padding-top:8px;">' + study.summary + '</p>' +
+          '</div>');
         markers.push(marker);
       }
     });
