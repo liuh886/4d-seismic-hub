@@ -3,7 +3,7 @@
 ---
 
 /* Site Typography Variables */
-$doc-font-size: 13px; /* Adjusted from 11px for better readability */
+$doc-font-size: 15px; /* Adjusted to 15px for optimal readability */
 
 @import "minimal-mistakes/skins/air";
 @import "minimal-mistakes";
@@ -75,10 +75,12 @@ body.layout--home .page__content > * {
   }
 }
 
-/* Global Scale - Creating a high-density, professional engineering look (13px base) */
+/* Global Scale - Creating a high-density, professional engineering look (15px base) */
 
 html {
 
-  font-size: 81.25% !important;
+  font-size: 93.75% !important;
 
 }
+
+
