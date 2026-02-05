@@ -5,6 +5,11 @@
 /* Site Typography Variables */
 $doc-font-size: 15px; /* Adjusted to 15px for optimal readability */
 
+/* Theme Color Overrides */
+$primary-color: #B509AC;
+$accent-color: #B509AC;
+$link-color: #B509AC;
+
 @import "minimal-mistakes/skins/air";
 @import "minimal-mistakes";
 
@@ -82,5 +87,39 @@ html {
   font-size: 93.75% !important;
 
 }
+
+
+
+/* Footer & Color Bar Customization */
+
+.page__footer {
+
+  border-top: 4px solid var(--hub-accent, #B509AC) !important;
+
+  background-color: #f8fafc;
+
+}
+
+
+
+.page__footer-follow .social-icons .fa-rss,
+
+.page__footer-follow li:contains("Feed") {
+
+  display: none !important;
+
+}
+
+
+
+/* Fallback for the 'Feed' link text */
+
+.page__footer-follow li a[href*="atom.xml"] {
+
+  display: none !important;
+
+}
+
+
 
 
