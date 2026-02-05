@@ -220,14 +220,33 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="dashboard-grid">
   <main class="featured-list">
     <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 1.3rem;">📰</span> Recent Analysis
+    </h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2.5rem;">
+      {% for post in site.posts limit:2 %}
+      <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: inherit;">
+        <div class="content-card" style="padding: 1.2rem; height: 100%;">
+          <small style="color: var(--hub-accent); font-weight: 600;">{{ post.date | date: "%b %d, %Y" }}</small>
+          <h4 style="margin: 0.5rem 0; font-size: 1.1rem;">{{ post.title }}</h4>
+          <p style="font-size: 0.85rem; color: var(--hub-secondary); margin: 0;">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-size: 1.3rem;">✨</span> Featured Insights
     </h2>
 
     {% for paper in site.data.papers limit:3 %}
-    <article class="content-card">
-      <h3>{{ paper.title }}</h3>
-      <p style="color: var(--hub-secondary); line-height: 1.5;">{{ paper.description | truncate: 160 }}</p>
-      <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600; text-decoration: none;">Read Paper &rarr;</a>
+    <article class="content-card" style="padding: 1.25rem;">
+      <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">{{ paper.title }}</h3>
+      <p style="color: var(--hub-secondary); line-height: 1.4; font-size: 0.9rem; margin-bottom: 1rem;">{{ paper.description | truncate: 140 }}</p>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">{{ paper.tags | first }}</span>
+        <a href="{{ paper.link }}" target="_blank" style="color: var(--hub-accent); font-weight: 600; text-decoration: none; font-size: 0.85rem;">Read more &rarr;</a>
+      </div>
     </article>
     {% endfor %}
 
@@ -235,6 +254,12 @@ document.addEventListener('DOMContentLoaded', function() {
   </main>
 
   <aside>
+    <div class="sidebar-box" style="border-top: 4px solid var(--hub-accent);">
+      <h4>Comparison Tool</h4>
+      <p style="line-height: 1.6;">Compare technical parameters (NRMS, bin size, etc.) across multiple 4D projects.</p>
+      <a href="{{ '/pages/knowledge-base/' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Launch Comparison &rarr;</a>
+    </div>
+
     <div class="sidebar-box">
       <h4>Working Group</h4>
       <p style="line-height: 1.6;">Maintainers of the 4D Seismic Hub. We rely on volunteers for peer-reviewed content curation.</p>

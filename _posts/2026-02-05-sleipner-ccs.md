@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Sleipner CCS: The Gold Standard for 4D Monitoring"
 date: 2026-02-05
 categories: ccs-monitoring

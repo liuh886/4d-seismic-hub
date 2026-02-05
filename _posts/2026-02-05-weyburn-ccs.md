@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Weyburn-Midale: Spot Seismic Innovation"
 date: 2026-02-05
 categories: ccs-monitoring
