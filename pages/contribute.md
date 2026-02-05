@@ -8,6 +8,8 @@ permalink: /pages/contribute/
 
 We welcome contributions of open presentations, case studies, and reference citations. This hub is built on a data-driven model using Jekyll and YAML—this means you don't need to write complex HTML to add content.
 
+The source code and data for this site are hosted on GitHub: [**liuh886/4d-seismic-hub**](https://github.com/liuh886/4d-seismic-hub)
+
 ## How to Add Content
 
 The easiest way to contribute is to submit a **Pull Request (PR)** on GitHub with updates to our data files.

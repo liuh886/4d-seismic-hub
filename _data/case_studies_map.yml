@@ -87,3 +87,27 @@
   latitude: 64.35
   longitude: 7.8
   summary: "Complex tidal reservoir monitoring. Tracking water injection sweeping through heterogeneous Rogn formation sands."
+
+- name: "Mariner"
+  location: "North Sea, UK"
+  latitude: 59.1
+  longitude: 1.5
+  summary: "Visualizing gas-out-of-solution to manage pressure in a heavy oil reservoir, identifying quiet zones versus active hardening responses."
+
+- name: "Clair Ridge"
+  location: "West of Shetland, UK"
+  latitude: 60.5
+  longitude: -4.5
+  summary: "Ultra-high density OBN monitoring of a fractured basement. Successfully imaged through glacial boulders to optimize well placement."
+
+- name: "Weyburn-Midale (Spot)"
+  location: "Saskatchewan, Canada"
+  latitude: 49.4
+  longitude: -103.8
+  summary: "World-first application of Spot Seismic for frequent CO2-EOR monitoring, providing high-temporal resolution at a fraction of 4D cost."
+
+- name: "Agogo OBN"
+  location: "Offshore Angola (Block 15/06)"
+  latitude: -6.5
+  longitude: 11.0
+  summary: "State-of-the-art 4D OBN in deepwater. Resolved complex channel connectivity issues that were previously ambiguous on streamer data."

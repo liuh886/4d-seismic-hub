@@ -19,4 +19,4 @@ No. The hub only accepts materials that are already publicly available (e.g., On
 If you use information from this site, please cite the individual papers referenced. For general acknowledgment of the hub itself, see the `CITATION.cff` file in the repository.
 
 ### How can I join the working group?
-Check the [Working Group](/pages/working-group) page for details on how to join the discussion and start contributing to the curation process.
+Check the [Working Group]({{ '/pages/working-group/' | relative_url }}) page for details on how to join the discussion and start contributing to the curation process.

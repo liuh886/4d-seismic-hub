@@ -31,3 +31,7 @@ Anyone with an interest in 4D seismic is encouraged to join. Whether you are an 
 ### Looking Ahead
 
 We plan to expand the hub with sections on machine learning in 4D, DAS (Distributed Acoustic Sensing) integration, and bilingual support to reach a wider global audience.
+
+### Governance
+
+The hub is overseen by an international **[Working Group]({{ '/pages/working-group/' | relative_url }})** of volunteers. They ensure that all content is properly peer-reviewed and vendor-neutral.

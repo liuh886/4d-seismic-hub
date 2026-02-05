@@ -95,3 +95,31 @@
   description: "One of the earliest successes in using 4D to identify bypassed oil in heterogeneous tidal sands, leading to successful infill drilling."
   link: "https://onepetro.org/search?q=Draugen+4D"
   tags: ["Tidal", "Infill Drilling", "Legacy"]
+
+- title: "Mariner Field: 4D seismic monitoring of a heavy oil field"
+  authors: ["MacLellan, A.", "McArdle, N."]
+  year: 2024
+  description: "Capturing gas-out-of-solution signals to monitor pressure management and waterflood response in a giant heavy oil field."
+  link: "https://onepetro.org/search?q=Mariner+4D+seismic"
+  tags: ["Heavy Oil", "Pressure Management", "North Sea"]
+
+- title: "Clair Field: 4D ultra high density OBN acquisition"
+  authors: ["Tillotson, P.", "Wang, L."]
+  year: 2023
+  description: "Overcoming glacial boulder scatterers and complex overburden with ultra-high density OBN to monitor a massive fractured basement reservoir."
+  link: "https://onepetro.org/search?q=Clair+4D+OBN"
+  tags: ["OBN", "Fractured Reservoir", "West of Shetland"]
+
+- title: "Spot Seismic: 4 years of monitoring on the Weyburn site"
+  authors: ["Whitecap Resources", "SpotLight Earth"]
+  year: 2025
+  description: "Proving the value of frequent, sparse 'spot' seismic monitoring as a cost-effective alternative to full-field 4D for CO2-EOR surveillance."
+  link: "https://spotlight-earth.com/whitecap-resources-publishes-4-year-spot-seismic-monitoring-results-at-weyburn/"
+  tags: ["CCS", "EOR", "Sparse Monitoring"]
+
+- title: "Agogo 4D OBN: A step change in deepwater monitoring"
+  authors: ["Mantica, S.", "Polonia, D.", "Sitta, A."]
+  year: 2022
+  description: "Applying high-density OBN to resolve complex channel connectivity and optimize infill drilling in a fast-track deepwater development."
+  link: "https://onepetro.org/search?q=Agogo+4D+OBN"
+  tags: ["West Africa", "OBN", "Fast-track"]

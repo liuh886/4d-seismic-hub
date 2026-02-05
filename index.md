@@ -238,7 +238,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="sidebar-box">
       <h4>Working Group</h4>
       <p style="line-height: 1.6;">Maintainers of the 4D Seismic Hub. We rely on volunteers for peer-reviewed content curation.</p>
-      <a href="{{ '/pages/contribute' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Join the Initiative &rarr;</a>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <a href="{{ '/pages/working-group/' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Meet the Group &rarr;</a>
+        <a href="{{ '/pages/contribute/' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Join the Initiative &rarr;</a>
+      </div>
     </div>
 
     <div class="sidebar-box" style="border-left: 4px solid var(--hub-accent);">
