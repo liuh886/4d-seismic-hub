@@ -10,6 +10,7 @@
   nrms_median: "23.5% (2016 re-processing)"
   main_driver: "Saturation & Pressure"
   water_depth: "135m"
+  map_id: "Gullfaks Main Field"
 
 - title: "Life of Field Seismic (LoFS) at Valhall"
   authors: ["Barkved, O.I.", "Kommedal, J.H.", "Kristiansen, P."]
@@ -23,6 +24,7 @@
   nrms_median: "< 10%"
   main_driver: "Compaction & Pressure"
   water_depth: "70m"
+  map_id: "Valhall LoFS"
 
 - title: "Girassol: A textbook example of 4D seismic monitoring"
   authors: ["Lygren, M.", "Koster, K.", "Goto, R."]
@@ -36,6 +38,7 @@
   nrms_median: "15-20%"
   main_driver: "Water Saturation"
   water_depth: "1350m"
+  map_id: "Girassol"
 
 - title: "Jubarte PRM: 4D seismic in deep water"
   authors: ["Thedy, E.", "Matusin, A.", "Grochau, M."]
@@ -49,6 +52,7 @@
   nrms_median: "10-15%"
   main_driver: "Pressure & Saturation"
   water_depth: "1300m"
+  map_id: "Jubarte PRM"
 
 - title: "Atlantis OBN 4D: Imaging below salt"
   authors: ["Beasley, C.", "Stopin, A.", "Etgen, J."]
@@ -62,6 +66,7 @@
   nrms_median: "~15%"
   main_driver: "Pressure & Gas Saturation"
   water_depth: "2100m"
+  map_id: "Atlantis OBN"
 
 - title: "Ekofisk 4D: Monitoring compaction and water flood"
   authors: ["Bertrand, A.", "Folstad, P.G.", "Smith, P."]
@@ -75,6 +80,7 @@
   nrms_median: "20%"
   main_driver: "Geomechanics (Compaction)"
   water_depth: "75m"
+  map_id: "Ekofisk"
 
 - title: "Harding field: 4D seismic imaging of gas injection"
   authors: ["Dailly, P.", "Lowden, J.", "Hoare, A."]
@@ -88,6 +94,7 @@
   nrms_median: "25%"
   main_driver: "Gas Saturation"
   water_depth: "110m"
+  map_id: "Harding"
 
 - title: "Schiehallion: 4D in a soft seabed environment"
   authors: ["Chapin, M.", "Pajot, D.", "Korsmo, Ø."]
@@ -101,6 +108,7 @@
   nrms_median: "30%"
   main_driver: "Water Saturation"
   water_depth: "400m"
+  map_id: "Schiehallion"
 
 - title: "Sleipner 4D: Time-lapse seismic monitoring of CO2 injection"
   authors: ["Arts, R.", "Eiken, O.", "Chadwick, A."]
@@ -114,6 +122,7 @@
   nrms_median: "~20%"
   main_driver: "CO2 Saturation"
   water_depth: "90m"
+  map_id: "Sleipner CCS"
 
 - title: "Pluto 4D: Challenges and successes in Australian waters"
   authors: ["Smith, T.", "Jones, R.", "Kovacs, A."]
@@ -127,6 +136,7 @@
   nrms_median: "22%"
   main_driver: "Water Saturation"
   water_depth: "400-1000m"
+  map_id: "Pluto LNG"
 
 - title: "Wister 4D: Monitoring steam chambers onshore"
   authors: ["Nakayama, K.", "Kragh, E.", "Gao, J."]
@@ -140,11 +150,12 @@
   nrms_median: "40% (Land)"
   main_driver: "Temperature (Steam)"
   water_depth: "N/A (Land)"
+  map_id: "Wister SAGD"
 
 - title: "Johan Sverdrup: Integrated PRM and gravity monitoring"
   authors: ["Alnes, H.", "Eide, A.", "Stronen, L."]
   year: 2019
-  description: "A state-of-the-art surveillance strategy combining permanent seismic sensors with gravimetry to monitor a giant reservoir."
+  description: "A state-of-the-art surveillance strategy combining permanent seismic sensors with gravimetry to constrain the water balance in a giant reservoir."
   link: "https://onepetro.org/search?q=Johan+Sverdrup+PRM"
   tags: ["PRM", "Multi-physics", "Gravity"]
   bin_size: "25m x 25m"
@@ -153,6 +164,7 @@
   nrms_median: "< 10%"
   main_driver: "Water balance & Pressure"
   water_depth: "115m"
+  map_id: "Johan Sverdrup"
 
 - title: "Mars OBN 4D: Undershooting platforms"
   authors: ["Ross, A.", "Brookes, D.", "Smit, F."]
@@ -166,6 +178,7 @@
   nrms_median: "12%"
   main_driver: "Pressure & Saturation"
   water_depth: "900m"
+  map_id: "Mars OBN"
 
 - title: "Draugen 4D: Success in a complex tidal reservoir"
   authors: ["Koster, K.", "Gabriels, P.", "Horvei, A."]
@@ -179,6 +192,7 @@
   nrms_median: "25%"
   main_driver: "Water Saturation"
   water_depth: "250m"
+  map_id: "Draugen"
 
 - title: "Mariner Field: 4D seismic monitoring of a heavy oil field"
   authors: ["MacLellan, A.", "McArdle, N."]
@@ -192,6 +206,7 @@
   nrms_median: "18%"
   main_driver: "Gas exsolution & Saturation"
   water_depth: "110m"
+  map_id: "Mariner"
 
 - title: "Clair Field: 4D ultra high density OBN acquisition"
   authors: ["Tillotson, P.", "Wang, L."]
@@ -205,6 +220,7 @@
   nrms_median: "10-12%"
   main_driver: "Pressure & Saturation"
   water_depth: "140m"
+  map_id: "Clair Ridge"
 
 - title: "Spot Seismic: 4 years of monitoring on the Weyburn site"
   authors: ["Whitecap Resources", "SpotLight Earth"]
@@ -218,6 +234,7 @@
   nrms_median: "< 15% (Local repeatability)"
   main_driver: "CO2 Saturation"
   water_depth: "N/A (Land)"
+  map_id: "Weyburn-Midale (Spot)"
 
 - title: "Agogo 4D OBN: A step change in deepwater monitoring"
   authors: ["Mantica, S.", "Polonia, D.", "Sitta, A."]
@@ -231,6 +248,7 @@
   nrms_median: "14%"
   main_driver: "Water Saturation"
   water_depth: "1650m"
+  map_id: "Agogo OBN"
 
 - title: "Daqing Field: Long-term land 4D monitoring of water flood"
   authors: ["Liu, Y.", "Li, J.", "Zhang, X."]
@@ -244,6 +262,7 @@
   nrms_median: "35-45% (Estimated)"
   main_driver: "Water Saturation"
   water_depth: "N/A (Land)"
+  map_id: "Daqing"
 
 - title: "Tarim Basin: 4D seismic for ultra-deep fractured reservoirs"
   authors: ["Wang, H.", "Chen, L.", "Zhou, Q."]
@@ -257,3 +276,4 @@
   nrms_median: "40% (Estimated)"
   main_driver: "Pressure & Gas Saturation"
   water_depth: "N/A (Land, Depth >7km)"
+  map_id: "Tarim (Halahatang)"

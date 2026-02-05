@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="sidebar-box" style="border-top: 4px solid var(--hub-accent);">
       <h4>Comparison Tool</h4>
       <p style="line-height: 1.6;">Compare technical parameters (NRMS, bin size, etc.) across multiple 4D projects.</p>
-      <a href="{{ '/pages/knowledge-base/' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Launch Comparison &rarr;</a>
+      <a href="{{ '/pages/comparison-tool/' | relative_url }}" style="font-weight: 600; color: var(--hub-accent); text-decoration: none;">Launch Comparison &rarr;</a>
     </div>
 
     <div class="sidebar-box">
