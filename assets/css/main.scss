@@ -92,17 +92,81 @@ html {
 
 /* Footer & Color Bar Customization */
 
+
+
 .page__footer {
+
+
 
   border-top: 4px solid var(--hub-accent, #B509AC) !important;
 
+
+
   background-color: #f8fafc;
+
+
+
+  color: #000 !important; /* Set text to black */
+
+
 
 }
 
 
 
+
+
+
+
+/* Hide Recent Posts in footer and other footer sidebars */
+
+
+
+.page__footer-column,
+
+
+
+.page__footer h4 {
+
+
+
+  display: none !important;
+
+
+
+}
+
+
+
+
+
+
+
+.page__footer-copyright,
+
+
+
+.page__footer-copyright a {
+
+
+
+  color: #000 !important;
+
+
+
+}
+
+
+
+
+
+
+
 .page__footer-follow .social-icons .fa-rss,
+
+
+
+
 
 .page__footer-follow li:contains("Feed") {
 
