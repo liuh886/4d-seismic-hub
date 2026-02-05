@@ -1,0 +1,13 @@
+# Jekyll defaults
+.sass-cache/
+.jekyll-cache/
+_site/
+.jekyll-metadata
+
+# Skill development files (Local only)
+4d-seismic-hub-maintenance/
+*.skill
+
+# OS files
+.DS_Store
+Thumbs.db

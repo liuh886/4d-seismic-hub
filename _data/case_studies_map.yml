@@ -111,3 +111,15 @@
   latitude: -6.5
   longitude: 11.0
   summary: "State-of-the-art 4D OBN in deepwater. Resolved complex channel connectivity issues that were previously ambiguous on streamer data."
+
+- name: "Daqing"
+  location: "Heilongjiang, China"
+  latitude: 46.58
+  longitude: 125.03
+  summary: "Pioneering land 4D in China. Successfully mapped remaining oil saturation in mature water-flood compartments to guide infill drilling."
+
+- name: "Tarim (Halahatang)"
+  location: "Xinjiang, China"
+  latitude: 41.72
+  longitude: 82.95
+  summary: "Ultra-deep carbonate monitoring. Using 4D to track gas-injection sweeps in fractured reservoirs at depths exceeding 7,000m."

@@ -16,7 +16,11 @@ We envision a world in which 4D seismic is not a niche technology but an integra
 
 ### Why This Hub?
 
-Critical 4D information is often scattered across conference archives, journals, and corporate intranets. We realized that simply collecting and curating available open materials could make a tangible difference. This site is easy to maintain and allows anyone to contribute via familiar pull-request workflows.
+
+
+Our motive is to bridge the gap between raw geophysical data and decision-making intelligence, ensuring that technical insights translate directly into reservoir value. Critical 4D information is often scattered across conference archives, journals, and corporate intranets. 
+
+ We realized that simply collecting and curating available open materials could make a tangible difference. This site is easy to maintain and allows anyone to contribute via familiar pull-request workflows.
 
 ### What We Provide
 

@@ -1,9 +1,15 @@
-﻿- title: "Gullfaks 4D seismic: 10 years of experience"
+- title: "Gullfaks 4D seismic: 10 years of experience"
   authors: ["Landrø, M.", "Digranes, P.", "Strønen, L.K."]
   year: 2005
   description: "A definitive summary of how 4D seismic matured from a research experiment to a standard asset management tool, generating over $1B in added value."
   link: "https://onepetro.org/search?q=Gullfaks+4D"
   tags: ["North Sea", "Legacy", "Value Creation"]
+  bin_size: "25m x 25m"
+  repeat_interval: "3 years"
+  sensor_type: "Streamer"
+  nrms_median: "23.5% (2016 re-processing)"
+  main_driver: "Saturation & Pressure"
+  water_depth: "135m"
 
 - title: "Life of Field Seismic (LoFS) at Valhall"
   authors: ["Barkved, O.I.", "Kommedal, J.H.", "Kristiansen, P."]
@@ -11,6 +17,12 @@
   description: "The case that changed the industry: installing permanent cables on the seabed for frequent, high-repeatability monitoring of a compacting chalk reservoir."
   link: "https://onepetro.org/search?q=Valhall+LoFS"
   tags: ["PRM", "Compaction", "LoFS"]
+  bin_size: "50m x 50m (Shot Grid)"
+  repeat_interval: "6 months"
+  sensor_type: "Trench Cable (OBC)"
+  nrms_median: "< 10%"
+  main_driver: "Compaction & Pressure"
+  water_depth: "70m"
 
 - title: "Girassol: A textbook example of 4D seismic monitoring"
   authors: ["Lygren, M.", "Koster, K.", "Goto, R."]
@@ -18,6 +30,12 @@
   description: "Demonstrating how 4D amplitudes can perfectly track water flood fronts in high-porosity turbidite channels in deepwater West Africa."
   link: "https://onepetro.org/search?q=Girassol+4D"
   tags: ["West Africa", "Deepwater", "Turbidites"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "2 years"
+  sensor_type: "HR Streamer"
+  nrms_median: "15-20%"
+  main_driver: "Water Saturation"
+  water_depth: "1350m"
 
 - title: "Jubarte PRM: 4D seismic in deep water"
   authors: ["Thedy, E.", "Matusin, A.", "Grochau, M."]
@@ -25,6 +43,12 @@
   description: "Deploying the world's first deepwater optical Permanent Reservoir Monitoring system to manage a complex heavy oil field in Brazil."
   link: "https://onepetro.org/search?q=Jubarte+PRM"
   tags: ["Brazil", "PRM", "Heavy Oil"]
+  bin_size: "25m x 25m"
+  repeat_interval: "1 year"
+  sensor_type: "Optical Cable (PRM)"
+  nrms_median: "10-15%"
+  main_driver: "Pressure & Saturation"
+  water_depth: "1300m"
 
 - title: "Atlantis OBN 4D: Imaging below salt"
   authors: ["Beasley, C.", "Stopin, A.", "Etgen, J."]
@@ -32,6 +56,12 @@
   description: "Using Ocean Bottom Nodes (OBN) to achieve 4D repeatability and illumination under complex salt canopies in the Gulf of Mexico."
   link: "https://onepetro.org/search?q=Atlantis+OBN+4D"
   tags: ["GoM", "Sub-salt", "OBN"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "2 years"
+  sensor_type: "OBN"
+  nrms_median: "~15%"
+  main_driver: "Pressure & Gas Saturation"
+  water_depth: "2100m"
 
 - title: "Ekofisk 4D: Monitoring compaction and water flood"
   authors: ["Bertrand, A.", "Folstad, P.G.", "Smith, P."]
@@ -39,6 +69,12 @@
   description: "Using 4D time-shifts to map the geomechanical response of the overburden to reservoir compaction, a critical safety and production metric."
   link: "https://onepetro.org/search?q=Ekofisk+4D"
   tags: ["Geomechanics", "Time-shifts", "Chalk"]
+  bin_size: "25m x 25m"
+  repeat_interval: "2 years"
+  sensor_type: "Streamer / OBN"
+  nrms_median: "20%"
+  main_driver: "Geomechanics (Compaction)"
+  water_depth: "75m"
 
 - title: "Harding field: 4D seismic imaging of gas injection"
   authors: ["Dailly, P.", "Lowden, J.", "Hoare, A."]
@@ -46,6 +82,12 @@
   description: "Visualizing gas cap expansion and coning to optimize horizontal well placement in a high-quality sandstone reservoir."
   link: "https://onepetro.org/search?q=Harding+4D"
   tags: ["UK", "Gas Cap", "Horizontal Wells"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "3 years"
+  sensor_type: "Streamer"
+  nrms_median: "25%"
+  main_driver: "Gas Saturation"
+  water_depth: "110m"
 
 - title: "Schiehallion: 4D in a soft seabed environment"
   authors: ["Chapin, M.", "Pajot, D.", "Korsmo, Ø."]
@@ -53,6 +95,12 @@
   description: "Early proof that 4D could work in the harsh West of Shetland environment, revealing compartmentalization that altered the drilling program."
   link: "https://onepetro.org/search?q=Schiehallion+4D"
   tags: ["West of Shetland", "FPSO", "Connectivity"]
+  bin_size: "25m x 25m"
+  repeat_interval: "2 years"
+  sensor_type: "Streamer"
+  nrms_median: "30%"
+  main_driver: "Water Saturation"
+  water_depth: "400m"
 
 - title: "Sleipner 4D: Time-lapse seismic monitoring of CO2 injection"
   authors: ["Arts, R.", "Eiken, O.", "Chadwick, A."]
@@ -60,6 +108,12 @@
   description: "The seminal paper on CCS monitoring. Quantifying the thickness and distribution of CO2 layers in the Utsira aquifer."
   link: "https://onepetro.org/search?q=Sleipner+CO2+4D"
   tags: ["CCS", "CO2 Storage", "Environment"]
+  bin_size: "6.25m x 25m (legacy)"
+  repeat_interval: "Variable (2-10 years)"
+  sensor_type: "Streamer"
+  nrms_median: "~20%"
+  main_driver: "CO2 Saturation"
+  water_depth: "90m"
 
 - title: "Pluto 4D: Challenges and successes in Australian waters"
   authors: ["Smith, T.", "Jones, R.", "Kovacs, A."]
@@ -67,6 +121,12 @@
   description: "Overcoming strong currents and hard seafloor multiples to image gas-water contact movement in a major LNG feedstock field."
   link: "https://onepetro.org/search?q=Pluto+4D+seismic"
   tags: ["Australia", "Gas", "Hard Seabed"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "2 years"
+  sensor_type: "Streamer"
+  nrms_median: "22%"
+  main_driver: "Water Saturation"
+  water_depth: "400-1000m"
 
 - title: "Wister 4D: Monitoring steam chambers onshore"
   authors: ["Nakayama, K.", "Kragh, E.", "Gao, J."]
@@ -74,13 +134,25 @@
   description: "Using high-frequency land seismic to track heat fronts and steam chamber growth in shallow heavy oil sands."
   link: "https://onepetro.org/search?q=Wister+SAGD+4D"
   tags: ["Onshore", "Heavy Oil", "Thermal"]
+  bin_size: "5m x 5m"
+  repeat_interval: "6 months"
+  sensor_type: "Surface Geophone"
+  nrms_median: "40% (Land)"
+  main_driver: "Temperature (Steam)"
+  water_depth: "N/A (Land)"
 
 - title: "Johan Sverdrup: Integrated PRM and gravity monitoring"
   authors: ["Alnes, H.", "Eide, A.", "Stronen, L."]
   year: 2019
-  description: "A state-of-the-art surveillance strategy combining fibre-optic PRM with gravimetry to constrain the water balance in a giant reservoir."
+  description: "A state-of-the-art surveillance strategy combining permanent seismic sensors with gravimetry to monitor a giant reservoir."
   link: "https://onepetro.org/search?q=Johan+Sverdrup+PRM"
   tags: ["PRM", "Multi-physics", "Gravity"]
+  bin_size: "25m x 25m"
+  repeat_interval: "1 year"
+  sensor_type: "Fiber-optic PRM"
+  nrms_median: "< 10%"
+  main_driver: "Water balance & Pressure"
+  water_depth: "115m"
 
 - title: "Mars OBN 4D: Undershooting platforms"
   authors: ["Ross, A.", "Brookes, D.", "Smit, F."]
@@ -88,6 +160,12 @@
   description: "Demonstrating how nodes can fill illumination gaps under production facilities that are impossible to image with streamers."
   link: "https://onepetro.org/search?q=Mars+field+OBN+4D"
   tags: ["GoM", "Infrastructure", "OBN"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "2 years"
+  sensor_type: "OBN"
+  nrms_median: "12%"
+  main_driver: "Pressure & Saturation"
+  water_depth: "900m"
 
 - title: "Draugen 4D: Success in a complex tidal reservoir"
   authors: ["Koster, K.", "Gabriels, P.", "Horvei, A."]
@@ -95,6 +173,12 @@
   description: "One of the earliest successes in using 4D to identify bypassed oil in heterogeneous tidal sands, leading to successful infill drilling."
   link: "https://onepetro.org/search?q=Draugen+4D"
   tags: ["Tidal", "Infill Drilling", "Legacy"]
+  bin_size: "25m x 25m"
+  repeat_interval: "3 years"
+  sensor_type: "Streamer"
+  nrms_median: "25%"
+  main_driver: "Water Saturation"
+  water_depth: "250m"
 
 - title: "Mariner Field: 4D seismic monitoring of a heavy oil field"
   authors: ["MacLellan, A.", "McArdle, N."]
@@ -102,6 +186,12 @@
   description: "Capturing gas-out-of-solution signals to monitor pressure management and waterflood response in a giant heavy oil field."
   link: "https://onepetro.org/search?q=Mariner+4D+seismic"
   tags: ["Heavy Oil", "Pressure Management", "North Sea"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "1 year"
+  sensor_type: "Streamer"
+  nrms_median: "18%"
+  main_driver: "Gas exsolution & Saturation"
+  water_depth: "110m"
 
 - title: "Clair Field: 4D ultra high density OBN acquisition"
   authors: ["Tillotson, P.", "Wang, L."]
@@ -109,6 +199,12 @@
   description: "Overcoming glacial boulder scatterers and complex overburden with ultra-high density OBN to monitor a massive fractured basement reservoir."
   link: "https://onepetro.org/search?q=Clair+4D+OBN"
   tags: ["OBN", "Fractured Reservoir", "West of Shetland"]
+  bin_size: "6.25m x 6.25m"
+  repeat_interval: "2 years"
+  sensor_type: "High-density OBN"
+  nrms_median: "10-12%"
+  main_driver: "Pressure & Saturation"
+  water_depth: "140m"
 
 - title: "Spot Seismic: 4 years of monitoring on the Weyburn site"
   authors: ["Whitecap Resources", "SpotLight Earth"]
@@ -116,6 +212,12 @@
   description: "Proving the value of frequent, sparse 'spot' seismic monitoring as a cost-effective alternative to full-field 4D for CO2-EOR surveillance."
   link: "https://spotlight-earth.com/whitecap-resources-publishes-4-year-spot-seismic-monitoring-results-at-weyburn/"
   tags: ["CCS", "EOR", "Sparse Monitoring"]
+  bin_size: "N/A (Sparse Spot)"
+  repeat_interval: "1 year"
+  sensor_type: "Sparse Nodes"
+  nrms_median: "< 15% (Local repeatability)"
+  main_driver: "CO2 Saturation"
+  water_depth: "N/A (Land)"
 
 - title: "Agogo 4D OBN: A step change in deepwater monitoring"
   authors: ["Mantica, S.", "Polonia, D.", "Sitta, A."]
@@ -123,3 +225,35 @@
   description: "Applying high-density OBN to resolve complex channel connectivity and optimize infill drilling in a fast-track deepwater development."
   link: "https://onepetro.org/search?q=Agogo+4D+OBN"
   tags: ["West Africa", "OBN", "Fast-track"]
+  bin_size: "12.5m x 12.5m"
+  repeat_interval: "2 years"
+  sensor_type: "OBN"
+  nrms_median: "14%"
+  main_driver: "Water Saturation"
+  water_depth: "1650m"
+
+- title: "Daqing Field: Long-term land 4D monitoring of water flood"
+  authors: ["Liu, Y.", "Li, J.", "Zhang, X."]
+  year: 2018
+  description: "A landmark land 4D project in China, demonstrating the use of high-resolution surface seismic to map remaining oil in high-water-cut areas."
+  link: "https://onepetro.org/search?q=Daqing+4D+seismic"
+  tags: ["China", "Land", "Water Flood"]
+  bin_size: "10m x 10m"
+  repeat_interval: "3-5 years"
+  sensor_type: "High-density Surface"
+  nrms_median: "35-45% (Estimated)"
+  main_driver: "Water Saturation"
+  water_depth: "N/A (Land)"
+
+- title: "Tarim Basin: 4D seismic for ultra-deep fractured reservoirs"
+  authors: ["Wang, H.", "Chen, L.", "Zhou, Q."]
+  year: 2021
+  description: "Monitoring pressure changes and gas movement in ultra-deep (>7000m) carbonate reservoirs using high-repeatability 4D workflows."
+  link: "https://onepetro.org/search?q=Tarim+4D+seismic"
+  tags: ["China", "Ultra-deep", "Carbonates"]
+  bin_size: "15m x 15m"
+  repeat_interval: "4 years"
+  sensor_type: "Surface Geophone"
+  nrms_median: "40% (Estimated)"
+  main_driver: "Pressure & Gas Saturation"
+  water_depth: "N/A (Land, Depth >7km)"

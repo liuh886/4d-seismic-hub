@@ -49,6 +49,7 @@ To add a pinpoint to the Global Case Study Map, edit `_data/case_studies_map.yml
 *   **Vendor Neutral:** Please avoid promotional or marketing language.
 *   **Copyright:** Only link to materials that are already publicly accessible (OnePetro landing pages, open-access journals, public PDFs). Do not upload proprietary documents.
 *   **Conciseness:** Focus on the "Decision Intelligence" aspect—how did the 4D data change the reservoir management plan?
+*   **Impact:** Whenever possible, please include a brief mention of the ROI or operational impact, such as bypassed oil recovery or risk mitigation.
 
 ## License
 
