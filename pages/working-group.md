@@ -23,10 +23,10 @@ The working group operates by consensus. All members are equal. We typically mee
 
 Current members (initial volunteers):
 
-| Name | Affiliation | Short Bio |
-| :--- | :--- | :--- |
-| **Zhihao Liu** | UiO / OceanHub | Primary maintainer and data scientist focusing on geophysical workflows. |
-| **(Open Seat)** | - | Seeking volunteers with 4D expertise. |
+| Name | Affiliation | Contact | Short Bio |
+| :--- | :--- | :--- | :--- |
+| **Zhihao Liu** | BGP | liuzhihao[at]bgp.com.cn | Primary maintainer and data scientist focusing on geophysical workflows. |
+| **(Open Seat)** | - | - | Seeking volunteers with 4D expertise. |
 
 To join, please open an issue labeled `wg-join` or submit a pull request adding your name to the table above.
 

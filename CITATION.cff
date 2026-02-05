@@ -1,16 +1,18 @@
 cff-version: 1.2.0
-title: 4D Seismic Hub
+message: "If you use this software or its content, please cite it as below."
 authors:
-  - family-names: Maintainers
-    given-names: 4D Seismic Hub
-    name: 4D Seismic Hub Maintainers
-date-released: 2025-10-05
-version: 0.2.0
-license: MIT
-repository-code: https://github.com/your-organisation/4D-Seismic-Hub
-url: https://your-organisation.github.io/4D-Seismic-Hub/
-message: >
-  When using materials from this hub, please cite the original
-  papers and presentations referenced in the Resources page.  For example,
-  to cite the hub itself you may use the following:
-  “4D Seismic Hub (2025), GitHub repository, https://github.com/your-organisation/4D-Seismic-Hub.”
+  - family-names: "Liu"
+    given-names: "Zhihao"
+    email: "liuzhihao@bgp.com.cn"
+    orcid: "https://orcid.org/0000-0000-0000-0000" # Placeholder
+title: "4D Seismic Hub: An online abstract of best practices for 4D seismic monitoring"
+version: 1.0.0
+date-released: 2024-02-05
+url: "https://github.com/liuh886/4d-seismic-hub"
+repository-code: "https://github.com/liuh886/4d-seismic-hub"
+keywords:
+  - "4D Seismic"
+  - "Time-lapse"
+  - "OBN"
+  - "Reservoir Monitoring"
+  - "Geophysics"
