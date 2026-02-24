@@ -1,7 +1,7 @@
 name: Link Check
 on:
   schedule:
-    - cron: "0 1 * * *"   # run daily at 01:00 UTC
+    - cron: "0 1 * * 1"   # run weekly on Monday at 01:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -12,4 +12,7 @@ jobs:
       - name: Run Lychee link checker
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --accept 200,206,429 --retry-wait-time 2 --max-retries 3 .
+          # --accept 200,206,429,403: Accept 403 as academic sites often block bots.
+          # --exclude "\{\{.*\}\}": Skip checking raw Liquid/Jekyll template tags.
+          # --exclude "onepetro.org": Skip academic databases known for anti-bot measures.
+          args: --verbose --no-progress --accept 200,206,429,403 --retry-wait-time 5 --max-retries 3 --exclude "\{\{.*\}\}" --exclude ".*onepetro.org.*" .
