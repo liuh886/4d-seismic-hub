@@ -27,9 +27,12 @@ body {
   position: relative;
   height: 500px;
   width: 100%;
+  max-width: 1200px; /* Aligned with dashboard-grid */
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
   margin-bottom: 3rem;
-  border-radius: 0 0 24px 24px;
+  border-radius: 24px; /* Fully rounded for a cleaner look */
   background: #000;
 }
 
