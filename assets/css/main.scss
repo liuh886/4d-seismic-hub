@@ -14,7 +14,7 @@ $link-color: #B509AC;
 @import "minimal-mistakes";
 
 /* Site Layout Overrides */
-$site-content-max-width: 880px;
+$site-content-max-width: 1200px; /* Increased from 880px for a more modern engineering look */
 $site-content-gutter: 1.5rem;
 
 @mixin constrained-column {
@@ -25,27 +25,34 @@ $site-content-gutter: 1.5rem;
   padding-right: $site-content-gutter;
 }
 
-body:not(.layout--home) .initial-content,
-body:not(.layout--home) .page,
-body:not(.layout--home) .page__inner-wrap,
-body:not(.layout--home) .page__content,
-body:not(.layout--home) .archive,
-body:not(.layout--home) .archive__item {
+/* Apply constraints to all layouts except home/splash which manage their own inner width */
+body:not(.layout--home):not(.layout--splash) .initial-content,
+body:not(.layout--home):not(.layout--splash) .page,
+body:not(.layout--home):not(.layout--splash) .page__inner-wrap,
+body:not(.layout--home):not(.layout--splash) .page__content,
+body:not(.layout--home):not(.layout--splash) .archive,
+body:not(.layout--home):not(.layout--splash) .archive__item {
   @include constrained-column;
   width: 100%;
   box-sizing: border-box;
 }
 
-body:not(.layout--home) .page__inner-wrap > *:not(.page__content),
-body:not(.layout--home) .page__content > * {
+body:not(.layout--home):not(.layout--splash) .page__inner-wrap > *:not(.page__content),
+body:not(.layout--home):not(.layout--splash) .page__content > * {
   max-width: 100%;
 }
 
+/* Home and Splash layouts (Landing pages) should be able to go full-width */
 body.layout--home #main,
 body.layout--home .initial-content,
 body.layout--home .page,
 body.layout--home .page__inner-wrap,
-body.layout--home .page__content {
+body.layout--home .page__content,
+body.layout--splash #main,
+body.layout--splash .initial-content,
+body.layout--splash .page,
+body.layout--splash .page__inner-wrap,
+body.layout--splash .page__content {
   max-width: none !important;
   width: 100% !important;
   margin-left: 0 !important;
@@ -55,7 +62,8 @@ body.layout--home .page__content {
   box-sizing: border-box;
 }
 
-body.layout--home .page__content {
+body.layout--home .page__content,
+body.layout--splash .page__content {
   padding-left: $site-content-gutter;
   padding-right: $site-content-gutter;
 }
