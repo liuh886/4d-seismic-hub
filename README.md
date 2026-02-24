@@ -1,15 +1,19 @@
-# <img src="assets/images/logo.svg" width="40" vertical-align="middle"> 4D Seismic Hub
+<div align="center">
+  <img src="assets/images/logo.svg" width="120" alt="4D Seismic Hub Logo">
+  <h1>4D Seismic Hub</h1>
 
-[![Link Check](https://github.com/liuh886/4d-seismic-hub/actions/workflows/links.yml/badge.svg)](https://github.com/liuh886/4d-seismic-hub/actions/workflows/links.yml)
-[![Pages Deploy](https://github.com/liuh886/4d-seismic-hub/actions/workflows/pages.yml/badge.svg)](https://github.com/liuh886/4d-seismic-hub/actions/workflows/pages.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <p><b>The Living Abstract for Time-Lapse Monitoring</b></p>
 
-> **The Living Abstract for Time-Lapse Monitoring.** 
-> An open, community-driven repository curating best practices in 4D seismic monitoring and OBN acquisition.
+  [![Link Check](https://github.com/liuh886/4d-seismic-hub/actions/workflows/links.yml/badge.svg)](https://github.com/liuh886/4d-seismic-hub/actions/workflows/links.yml)
+  [![Pages Deploy](https://github.com/liuh886/4d-seismic-hub/actions/workflows/pages.yml/badge.svg)](https://github.com/liuh886/4d-seismic-hub/actions/workflows/pages.yml)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+  <h4><a href="https://liuh886.github.io/4d-seismic-hub/">Explore the Hub</a></h4>
+</div>
 
 ---
 
-### 🌐 [Explore the Hub](https://liuh886.github.io/4d-seismic-hub/)
+### 🌐 Overview
 
 The **4D Seismic Hub** bridges the gap between high-level conference presentations and actionable project planning. We summarize complex geophysical workflows into reusable, decision-oriented formats, ensuring that valuable industry knowledge remains accessible and citable.
 
