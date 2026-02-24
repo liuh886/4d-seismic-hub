@@ -22,6 +22,16 @@ body {
   color: var(--hub-primary);
 }
 
+/* Force layout to be wider for splash */
+#main {
+  max-width: 100% !important;
+  padding: 0 2rem !important;
+}
+
+.page {
+  width: 100% !important;
+}
+
 /* Rolling Map Hero - Restored Proportions */
 .hero-banner {
   position: relative;
@@ -85,7 +95,7 @@ body {
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
   margin-bottom: 4rem;
-  max-width: 1200px;
+  max-width: 1440px; /* Increased from 1200px for a more expansive feel */
   margin-left: auto;
   margin-right: auto;
 }
