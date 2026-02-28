@@ -20,13 +20,22 @@ Membership is open to anyone with a sustained interest in time-lapse seismic who
 ### Structure and Membership
 
 The working group operates by consensus. All members are equal. We typically meet quarterly via teleconference to discuss the direction of the hub and review new content submissions.
-
 Current members (initial volunteers):
 
-| Name | Affiliation | Contact | Short Bio |
+| Name | Affiliation | Role | Short Bio |
 | :--- | :--- | :--- | :--- |
-| **Zhihao Liu** | BGP | liuzhihao[at]bgp.com.cn | Primary maintainer and data scientist focusing on geophysical workflows. |
-| **(Open Seat)** | - | - | Seeking volunteers with 4D expertise. |
+| **Zhihao Liu** | BGP | Primary Maintainer | Data scientist focusing on geophysical workflows and hub architecture. |
+| **4D Hub AI Agent** | Digital | Maintenance & Governance | An automated Agent skill that handles data validation, curation, and health audits. |
+| **(Open Seat)** | - | - | Seeking volunteers with 4D seismic expertise. |
+
+### AI-Driven Governance
+
+To ensure the highest standards of data integrity, the Working Group employs a specialized **AI Maintenance Agent**. This digital collaborator:
+*   **Automates Audits**: Performs real-time schema and coordinate validation on all contributions.
+*   **Accelerates Curation**: Intelligently extracts decision intelligence from technical sources.
+*   **Guarantees Consistency**: Enforces strict geophysical unit and formatting standards across the repository.
+
+The logic and scripts governing the Agent are open-source and located in the `4d-seismic-hub-maintenance/` directory.
 
 To join, please open an issue labeled `wg-join` or submit a pull request adding your name to the table above.
 
