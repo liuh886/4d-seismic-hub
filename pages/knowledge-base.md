@@ -166,11 +166,21 @@ Explore the locations of the 4D monitoring projects documented in this hub. Clic
 
 <div class="kb-grid">
 {% for case in site.data.case_studies_map %}
-  <article class="kb-card">
-    <h3>{{ case.name }}</h3>
-    <div class="meta">{{ case.location }}</div>
-    <div class="summary">{{ case.summary }}</div>
-  </article>
+  {% if case.post_url %}
+    <a href="{{ case.post_url | relative_url }}" style="text-decoration: none; color: inherit;">
+      <article class="kb-card">
+        <h3>{{ case.name }} 🔗</h3>
+        <div class="meta">{{ case.location }}</div>
+        <div class="summary">{{ case.summary }}</div>
+      </article>
+    </a>
+  {% else %}
+    <article class="kb-card">
+      <h3>{{ case.name }}</h3>
+      <div class="meta">{{ case.location }}</div>
+      <div class="summary">{{ case.summary }}</div>
+    </article>
+  {% endif %}
 {% endfor %}
 </div>
 

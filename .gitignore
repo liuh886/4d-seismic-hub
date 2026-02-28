@@ -4,9 +4,8 @@
 _site/
 .jekyll-metadata
 
-# Skill development files (Local only)
-4d-seismic-hub-maintenance/
-*.skill
+# AI Agent Maintenance (Integrated into repo)
+!4d-seismic-hub-maintenance/
 
 # OS files
 .DS_Store

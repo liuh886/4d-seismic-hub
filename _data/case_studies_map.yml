@@ -57,6 +57,7 @@
   latitude: 58.37
   longitude: 1.91
   summary: "The world's first industrial-scale CO2 storage monitoring. 4D seismic proved the safety of geological storage since 1996."
+  post_url: "/ccs-monitoring/2026/02/05/sleipner-ccs/"
 
 - name: "Pluto LNG"
   location: "North West Shelf, Australia"
@@ -105,6 +106,7 @@
   latitude: 49.4
   longitude: -103.8
   summary: "World-first application of Spot Seismic for frequent CO2-EOR monitoring, providing high-temporal resolution at a fraction of 4D cost."
+  post_url: "/ccs-monitoring/2026/02/05/weyburn-ccs/"
 
 - name: "Agogo OBN"
   location: "Offshore Angola (Block 15/06)"

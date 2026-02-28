@@ -222,9 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="dashboard-grid">
   <main class="featured-list">
-    <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-      <span style="font-size: 1.3rem;">📰</span> Recent Analysis
-    </h2>
+    <a href="{{ '/pages/analysis/' | relative_url }}" style="text-decoration: none; color: inherit;">
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;" onmouseover="this.style.color='var(--hub-accent)'" onmouseout="this.style.color='inherit'">
+        <span style="font-size: 1.3rem;">📰</span> Recent Analysis &rarr;
+      </h2>
+    </a>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2.5rem;">
       {% for post in site.posts limit:2 %}
@@ -253,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </article>
     {% endfor %}
 
-    <a href="{{ '/pages/knowledge-base' | relative_url }}" style="text-align: center; margin-top: 1rem; color: var(--hub-secondary); text-decoration: none; font-weight: 500;">View all resources...</a>
+    <a href="{{ '/pages/analysis/' | relative_url }}" style="text-align: center; margin-top: 1rem; color: var(--hub-secondary); text-decoration: none; font-weight: 500;">View all analysis...</a>
   </main>
 
   <aside>

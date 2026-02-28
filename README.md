@@ -22,13 +22,32 @@ The **4D Seismic Hub** bridges the gap between high-level conference presentatio
 ### 🚀 Key Features
 
 - **📂 Curated Knowledge Base**: Decision-oriented summaries of open-access presentations and case studies.
-- **📊 Comparison Tool**: Side-by-side technical parameter analysis (NRMS, bin size, acquisition geometry).
+- **📊 Comparison Tool**: Side-by-side technical parameter analysis (NRMS, bin size, acquisition geometry)).
 - **🗺️ Case Study Map**: Interactive global view of 4D projects with narrative context.
 - **🤝 Working Group**: A collaborative framework for geoscientists to maintain and extend the hub.
+- **🤖 AI Agent Support**: This project includes a specialized **AI Maintenance Agent** skill (located in `4d-seismic-hub-maintenance/`) that automates data validation, curation, and site health audits.
+
+---
+
+### 🤖 AI Agent Maintenance
+
+This project is optimized for AI-assisted maintenance using **Gemini CLI**. The integrated Agent skill ensures that the hub remains accurate, high-quality, and up-to-date with minimal manual effort.
+
+#### 🛠️ How to use the AI Agent:
+If you are using Gemini CLI, you can trigger automated workflows by pointing to the maintenance folder:
+
+*   **Run Routine Audit**: `"Agent, run routine maintenance for this project."`
+    *   *Result*: The agent will scan `_data/`, `_posts/`, and `index.md` for schema errors, broken links, or missing technical parameters.
+*   **Intelligent Curation**: `"Agent, add this new case study [URL/DOI] to the hub."`
+    *   *Result*: The agent will extract decision intelligence, geocoordinates, and technical benchmarks, then generate the necessary YAML and Markdown files automatically.
+*   **Governance Check**: `"Agent, verify the data integrity of the knowledge base."`
+
+The logic and automated scripts for these actions are stored in `4d-seismic-hub-maintenance/`.
 
 ---
 
 ### 🛠️ Getting Started
+
 
 To run the hub locally (Jekyll environment):
 
