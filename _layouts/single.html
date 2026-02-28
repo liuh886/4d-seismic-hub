@@ -47,8 +47,6 @@ layout: default
       </footer>
 
       {% if page.share %}{% include social-share.html %}{% endif %}
-
-      {% include post_pagination.html %}
       
       <!-- Community Perspective Module -->
       <section class="community-perspectives" style="margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -70,6 +68,8 @@ layout: default
           <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Help the community by adding your technical insights directly to this page.</p>
         </div>
       </section>
+
+      {% include post_pagination.html %}
     </div>
 
     {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
