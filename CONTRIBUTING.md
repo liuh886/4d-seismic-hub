@@ -2,6 +2,14 @@
 
 We appreciate your interest in contributing to this project.  To maintain high quality and consistency across the site, please follow these guidelines when submitting changes.
 
+## AI-Assisted Contribution (Recommended)
+
+The easiest way to contribute is to let our **4D Seismic Agent** do the work for you. Simply submit a URL to a paper or case study, and the Agent will automatically extract technical parameters, perform fact-checks, and generate a draft for the Hub.
+
+*   **[Submit a Paper/Case Study via GitHub Issues](https://github.com/zhihaol/4d-seismic-hub/issues/new?template=4d-paper-submission.md&title=%5BPaper%5D+Add%3A+)**
+
+---
+
 ## Types of contributions
 
 * **New resources** – Add papers, presentations or tutorials that are publicly available on the web.  Update the `/_data/papers.yml` file with a new entry containing `id`, `title`, `authors`, `year`, a concise **description**, a `link` to the landing page and a list of `tags`.  Only link to open materials; do **not** upload proprietary PDFs or slides.  The description should summarise the essence of the work in your own words—think of it as a one‑sentence abstract.
