@@ -1,127 +1,128 @@
-﻿- name: "Middle East Carbonate OBN"
-  location: "Offshore UAE/Qatar"
+- name: Middle East Carbonate OBN
+  location: Offshore UAE/Qatar
   latitude: 24.5
   longitude: 52.5
-  summary: "Detecting subtle pressure depletion in stiff carbonates using high-repeatability OBN."
-
-- name: "Gullfaks Main Field"
-  location: "North Sea, Norway"
+  summary: Detecting subtle pressure depletion in stiff carbonates using high-repeatability
+    OBN.
+- name: Gullfaks Main Field
+  location: North Sea, Norway
   latitude: 61.17
   longitude: 2.27
-  summary: "The pioneer of 4D. Identified undrained compartments leading to over $1B in added value since 1996."
-
-- name: "Valhall LoFS"
-  location: "North Sea, Norway"
+  summary: The pioneer of 4D. Identified undrained compartments leading to over $1B
+    in added value since 1996.
+- name: Valhall LoFS
+  location: North Sea, Norway
   latitude: 56.27
   longitude: 3.39
-  summary: "First Life-of-Field Seismic (PRM). Over 20 surveys acquired, driving virtually every infill well decision."
-
-- name: "Girassol"
-  location: "Offshore Angola (Block 17)"
+  summary: First Life-of-Field Seismic (PRM). Over 20 surveys acquired, driving virtually
+    every infill well decision.
+- name: Girassol
+  location: Offshore Angola (Block 17)
   latitude: -7.5
   longitude: 11.5
-  summary: "Deepwater turbidite monitoring. Textbook example of tracking water flood fronts in complex channels."
-
-- name: "Jubarte PRM"
-  location: "Campos Basin, Brazil"
-  latitude: -22.78
-  longitude: -40.05
-  summary: "First deepwater optical PRM. Monitoring heavy oil production and geomechanical effects."
-
-- name: "Atlantis OBN"
-  location: "Gulf of Mexico, USA"
+  summary: Deepwater turbidite monitoring. Textbook example of tracking water flood
+    fronts in complex channels.
+- name: Atlantis OBN
+  location: Gulf of Mexico, USA
   latitude: 27.2
   longitude: -90.0
-  summary: "Sub-salt 4D imaging. Using OBN to see through complex salt bodies where streamers failed."
-
-- name: "Ekofisk"
-  location: "North Sea, Norway"
+  summary: Sub-salt 4D imaging. Using OBN to see through complex salt bodies where
+    streamers failed.
+- name: Ekofisk
+  location: North Sea, Norway
   latitude: 56.54
   longitude: 3.21
-  summary: "Compaction monitoring. Using 4D time-shifts to map pressure depletion and geomechanical arching."
-
-- name: "Harding"
-  location: "North Sea, UK"
+  summary: Compaction monitoring. Using 4D time-shifts to map pressure depletion and
+    geomechanical arching.
+- name: Harding
+  location: North Sea, UK
   latitude: 59.28
   longitude: 1.5
-  summary: "Gas cap and aquifer monitoring. Critical for steering horizontal wells in thin sands."
-
-- name: "Schiehallion"
-  location: "West of Shetland, UK"
+  summary: Gas cap and aquifer monitoring. Critical for steering horizontal wells
+    in thin sands.
+- name: Schiehallion
+  location: West of Shetland, UK
   latitude: 60.34
   longitude: -4.1
-  summary: "4D in a soft seabed environment. Proven capability to monitor connectivity in complex reservoirs."
-
-- name: "Sleipner CCS"
-  location: "North Sea, Norway"
+  summary: 4D in a soft seabed environment. Proven capability to monitor connectivity
+    in complex reservoirs.
+- name: Sleipner CCS
+  location: North Sea, Norway
   latitude: 58.37
   longitude: 1.91
-  summary: "The world's first industrial-scale CO2 storage monitoring. 4D seismic proved the safety of geological storage since 1996."
-  post_url: "/ccs-monitoring/2026/02/05/sleipner-ccs/"
-
-- name: "Pluto LNG"
-  location: "North West Shelf, Australia"
+  summary: The world's first industrial-scale CO2 storage monitoring. 4D seismic proved
+    the safety of geological storage since 1996.
+  post_url: /ccs-monitoring/2026/02/05/sleipner-ccs/
+- name: Pluto LNG
+  location: North West Shelf, Australia
   latitude: -19.7
   longitude: 115.3
-  summary: "Asia-Pacific deepwater gas monitoring. Identifying aquifer drive strength and compartment connectivity in a hard seabed setting."
-
-- name: "Wister SAGD"
-  location: "Alberta, Canada"
+  summary: Asia-Pacific deepwater gas monitoring. Identifying aquifer drive strength
+    and compartment connectivity in a hard seabed setting.
+- name: Wister SAGD
+  location: Alberta, Canada
   latitude: 55.0
   longitude: -110.0
-  summary: "Onshore heavy oil monitoring. Using 4D to track steam chambers in shallow sands for thermal recovery optimization."
-
-- name: "Johan Sverdrup"
-  location: "North Sea, Norway"
+  summary: Onshore heavy oil monitoring. Using 4D to track steam chambers in shallow
+    sands for thermal recovery optimization.
+- name: Johan Sverdrup
+  location: North Sea, Norway
   latitude: 58.83
   longitude: 2.55
-  summary: "Next-gen PRM & Gravity. Combining permanent seismic sensors with borehole gravity to monitor a giant field from day one."
-
-- name: "Mars OBN"
-  location: "Gulf of Mexico, USA"
+  summary: Next-gen PRM & Gravity. Combining permanent seismic sensors with borehole
+    gravity to monitor a giant field from day one.
+- name: Mars OBN
+  location: Gulf of Mexico, USA
   latitude: 28.17
   longitude: -89.22
-  summary: "Infrastructure-constrained imaging. Using nodes to undershoot the Mars TLP platform, revealing bypassed oil near the facility."
-
-- name: "Draugen"
-  location: "Norwegian Sea"
+  summary: Infrastructure-constrained imaging. Using nodes to undershoot the Mars
+    TLP platform, revealing bypassed oil near the facility.
+- name: Draugen
+  location: Norwegian Sea
   latitude: 64.35
   longitude: 7.8
-  summary: "Complex tidal reservoir monitoring. Tracking water injection sweeping through heterogeneous Rogn formation sands."
-
-- name: "Mariner"
-  location: "North Sea, UK"
+  summary: Complex tidal reservoir monitoring. Tracking water injection sweeping through
+    heterogeneous Rogn formation sands.
+- name: Mariner
+  location: North Sea, UK
   latitude: 59.1
   longitude: 1.5
-  summary: "Visualizing gas-out-of-solution to manage pressure in a heavy oil reservoir, identifying quiet zones versus active hardening responses."
-
-- name: "Clair Ridge"
-  location: "West of Shetland, UK"
+  summary: Visualizing gas-out-of-solution to manage pressure in a heavy oil reservoir,
+    identifying quiet zones versus active hardening responses.
+- name: Clair Ridge
+  location: West of Shetland, UK
   latitude: 60.5
   longitude: -4.5
-  summary: "Ultra-high density OBN monitoring of a fractured basement. Successfully imaged through glacial boulders to optimize well placement."
-
-- name: "Weyburn-Midale (Spot)"
-  location: "Saskatchewan, Canada"
+  summary: Ultra-high density OBN monitoring of a fractured basement. Successfully
+    imaged through glacial boulders to optimize well placement.
+- name: Weyburn-Midale (Spot)
+  location: Saskatchewan, Canada
   latitude: 49.4
   longitude: -103.8
-  summary: "World-first application of Spot Seismic for frequent CO2-EOR monitoring, providing high-temporal resolution at a fraction of 4D cost."
-  post_url: "/ccs-monitoring/2026/02/05/weyburn-ccs/"
-
-- name: "Agogo OBN"
-  location: "Offshore Angola (Block 15/06)"
+  summary: World-first application of Spot Seismic for frequent CO2-EOR monitoring,
+    providing high-temporal resolution at a fraction of 4D cost.
+  post_url: /ccs-monitoring/2026/02/05/weyburn-ccs/
+- name: Agogo OBN
+  location: Offshore Angola (Block 15/06)
   latitude: -6.5
   longitude: 11.0
-  summary: "State-of-the-art 4D OBN in deepwater. Resolved complex channel connectivity issues that were previously ambiguous on streamer data."
-
-- name: "Daqing"
-  location: "Heilongjiang, China"
+  summary: State-of-the-art 4D OBN in deepwater. Resolved complex channel connectivity
+    issues that were previously ambiguous on streamer data.
+- name: Daqing
+  location: Heilongjiang, China
   latitude: 46.58
   longitude: 125.03
-  summary: "Pioneering land 4D in China. Successfully mapped remaining oil saturation in mature water-flood compartments to guide infill drilling."
-
-- name: "Tarim (Halahatang)"
-  location: "Xinjiang, China"
+  summary: Pioneering land 4D in China. Successfully mapped remaining oil saturation
+    in mature water-flood compartments to guide infill drilling.
+- name: Tarim (Halahatang)
+  location: Xinjiang, China
   latitude: 41.72
   longitude: 82.95
-  summary: "Ultra-deep carbonate monitoring. Using 4D to track gas-injection sweeps in fractured reservoirs at depths exceeding 7,000m."
+  summary: Ultra-deep carbonate monitoring. Using 4D to track gas-injection sweeps
+    in fractured reservoirs at depths exceeding 7,000m.
+- name: Jubarte PRM
+  location: Campos Basin, Brazil
+  latitude: -21.1
+  longitude: -40.1
+  summary: The world's first ultra-deepwater optical PRM system, proving fiber-optic
+    sensing at 1,300m depth and repositioning production wells by identifying previousl...
