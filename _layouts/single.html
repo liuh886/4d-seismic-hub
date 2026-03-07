@@ -48,26 +48,9 @@ layout: default
 
       {% if page.share %}{% include social-share.html %}{% endif %}
       
-      <!-- Community Perspective Module -->
-      <section class="community-perspectives" style="margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
-        <h3 style="margin-top: 0; color: var(--hub-accent, #B509AC);">How do you think 4D Seismic in this cases?</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0;">
-          <div>
-            <h4 style="color: #059669; margin-bottom: 0.5rem;">✅ Pro:</h4>
-            <p style="color: #64748b; font-style: italic; font-size: 0.9rem;">No perspectives yet. Be the first to share why this approach works.</p>
-          </div>
-          <div>
-            <h4 style="color: #dc2626; margin-bottom: 0.5rem;">❌ Cons:</h4>
-            <p style="color: #64748b; font-style: italic; font-size: 0.9rem;">No perspectives yet. Share any technical limitations or risks.</p>
-          </div>
-        </div>
-        <div style="text-align: center; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">
-          <a href="https://github.com/{{ site.repository }}/edit/main/{{ page.path }}" target="_blank" class="btn btn--primary" style="background: var(--hub-accent, #B509AC); border: none;">
-            <i class="fab fa-github"></i> Contribute Your Perspective
-          </a>
-          <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Help the community by adding your technical insights directly to this page.</p>
-        </div>
-      </section>
+      {% if page.collection == 'posts' and page.community_perspectives != false %}
+        {% include community-perspectives.html %}
+      {% endif %}
 
       {% include post_pagination.html %}
     </div>

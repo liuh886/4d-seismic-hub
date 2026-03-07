@@ -4,6 +4,14 @@ title: "Jubarte PRM: The first deepwater optical permanent reservoir monitoring 
 date: 2026-03-05
 categories: 4d-case-study
 tags: ['Brazil', 'PRM', 'Heavy Oil', 'Deepwater']
+community_summary:
+  updated_at: 2026-03-07
+  pro:
+    - Permanent optical sensing delivered exceptional repeatability for a deepwater monitoring program.
+    - The case shows clear operational value because 4D interpretation changed a field-development decision.
+  con:
+    - The economics may be harder to defend on assets without high intervention value.
+    - Results from a premium permanent installation may not transfer cleanly to lower-budget repeat surveys.
 ---
 
 ### Project Overview

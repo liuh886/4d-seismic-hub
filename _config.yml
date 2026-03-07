@@ -16,6 +16,14 @@ baseurl: "/4d-seismic-hub"
 serve_og_meta: true
 og_image: "/assets/images/logo.svg"
 markdown: kramdown
+comments:
+  provider: false
+
+community_comments:
+  enabled: true
+  repo: liuh886/4d-seismic-hub
+  theme: github-light
+  forum_label: 4D_Forum
 
 # Where to find data and collections
 collections:
@@ -28,3 +36,8 @@ defaults:
       path: ""
     values:
       layout: default
+  - scope:
+      path: ""
+      type: posts
+    values:
+      community_perspectives: true

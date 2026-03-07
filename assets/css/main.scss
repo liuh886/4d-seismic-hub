@@ -192,6 +192,151 @@ html {
 
 }
 
+.community-perspectives {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+}
 
+.community-perspectives__header h3 {
+  margin: 0.25rem 0 0.75rem;
+  color: #0f172a;
+}
+
+.community-perspectives__eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hub-accent, #B509AC);
+}
+
+.community-perspectives__intro,
+.community-perspectives__meta p,
+.community-thread__heading p,
+.community-perspectives__footer p {
+  color: #475569;
+}
+
+.community-perspectives__summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.community-perspectives__summary-grid {
+  margin: 1.5rem 0 1rem;
+}
+
+.community-summary-card,
+.community-thread {
+  background: #fff;
+  border: 1px solid #dbe4ef;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.community-summary-card--pro,
+.community-thread--pro {
+  border-top: 4px solid #059669;
+}
+
+.community-summary-card--con,
+.community-thread--con {
+  border-top: 4px solid #dc2626;
+}
+
+.community-thread--forum {
+  margin-top: 1.5rem;
+  border-top: 4px solid var(--hub-accent, #B509AC);
+}
+
+.community-summary-card__title-row,
+.community-thread__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.community-summary-card__title-row h4,
+.community-thread__heading h4 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.community-summary-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.community-summary-card__list {
+  margin: 0.9rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.community-summary-card__list li + li {
+  margin-top: 0.45rem;
+}
+
+.community-summary-card__placeholder,
+.community-thread__fallback {
+  margin: 0.9rem 0 0;
+  color: #64748b;
+  font-style: italic;
+}
+
+.community-perspectives__meta {
+  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid #cbd5e1;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.community-perspectives__meta p {
+  margin: 0;
+}
+
+.community-perspectives__meta p + p {
+  margin-top: 0.4rem;
+}
+
+.community-thread__widget {
+  margin-top: 1rem;
+}
+
+.community-perspectives__footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #dbe4ef;
+  text-align: center;
+}
+
+.community-perspectives__footer p {
+  margin: 0.8rem 0 0;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 900px) {
+  .community-perspectives__summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .community-summary-card__title-row,
+  .community-thread__heading {
+    flex-direction: column;
+  }
+}
 
 

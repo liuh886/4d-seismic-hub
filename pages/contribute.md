@@ -44,6 +44,14 @@ To add a pinpoint to the Global Case Study Map, edit `_data/case_studies_map.yml
 4.  **Commit** your changes to the relevant `.yml` files.
 5.  **Push** to your fork and submit a **Pull Request**.
 
+## Commenting on Analysis Posts
+
+Analysis posts now include a **Community Perspectives** section with one shared issue-backed discussion lane:
+
+*   **4D Forum:** technical upside, caveats, cost or operational risks, and field lessons worth preserving.
+
+If you want to contribute without editing site content directly, add your technical note in the forum and use reactions to upvote comments you agree with. Maintainers or agents can later promote strong points into each post's summary cards.
+
 ## Style & Ethics
 
 *   **Vendor Neutral:** Please avoid promotional or marketing language.

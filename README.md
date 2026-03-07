@@ -24,6 +24,7 @@ The **4D Seismic Hub** bridges the gap between high-level conference presentatio
 - **📂 Curated Knowledge Base**: Decision-oriented summaries of open-access presentations and case studies.
 - **📊 Comparison Tool**: Side-by-side technical parameter analysis (NRMS, bin size, acquisition geometry)).
 - **🗺️ Case Study Map**: Interactive global view of 4D projects with narrative context.
+- **💬 Community Perspectives**: Every analysis post now supports separate Pro and Con issue-backed discussion threads plus agent-ready summary cards.
 - **🤝 Working Group**: A collaborative framework for geoscientists to maintain and extend the hub.
 - **🤖 AI Agent Support**: This project includes a specialized **AI Maintenance Agent** skill (located in `4d-seismic-hub-maintenance/`) that automates data validation, curation, and site health audits.
 
@@ -64,6 +65,19 @@ bundle exec jekyll serve
 ```
 
 The site will be available at `http://localhost:4000/4d-seismic-hub/`.
+
+---
+
+### 💬 Community Perspectives Setup
+
+Analysis posts render a single discussion module backed by GitHub Issues via `utterances`.
+
+- `4D Forum` captures technical upside, caveats, questions, and counterexamples in one shared thread.
+- The `Pro / Con` summary cards above the thread are reserved for agent-maintained synthesis using each post's `community_summary` front matter.
+
+The live comments configuration lives in `_config.yml` under `community_comments`.
+
+If you need an issue thread to survive future title edits or permalink cleanup, set a dedicated `community_issue_term` in the post front matter. Otherwise the site falls back to `page.id`.
 
 ---
 

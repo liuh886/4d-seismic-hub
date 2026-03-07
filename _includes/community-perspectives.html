@@ -1,0 +1,110 @@
+{% assign summary = page.community_summary %}
+{% assign comments_enabled = site.community_comments.enabled %}
+{% assign comments_repo = site.community_comments.repo | default: site.repository %}
+{% assign comments_theme = site.community_comments.theme | default: "github-light" %}
+{% assign forum_label = site.community_comments.forum_label | default: "4D_Forum" %}
+{% assign community_thread_term = page.community_issue_term | default: page.id | default: page.url %}
+
+<section class="community-perspectives">
+  <div class="community-perspectives__header">
+    <p class="community-perspectives__eyebrow">Community Perspectives</p>
+    <h3>Where does this case hold up, and where does it break down?</h3>
+    <p class="community-perspectives__intro">
+      Each article now has one issue-backed discussion thread for technical
+      feedback. Visitors can leave evidence-based comments here, while agents
+      keep the <strong>Pro</strong> and <strong>Con</strong> positions organized
+      in the summary cards above.
+    </p>
+  </div>
+
+  <div class="community-perspectives__summary-grid">
+    <article class="community-summary-card community-summary-card--pro">
+      <div class="community-summary-card__title-row">
+        <h4>Pro Highlights</h4>
+        <span class="community-summary-card__badge">Agent summary</span>
+      </div>
+      {% if summary and summary.pro %}
+        <ul class="community-summary-card__list">
+          {% for item in summary.pro %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="community-summary-card__placeholder">
+          Waiting for enough community input to synthesize the strongest technical upside.
+        </p>
+      {% endif %}
+    </article>
+
+    <article class="community-summary-card community-summary-card--con">
+      <div class="community-summary-card__title-row">
+        <h4>Con Highlights</h4>
+        <span class="community-summary-card__badge">Agent summary</span>
+      </div>
+      {% if summary and summary.con %}
+        <ul class="community-summary-card__list">
+          {% for item in summary.con %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="community-summary-card__placeholder">
+          Waiting for enough community input to synthesize the key risks, caveats, and failure modes.
+        </p>
+      {% endif %}
+    </article>
+  </div>
+
+  <div class="community-perspectives__meta">
+    <p>
+      <strong>Contribution rule:</strong> keep comments technical, concise, and
+      evidence-based. Use reactions on comments to express agreement instead of
+      posting duplicate "+1" replies. The thread is intentionally neutral;
+      maintainers and agents extract the strongest supporting and skeptical
+      arguments into the cards above.
+    </p>
+    {% if summary and summary.updated_at %}
+      <p>Last agent summary update: {{ summary.updated_at }}</p>
+    {% endif %}
+  </div>
+
+  <section class="community-thread community-thread--forum">
+    <div class="community-thread__heading">
+      <h4>4D Forum</h4>
+      <p>Use one shared thread for technical observations, counterexamples, deployment lessons, and questions worth preserving.</p>
+    </div>
+
+    {% if comments_enabled and comments_repo %}
+      <div class="community-thread__widget">
+        <script
+          src="https://utteranc.es/client.js"
+          repo="{{ comments_repo }}"
+          issue-term="{{ community_thread_term }}"
+          label="{{ forum_label }}"
+          theme="{{ comments_theme }}"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
+    {% else %}
+      <p class="community-thread__fallback">
+        Issue-backed comments are not configured yet. Enable
+        <code>community_comments</code> in <code>_config.yml</code> to turn on the live thread.
+      </p>
+    {% endif %}
+  </section>
+
+  <div class="community-perspectives__footer">
+    <a
+      href="https://github.com/{{ site.repository }}/edit/main/{{ page.path }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn--primary community-perspectives__edit-link">
+      <i class="fab fa-github"></i> Improve this article
+    </a>
+    <p>
+      Maintainers and agents can later write synthesized Pro/Con summaries into
+      each post front matter via <code>community_summary</code>.
+    </p>
+  </div>
+</section>

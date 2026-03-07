@@ -28,6 +28,19 @@ The Agent will:
 3.  **Inject Community Modules**: Ensure every new post includes the "Pro/Cons" interactive module with the direct GitHub edit link.
 4.  **Coordinate Mapping**: Find and apply GPS coordinates for the field if not provided.
 
+## 💬 Community Summary Maintenance
+**Trigger:** User says "Summarize the forum thread for this post" or "Update the community summary".
+
+The Agent will:
+1.  Review the post front matter for any existing `community_summary`.
+2.  Read the current GitHub issue thread associated with `community_issue_term` (or the post `page.id` fallback).
+3.  Distill the strongest supporting and skeptical arguments into:
+    *   `community_summary.pro`
+    *   `community_summary.con`
+    *   `community_summary.updated_at`
+4.  Keep each bullet concrete, technical, and non-redundant.
+5.  Update the post front matter rather than injecting synthesized text into the body.
+
 ## 🛡️ Quality Standards
 *   **Mandatory Fields**: Every paper entry MUST have `nrms_median`, `sensor_type`, and `water_depth`.
 *   **Aesthetic Uniformity**: All generated content must respect the design tokens in `assets/css/main.scss`.
