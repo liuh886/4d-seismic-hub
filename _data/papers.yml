@@ -58,26 +58,25 @@
   main_driver: Water Saturation
   water_depth: 1350m
   map_id: Girassol
-- title: 'Jubarte PRM: 4D seismic in deep water'
+- title: 'A Successful 4D Seismic Monitoring in Middle-East Carbonate Reservoir Context'
   authors:
-  - Thedy, E.
-  - Matusin, A.
-  - Grochau, M.
-  year: 2013
-  description: Deploying the world's first deepwater optical Permanent Reservoir Monitoring
-    system to manage a complex heavy oil field in Brazil.
-  link: https://onepetro.org/search?q=Jubarte+PRM
+  - Khalifa, M.
+  - Sultan, A.
+  - Dichy-Malmasson, B.
+  year: 2018
+  description: Proving that 4D seismic can work in "stiff" carbonate reservoirs by identifying water front movement and pressure depletion in a giant offshore field.
+  link: https://onepetro.org/search?q=Middle+East+Carbonate+4D+seismic
   tags:
-  - Brazil
-  - PRM
-  - Heavy Oil
+  - Middle East
+  - Carbonates
+  - Water Flood
   bin_size: 25m x 25m
-  repeat_interval: 1 year
-  sensor_type: Optical Cable (PRM)
-  nrms_median: 10-15%
-  main_driver: Pressure & Saturation
-  water_depth: 1300m
-  map_id: Jubarte PRM
+  repeat_interval: 5 years
+  sensor_type: OBN / OBC
+  nrms_median: 15-20%
+  main_driver: Water Saturation & Pressure
+  water_depth: 25m
+  map_id: Middle East Carbonate OBN
 - title: 'Atlantis OBN 4D: Imaging below salt'
   authors:
   - Beasley, C.

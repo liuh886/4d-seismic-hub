@@ -123,6 +123,7 @@ Use this interactive tool to compare technical parameters across global 4D monit
   <!-- Map Integration -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <div id="tool-map"></div>
 
   <!-- Filters -->
@@ -164,6 +165,18 @@ Use this interactive tool to compare technical parameters across global 4D monit
 
   <div class="stats-counter" id="stats-text">Showing 20 projects</div>
 
+  <!-- Visualization Charts -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem;">
+      <h4 style="margin-top:0; font-size: 0.9rem; color: #475569;">NRMS vs. Water Depth</h4>
+      <canvas id="scatterChart" height="250"></canvas>
+    </div>
+    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem;">
+      <h4 style="margin-top:0; font-size: 0.9rem; color: #475569;">Technical Benchmarking (Avg)</h4>
+      <canvas id="radarChart" height="250"></canvas>
+    </div>
+  </div>
+
   <!-- Table -->
   <div class="comparison-table-wrapper">
     <table class="comparison-table">
@@ -197,6 +210,76 @@ document.addEventListener('DOMContentLoaded', function() {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
   
   let markers = [];
+  let scatterChart, radarChart;
+
+  const parseNum = (str) => {
+    if (!str || String(str).includes('N/A')) return null;
+    const m = String(str).match(/[\d\.]+/);
+    return m ? parseFloat(m[0]) : null;
+  };
+
+  function updateCharts(data) {
+    const scatterData = data.map(p => ({
+      x: parseNum(p.water_depth),
+      y: parseNum(p.nrms_median),
+      label: p.map_id
+    })).filter(d => d.x !== null && d.y !== null);
+
+    const avgNRMS = data.reduce((acc, p) => acc + (parseNum(p.nrms_median) || 0), 0) / data.length || 0;
+    const avgRepeat = data.reduce((acc, p) => acc + (parseNum(p.repeat_interval) || 0), 0) / data.length || 0;
+    const avgBin = data.reduce((acc, p) => acc + (parseNum(p.bin_size) || 0), 0) / data.length || 0;
+    const avgDepth = data.reduce((acc, p) => acc + (parseNum(p.water_depth) || 0), 0) / data.length || 0;
+
+    if (scatterChart) scatterChart.destroy();
+    scatterChart = new Chart(document.getElementById('scatterChart'), {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Projects',
+          data: scatterData,
+          backgroundColor: '#B509AC'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { title: { display: true, text: 'Water Depth (m)' } },
+          y: { title: { display: true, text: 'NRMS (%)' } }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ctx.raw.label + ': (' + ctx.raw.x + 'm, ' + ctx.raw.y + '%)'
+            }
+          }
+        }
+      }
+    });
+
+    if (radarChart) radarChart.destroy();
+    radarChart = new Chart(document.getElementById('radarChart'), {
+      type: 'radar',
+      data: {
+        labels: ['NRMS', 'Repeat Interval', 'Bin Size', 'Water Depth (scaled)'],
+        datasets: [{
+          label: 'Filtered Avg',
+          data: [avgNRMS, avgRepeat * 10, avgBin, avgDepth / 20],
+          fill: true,
+          backgroundColor: 'rgba(181, 9, 172, 0.2)',
+          borderColor: '#B509AC',
+          pointBackgroundColor: '#B509AC'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: { beginAtZero: true, max: 50 }
+        }
+      }
+    });
+  }
 
   function updateDisplay() {
     const sensorFilter = document.getElementById('filter-sensor').value;
@@ -209,6 +292,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const matchRegion = regionFilter === 'all' || p.tags.some(t => t.includes(regionFilter));
       return matchSensor && matchDriver && matchRegion;
     });
+
+    // Update Charts
+    updateCharts(filtered);
 
     // Update Table
     tableBody.innerHTML = '';
