@@ -2,156 +2,51 @@
 title: Interactive Comparison Tool
 layout: default
 permalink: /pages/comparison-tool/
+classes: wide
 ---
 
-<style>
-/* Engineering Table Style */
-.comparison-container {
-  max-width: 100%;
-  margin: 1rem 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-}
+<div class="hub-page-hero">
+  <p class="hub-kicker">Technical benchmarking</p>
+  <h1>Compare the choices behind 4D performance.</h1>
+  <p>Filter global projects by sensor technology, monitoring driver, and region, then inspect how acquisition parameters and repeatability metrics vary across field settings.</p>
+  <div class="hub-inline-stats">
+    <span class="hub-inline-stat">Interactive map</span>
+    <span class="hub-inline-stat">Linked charts and table</span>
+    <span class="hub-inline-stat">Decision-oriented parameters</span>
+  </div>
+</div>
 
-#tool-map {
-  height: 400px;
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  margin-bottom: 2rem;
-  z-index: 1;
-}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-.filter-bar {
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
+<div id="tool-map" class="hub-map" role="region" aria-label="Map of projects currently included in the comparison"></div>
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filter-group label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #64748b;
-  letter-spacing: 0.05em;
-}
-
-.filter-group select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  background: white;
-  min-width: 160px;
-  font-size: 0.9rem;
-}
-
-.comparison-table-wrapper {
-  overflow-x: auto;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-  background: white;
-}
-
-.comparison-table th {
-  background: #f1f5f9;
-  text-align: left;
-  padding: 1rem;
-  border-bottom: 2px solid #e2e8f0;
-  white-space: nowrap;
-  color: #475569;
-  font-weight: 600;
-}
-
-.comparison-table td {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid #f1f5f9;
-  color: #1e293b;
-}
-
-.comparison-table tr:hover {
-  background: #f8fafc;
-}
-
-.comparison-table tr.highlighted {
-  background: rgba(181, 9, 172, 0.05) !important;
-  border-left: 4px solid var(--hub-accent, #B509AC);
-}
-
-.tag-sensor {
-  background: #eff6ff;
-  color: #1d4ed8;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-.nrms-badge {
-  font-weight: 700;
-  color: #059669;
-}
-
-.stats-counter {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin-bottom: 1rem;
-}
-</style>
-
-# 4D Technical Benchmarking
-
-Use this interactive tool to compare technical parameters across global 4D monitoring projects. Select filters to narrow down by technology or objective.
-
-<div class="comparison-container">
-  
-  <!-- Map Integration -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <div id="tool-map"></div>
-
-  <!-- Filters -->
-  <div class="filter-bar">
-    <div class="filter-group">
-      <label>Sensor Technology</label>
+<div class="hub-tool-panel" aria-label="Comparison filters">
+  <p class="hub-kicker">Filter projects</p>
+  <div class="hub-filter-grid">
+    <div class="hub-filter-group">
+      <label for="filter-sensor">Sensor technology</label>
       <select id="filter-sensor">
-        <option value="all">All Sensors</option>
-        <option value="OBN">OBN / Nodes</option>
+        <option value="all">All sensors</option>
+        <option value="OBN">OBN / nodes</option>
         <option value="Streamer">Streamer</option>
-        <option value="PRM">Permanent (PRM)</option>
-        <option value="Surface">Land / Surface</option>
+        <option value="PRM">Permanent / PRM</option>
+        <option value="Surface">Land / surface</option>
       </select>
     </div>
-
-    <div class="filter-group">
-      <label>Main Driver</label>
+    <div class="hub-filter-group">
+      <label for="filter-driver">Main monitoring driver</label>
       <select id="filter-driver">
-        <option value="all">All Drivers</option>
+        <option value="all">All drivers</option>
         <option value="Saturation">Saturation</option>
         <option value="Pressure">Pressure</option>
-        <option value="Compaction">Compaction / Geomechanics</option>
-        <option value="CO2">CO2 / Storage</option>
+        <option value="Compaction">Compaction / geomechanics</option>
+        <option value="CO2">CO₂ / storage</option>
       </select>
     </div>
-
-    <div class="filter-group">
-      <label>Region</label>
+    <div class="hub-filter-group">
+      <label for="filter-region">Region</label>
       <select id="filter-region">
         <option value="all">Global</option>
         <option value="North Sea">North Sea</option>
@@ -162,98 +57,99 @@ Use this interactive tool to compare technical parameters across global 4D monit
       </select>
     </div>
   </div>
+</div>
 
-  <div class="stats-counter" id="stats-text">Showing 20 projects</div>
+<div class="hub-results-bar">
+  <span id="stats-text" aria-live="polite">Loading projects…</span>
+  <span>Select a row or map marker to connect the project context.</span>
+</div>
 
-  <!-- Visualization Charts -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem;">
-      <h4 style="margin-top:0; font-size: 0.9rem; color: #475569;">NRMS vs. Water Depth</h4>
-      <canvas id="scatterChart" height="250"></canvas>
-    </div>
-    <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem;">
-      <h4 style="margin-top:0; font-size: 0.9rem; color: #475569;">Technical Benchmarking (Avg)</h4>
-      <canvas id="radarChart" height="250"></canvas>
-    </div>
-  </div>
+<div class="hub-chart-grid">
+  <section class="hub-chart-card" aria-labelledby="scatter-title">
+    <h3 id="scatter-title">NRMS vs. water depth</h3>
+    <div class="hub-chart-frame"><canvas id="scatterChart"></canvas></div>
+  </section>
+  <section class="hub-chart-card" aria-labelledby="radar-title">
+    <h3 id="radar-title">Filtered technical profile</h3>
+    <div class="hub-chart-frame"><canvas id="radarChart"></canvas></div>
+  </section>
+</div>
 
-  <!-- Table -->
-  <div class="comparison-table-wrapper">
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Project / Field</th>
-          <th>Sensor</th>
-          <th>Bin Size</th>
-          <th>Repeat</th>
-          <th>NRMS (Median)</th>
-          <th>Main Driver</th>
-          <th>Water Depth</th>
-        </tr>
-      </thead>
-      <tbody id="comparison-body">
-        <!-- JS populated -->
-      </tbody>
-    </table>
-  </div>
+<div class="hub-table-wrap" role="region" aria-label="Project comparison table" tabindex="0">
+  <table class="hub-table">
+    <thead>
+      <tr>
+        <th>Project / field</th>
+        <th>Sensor</th>
+        <th>Bin size</th>
+        <th>Repeat</th>
+        <th>NRMS median</th>
+        <th>Main driver</th>
+        <th>Water depth</th>
+      </tr>
+    </thead>
+    <tbody id="comparison-body"></tbody>
+  </table>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const papers = {{ site.data.papers | jsonify }};
   const mapData = {{ site.data.case_studies_map | jsonify }};
   const tableBody = document.getElementById('comparison-body');
   const statsText = document.getElementById('stats-text');
-  
-  // Initialize Map
-  const map = L.map('tool-map').setView([20, 0], 2);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
-  
-  let markers = [];
-  let scatterChart, radarChart;
+  const mapNode = document.getElementById('tool-map');
+  const map = window.L ? L.map(mapNode, { scrollWheelZoom: false }).setView([20, 0], 2) : null;
 
-  const parseNum = (str) => {
-    if (!str || String(str).includes('N/A')) return null;
-    const m = String(str).match(/[\d\.]+/);
-    return m ? parseFloat(m[0]) : null;
-  };
+  if (map) {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(map);
+  }
+
+  let markers = [];
+  let scatterChart;
+  let radarChart;
+
+  function parseNum(value) {
+    if (value === null || value === undefined || String(value).includes('N/A')) return null;
+    const match = String(value).match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : null;
+  }
+
+  function projectName(project) {
+    return project.map_id || project.title || 'Unnamed project';
+  }
+
+  function rowId(project) {
+    return 'row-' + projectName(project).replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
+  }
+
+  function average(data, field) {
+    const values = data.map(function (item) { return parseNum(item[field]); }).filter(function (value) { return value !== null; });
+    if (!values.length) return 0;
+    return values.reduce(function (sum, value) { return sum + value; }, 0) / values.length;
+  }
 
   function updateCharts(data) {
-    const scatterData = data.map(p => ({
-      x: parseNum(p.water_depth),
-      y: parseNum(p.nrms_median),
-      label: p.map_id
-    })).filter(d => d.x !== null && d.y !== null);
+    if (!window.Chart) return;
 
-    const avgNRMS = data.reduce((acc, p) => acc + (parseNum(p.nrms_median) || 0), 0) / data.length || 0;
-    const avgRepeat = data.reduce((acc, p) => acc + (parseNum(p.repeat_interval) || 0), 0) / data.length || 0;
-    const avgBin = data.reduce((acc, p) => acc + (parseNum(p.bin_size) || 0), 0) / data.length || 0;
-    const avgDepth = data.reduce((acc, p) => acc + (parseNum(p.water_depth) || 0), 0) / data.length || 0;
+    const scatterData = data.map(function (project) {
+      return { x: parseNum(project.water_depth), y: parseNum(project.nrms_median), label: projectName(project) };
+    }).filter(function (point) { return point.x !== null && point.y !== null; });
 
     if (scatterChart) scatterChart.destroy();
     scatterChart = new Chart(document.getElementById('scatterChart'), {
       type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Projects',
-          data: scatterData,
-          backgroundColor: '#B509AC'
-        }]
-      },
+      data: { datasets: [{ label: 'Projects', data: scatterData, backgroundColor: '#0b7f82', borderColor: '#06666a', pointRadius: 5, pointHoverRadius: 7 }] },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          x: { title: { display: true, text: 'Water Depth (m)' } },
-          y: { title: { display: true, text: 'NRMS (%)' } }
+          x: { title: { display: true, text: 'Water depth (m)' }, grid: { color: '#e4ecee' } },
+          y: { title: { display: true, text: 'NRMS (%)' }, grid: { color: '#e4ecee' } }
         },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: (ctx) => ctx.raw.label + ': (' + ctx.raw.x + 'm, ' + ctx.raw.y + '%)'
-            }
-          }
-        }
+        plugins: { tooltip: { callbacks: { label: function (context) { return context.raw.label + ': ' + context.raw.x + ' m, ' + context.raw.y + '%'; } } } }
       }
     });
 
@@ -261,24 +157,34 @@ document.addEventListener('DOMContentLoaded', function() {
     radarChart = new Chart(document.getElementById('radarChart'), {
       type: 'radar',
       data: {
-        labels: ['NRMS', 'Repeat Interval', 'Bin Size', 'Water Depth (scaled)'],
+        labels: ['NRMS', 'Repeat interval', 'Bin size', 'Water depth / 20'],
         datasets: [{
-          label: 'Filtered Avg',
-          data: [avgNRMS, avgRepeat * 10, avgBin, avgDepth / 20],
+          label: 'Filtered average',
+          data: [average(data, 'nrms_median'), average(data, 'repeat_interval') * 10, average(data, 'bin_size'), average(data, 'water_depth') / 20],
           fill: true,
-          backgroundColor: 'rgba(181, 9, 172, 0.2)',
-          borderColor: '#B509AC',
-          pointBackgroundColor: '#B509AC'
+          backgroundColor: 'rgba(11, 127, 130, 0.16)',
+          borderColor: '#0b7f82',
+          pointBackgroundColor: '#f2a33a',
+          pointBorderColor: '#ffffff'
         }]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: { beginAtZero: true, max: 50 }
-        }
-      }
+      options: { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true, grid: { color: '#dfe8ea' }, angleLines: { color: '#dfe8ea' }, pointLabels: { color: '#38515d' } } } }
     });
+  }
+
+  function activateProject(project, shouldScroll) {
+    document.querySelectorAll('.hub-table tbody tr').forEach(function (row) { row.classList.remove('is-active'); });
+    const row = document.getElementById(rowId(project));
+    if (row) {
+      row.classList.add('is-active');
+      if (shouldScroll) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    const marker = markers.find(function (item) { return item.options.projectId === projectName(project); });
+    if (marker && map) {
+      map.flyTo(marker.getLatLng(), 5, { duration: 0.8 });
+      marker.openPopup();
+    }
   }
 
   function updateDisplay() {
@@ -286,79 +192,67 @@ document.addEventListener('DOMContentLoaded', function() {
     const driverFilter = document.getElementById('filter-driver').value;
     const regionFilter = document.getElementById('filter-region').value;
 
-    const filtered = papers.filter(p => {
-      const matchSensor = sensorFilter === 'all' || p.sensor_type.includes(sensorFilter);
-      const matchDriver = driverFilter === 'all' || p.main_driver.includes(driverFilter);
-      const matchRegion = regionFilter === 'all' || p.tags.some(t => t.includes(regionFilter));
-      return matchSensor && matchDriver && matchRegion;
+    const filtered = papers.filter(function (project) {
+      const sensor = String(project.sensor_type || '');
+      const driver = String(project.main_driver || '');
+      const tags = Array.isArray(project.tags) ? project.tags : [];
+      return (sensorFilter === 'all' || sensor.includes(sensorFilter)) &&
+        (driverFilter === 'all' || driver.includes(driverFilter)) &&
+        (regionFilter === 'all' || tags.some(function (tag) { return String(tag).includes(regionFilter); }));
     });
 
-    // Update Charts
     updateCharts(filtered);
-
-    // Update Table
     tableBody.innerHTML = '';
-    filtered.forEach(p => {
-      const row = document.createElement('tr');
-      row.id = `row-${p.map_id.replace(/\s+/g, '-').toLowerCase()}`;
-      row.innerHTML = `
-        <td><strong>${p.map_id || p.title}</strong><br><small style="color:#64748b">${p.year}</small></td>
-        <td><span class="tag-sensor">${p.sensor_type}</span></td>
-        <td>${p.bin_size}</td>
-        <td>${p.repeat_interval}</td>
-        <td><span class="nrms-badge">${p.nrms_median}</span></td>
-        <td>${p.main_driver}</td>
-        <td>${p.water_depth}</td>
-      `;
-      row.addEventListener('click', () => {
-        document.querySelectorAll('.comparison-table tr').forEach(r => r.classList.remove('highlighted'));
-        row.classList.add('highlighted');
-        const m = markers.find(m => m.options.id === p.map_id);
-        if (m) {
-          map.flyTo(m.getLatLng(), 5);
-          m.openPopup();
-        }
-      });
-      tableBody.appendChild(row);
-    });
 
-    // Update Map Markers
-    markers.forEach(m => map.removeLayer(m));
-    markers = [];
-    
-    filtered.forEach(p => {
-      const loc = mapData.find(m => m.name === p.map_id);
-      if (loc) {
-        const marker = L.circleMarker([loc.latitude, loc.longitude], {
-          radius: 8,
-          fillColor: "#B509AC",
-          color: "#fff",
+    if (!filtered.length) {
+      tableBody.innerHTML = '<tr><td colspan="7" class="hub-empty">No projects match this filter combination.</td></tr>';
+    } else {
+      filtered.forEach(function (project) {
+        const row = document.createElement('tr');
+        row.id = rowId(project);
+        row.tabIndex = 0;
+        row.innerHTML =
+          '<td><strong>' + projectName(project) + '</strong><br><small>' + (project.year || 'Year not stated') + '</small></td>' +
+          '<td><span class="hub-sensor-badge">' + (project.sensor_type || 'N/A') + '</span></td>' +
+          '<td>' + (project.bin_size || 'N/A') + '</td>' +
+          '<td>' + (project.repeat_interval || 'N/A') + '</td>' +
+          '<td><span class="hub-nrms-badge">' + (project.nrms_median || 'N/A') + '</span></td>' +
+          '<td>' + (project.main_driver || 'N/A') + '</td>' +
+          '<td>' + (project.water_depth || 'N/A') + '</td>';
+        row.addEventListener('click', function () { activateProject(project, false); });
+        row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activateProject(project, false); } });
+        tableBody.appendChild(row);
+      });
+    }
+
+    if (map) {
+      markers.forEach(function (marker) { map.removeLayer(marker); });
+      markers = [];
+      filtered.forEach(function (project) {
+        const location = mapData.find(function (item) { return item.name === project.map_id; });
+        if (!location || !location.latitude || !location.longitude) return;
+        const marker = L.circleMarker([location.latitude, location.longitude], {
+          radius: 7,
+          fillColor: '#0b7f82',
+          color: '#ffffff',
           weight: 2,
           opacity: 1,
-          fillOpacity: 0.8,
-          id: p.map_id
+          fillOpacity: 0.9,
+          projectId: projectName(project)
         }).addTo(map);
-        
-        marker.bindPopup(`<strong>${loc.name}</strong><br>${loc.summary}`);
-        marker.on('click', () => {
-          const row = document.getElementById(`row-${p.map_id.replace(/\s+/g, '-').toLowerCase()}`);
-          if (row) {
-            document.querySelectorAll('.comparison-table tr').forEach(r => r.classList.remove('highlighted'));
-            row.classList.add('highlighted');
-            row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        });
+        marker.bindPopup('<strong>' + location.name + '</strong><br><span style="color:#536975">' + location.summary + '</span>');
+        marker.on('click', function () { activateProject(project, true); });
         markers.push(marker);
-      }
-    });
+      });
+      if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.12));
+    }
 
-    statsText.innerText = `Showing ${filtered.length} projects`;
+    statsText.innerHTML = '<strong>' + filtered.length + '</strong> projects in the current comparison';
   }
 
-  // Event Listeners
-  document.getElementById('filter-sensor').addEventListener('change', updateDisplay);
-  document.getElementById('filter-driver').addEventListener('change', updateDisplay);
-  document.getElementById('filter-region').addEventListener('change', updateDisplay);
+  ['filter-sensor', 'filter-driver', 'filter-region'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', updateDisplay);
+  });
 
   updateDisplay();
 });
