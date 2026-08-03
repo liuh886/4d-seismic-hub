@@ -1,0 +1,68 @@
+name: Validate 4D Seismic Hub
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 4d-seismic-hub-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Contracts and Jekyll build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run discovered repository validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          validators=(tests/*.rb)
+          if (( ${#validators[@]} == 0 )); then
+            echo "No repository validators are present yet."
+          else
+            for validator in "${validators[@]}"; do
+              echo "Running ${validator}"
+              ruby "${validator}"
+            done
+          fi
+
+      - name: Configure Pages-compatible build
+        uses: actions/configure-pages@v5
+
+      - name: Build with the GitHub Pages Jekyll runtime
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Verify deployable artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s _site/index.html
+          test -d _site/assets
+          if grep -R --line-number --include='*.html' -E '\{\{[^}]+\}\}|\{%[^%]+%\}' _site; then
+            echo "Unresolved Liquid markup remains in the built site."
+            exit 1
+          fi
+
+      - name: Retain validated site for Pages
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 4d-seismic-hub-site
+          path: _site
+          if-no-files-found: error
+          retention-days: 7
