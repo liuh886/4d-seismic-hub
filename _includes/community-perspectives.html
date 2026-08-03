@@ -5,23 +5,24 @@
 {% assign forum_label = site.community_comments.forum_label | default: "4D_Forum" %}
 {% assign community_thread_term = page.community_issue_term | default: page.id | default: page.url %}
 
-<section class="community-perspectives">
+<section class="community-perspectives" aria-labelledby="community-perspectives-title">
   <div class="community-perspectives__header">
-    <p class="community-perspectives__eyebrow">Community Perspectives</p>
-    <h3>Where does this case hold up, and where does it break down?</h3>
+    <p class="community-perspectives__eyebrow">Community review</p>
+    <h3 id="community-perspectives-title">What supports this interpretation, and what limits transfer?</h3>
     <p class="community-perspectives__intro">
-      Each article now has one issue-backed discussion thread for technical
-      feedback. Visitors can leave evidence-based comments here, while agents
-      keep the <strong>Pro</strong> and <strong>Con</strong> positions organized
-      in the summary cards above.
+      This section preserves technical feedback, counterexamples, and deployment lessons from the issue-backed forum. Maintainers may synthesize the strongest points into the two cards below.
     </p>
+    <div class="community-perspectives__boundary">
+      <span aria-hidden="true">◇</span>
+      <span><strong>Evidence boundary:</strong> community comments and maintainer summaries are review inputs, not primary technical sources. The source record and editorial evidence scope are shown in the structured case brief above.</span>
+    </div>
   </div>
 
   <div class="community-perspectives__summary-grid">
     <article class="community-summary-card community-summary-card--pro">
       <div class="community-summary-card__title-row">
-        <h4>Pro Highlights</h4>
-        <span class="community-summary-card__badge">Agent summary</span>
+        <h4>Supporting signals</h4>
+        <span class="community-summary-card__badge">Maintainer synthesis</span>
       </div>
       {% if summary and summary.pro %}
         <ul class="community-summary-card__list">
@@ -31,15 +32,15 @@
         </ul>
       {% else %}
         <p class="community-summary-card__placeholder">
-          Waiting for enough community input to synthesize the strongest technical upside.
+          No synthesis yet. Supporting claims should remain tied to the technical source and the article's stated evidence scope.
         </p>
       {% endif %}
     </article>
 
     <article class="community-summary-card community-summary-card--con">
       <div class="community-summary-card__title-row">
-        <h4>Con Highlights</h4>
-        <span class="community-summary-card__badge">Agent summary</span>
+        <h4>Limits and counterexamples</h4>
+        <span class="community-summary-card__badge">Maintainer synthesis</span>
       </div>
       {% if summary and summary.con %}
         <ul class="community-summary-card__list">
@@ -49,7 +50,7 @@
         </ul>
       {% else %}
         <p class="community-summary-card__placeholder">
-          Waiting for enough community input to synthesize the key risks, caveats, and failure modes.
+          No synthesis yet. Add a specific limitation, contradictory case, or transfer condition in the forum thread.
         </p>
       {% endif %}
     </article>
@@ -57,21 +58,19 @@
 
   <div class="community-perspectives__meta">
     <p>
-      <strong>Contribution rule:</strong> keep comments technical, concise, and
-      evidence-based. Use reactions on comments to express agreement instead of
-      posting duplicate "+1" replies. The thread is intentionally neutral;
-      maintainers and agents extract the strongest supporting and skeptical
-      arguments into the cards above.
+      <strong>Contribution rule:</strong> identify the claim you are addressing, provide a source or field observation where possible, and distinguish a factual correction from an interpretation or transfer concern.
     </p>
     {% if summary and summary.updated_at %}
-      <p>Last agent summary update: {{ summary.updated_at }}</p>
+      <p>Last maintainer synthesis: {{ summary.updated_at }}</p>
     {% endif %}
   </div>
 
-  <section class="community-thread community-thread--forum">
+  <section class="community-thread community-thread--forum" aria-labelledby="community-forum-title">
     <div class="community-thread__heading">
-      <h4>4D Forum</h4>
-      <p>Use one shared thread for technical observations, counterexamples, deployment lessons, and questions worth preserving.</p>
+      <div>
+        <h4 id="community-forum-title">4D Forum</h4>
+        <p>Use one shared thread for technical observations, counterexamples, deployment lessons, and evidence-backed corrections.</p>
+      </div>
     </div>
 
     {% if comments_enabled and comments_repo %}
@@ -100,11 +99,10 @@
       target="_blank"
       rel="noopener noreferrer"
       class="btn btn--primary community-perspectives__edit-link">
-      <i class="fab fa-github"></i> Improve this article
+      <i class="fab fa-github"></i> Propose an evidence-backed correction
     </a>
     <p>
-      Maintainers and agents can later write synthesized Pro/Con summaries into
-      each post front matter via <code>community_summary</code>.
+      Article edits should update the source record, evidence scope, or known limitations directly. Forum synthesis must not silently replace the technical source.
     </p>
   </div>
 </section>

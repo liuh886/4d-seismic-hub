@@ -12,6 +12,10 @@ case_study:
   decision_outcome: "The 4D interpretation identified water encroachment and supported repositioning a production well."
   transferable_lesson: "Permanent monitoring is most defensible where repeatability materially changes high-value development or intervention decisions."
   evidence_status: "Operational field demonstration"
+  evidence_scope: "The case links permanent-receiver repeatability to water-front interpretation and one documented field-development decision."
+  limitations:
+    - "The operational and economic case may not transfer to assets with lower decision value or shorter surveillance horizons."
+    - "Performance from a permanent optical installation should not be assumed for redeployed streamer, OBN, or lower-density systems."
 community_summary:
   updated_at: 2026-03-07
   pro:
@@ -43,5 +47,3 @@ The interpretation showed water encroachment that was not sufficiently represent
 ## Transferable lesson
 
 A permanent system should not be justified by repeatability alone. Its strongest case is where better repeatability shortens the decision loop and protects a high-value well, injection, or intervention decision.
-
-[Read the technical source](https://library.seg.org/doi/10.1190/segam2013-1163.1)

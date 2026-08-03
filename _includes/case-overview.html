@@ -52,8 +52,27 @@
     </article>
   </div>
 
-  <div class="case-brief__provenance">
-    <span>Benchmark fields are linked to the shared project dataset.</span>
-    {% if benchmark.link %}<a href="{{ benchmark.link }}" target="_blank" rel="noopener noreferrer">Open technical source <span aria-hidden="true">↗</span></a>{% endif %}
+  <div class="case-evidence-grid">
+    <article class="case-evidence-card case-evidence-card--source">
+      <span class="case-evidence-card__label">Technical source record</span>
+      <h3>{{ benchmark.title | default: "Source not recorded" }}</h3>
+      {% if benchmark.authors %}<p class="case-evidence-card__meta">{{ benchmark.authors | join: ", " }}{% if benchmark.year %} · {{ benchmark.year }}{% endif %}</p>{% endif %}
+      <p>The benchmark fields above are resolved from the shared project dataset. This article is an editorial synthesis of that record.</p>
+      {% if benchmark.link %}<a href="{{ benchmark.link }}" target="_blank" rel="noopener noreferrer">Open source record <span aria-hidden="true">↗</span></a>{% endif %}
+    </article>
+
+    <article class="case-evidence-card">
+      <span class="case-evidence-card__label">Evidence scope</span>
+      <p>{{ case_meta.evidence_scope }}</p>
+    </article>
+
+    <article class="case-evidence-card case-evidence-card--limits">
+      <span class="case-evidence-card__label">Known limitations</span>
+      <ul>
+        {% for limitation in case_meta.limitations %}
+          <li>{{ limitation }}</li>
+        {% endfor %}
+      </ul>
+    </article>
   </div>
 </section>

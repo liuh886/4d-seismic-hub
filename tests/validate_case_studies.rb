@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "date"
+require "uri"
 require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
@@ -12,7 +13,16 @@ REQUIRED_FIELDS = %w[
   decision_outcome
   transferable_lesson
   evidence_status
+  evidence_scope
 ].freeze
+REQUIRED_HEADINGS = [
+  "## Decision context",
+  "## Monitoring approach",
+  "## Evidence",
+  "## Operational outcome",
+  "## Transferable lesson"
+].freeze
+REQUIRED_BENCHMARK_FIELDS = %w[title authors year link].freeze
 
 errors = []
 
@@ -22,6 +32,13 @@ load_yaml = lambda do |path|
     permitted_classes: [Date, Time],
     aliases: true
   )
+end
+
+https_url = lambda do |value|
+  uri = URI.parse(value.to_s)
+  uri.is_a?(URI::HTTPS) && !uri.host.to_s.empty?
+rescue URI::InvalidURIError
+  false
 end
 
 maps = load_yaml.call(File.join(ROOT, "_data", "case_studies_map.yml")) || []
@@ -61,8 +78,32 @@ Dir.glob(File.join(ROOT, "_posts", "*.md")).sort.each do |path|
     errors << "#{path}: case_study.#{field} is missing" if value.nil? || value.to_s.strip.empty?
   end
 
+  limitations = case_data["limitations"]
+  unless limitations.is_a?(Array) && limitations.length >= 2 && limitations.all? { |item| !item.to_s.strip.empty? }
+    errors << "#{path}: case_study.limitations must contain at least two non-empty items"
+  end
+
+  REQUIRED_HEADINGS.each do |heading|
+    errors << "#{path}: missing required heading #{heading.inspect}" unless source.include?(heading)
+  end
+
   classes = Array(data["classes"]).flat_map { |value| value.to_s.split }
   errors << "#{path}: classes must include case-study" unless classes.include?("case-study")
+
+  summary = data["community_summary"]
+  if summary
+    unless summary.is_a?(Hash)
+      errors << "#{path}: community_summary must be a mapping"
+    else
+      errors << "#{path}: community_summary.updated_at is missing" if summary["updated_at"].nil?
+      %w[pro con].each do |side|
+        items = summary[side]
+        unless items.is_a?(Array) && items.any? && items.all? { |item| !item.to_s.strip.empty? }
+          errors << "#{path}: community_summary.#{side} must contain non-empty items"
+        end
+      end
+    end
+  end
 
   map_id = case_data["map_id"].to_s
   next if map_id.empty?
@@ -78,8 +119,26 @@ Dir.glob(File.join(ROOT, "_posts", "*.md")).sort.each do |path|
     next
   end
 
-  unless paper_index.key?(map_id)
+  benchmark_records = paper_index[map_id]
+  unless benchmark_records
     errors << "#{path}: map_id #{map_id.inspect} is missing from _data/papers.yml"
+    next
+  end
+
+  if benchmark_records.length != 1
+    errors << "#{path}: map_id #{map_id.inspect} must resolve to exactly one paper record"
+    next
+  end
+
+  benchmark = benchmark_records.first
+  REQUIRED_BENCHMARK_FIELDS.each do |field|
+    value = benchmark[field]
+    missing = value.nil? || value.respond_to?(:empty?) && value.empty?
+    errors << "#{path}: benchmark #{map_id.inspect} is missing #{field}" if missing
+  end
+
+  unless https_url.call(benchmark["link"])
+    errors << "#{path}: benchmark #{map_id.inspect} must use a valid HTTPS source link"
   end
 
   if map_index[map_id]["post_url"].to_s.strip.empty?
@@ -88,10 +147,10 @@ Dir.glob(File.join(ROOT, "_posts", "*.md")).sort.each do |path|
 end
 
 if errors.empty?
-  puts "Case-study schema validation passed for #{seen_map_ids.length} posts."
+  puts "Case-study evidence contract passed for #{seen_map_ids.length} posts."
   exit 0
 end
 
-warn "Case-study schema validation failed:"
+warn "Case-study evidence contract failed:"
 errors.each { |error| warn "  - #{error}" }
 exit 1

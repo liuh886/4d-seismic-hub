@@ -12,6 +12,10 @@ case_study:
   decision_outcome: "Time-lapse interpretation supported multiple infill decisions and established 4D seismic as a recurring reservoir-management input."
   transferable_lesson: "A legacy acquisition system can still create material value when processing, uncertainty, and the decision question are managed together."
   evidence_status: "Mature operating practice"
+  evidence_scope: "The case supports repeated use of streamer 4D for reservoir-management decisions across a mature field and includes lessons from later reprocessing."
+  limitations:
+    - "Legacy survey repeatability is lower than modern permanent or node-based systems and requires careful separation of acquisition noise from reservoir change."
+    - "Reported field value combines multiple decisions over time and should not be treated as a simple return estimate for another asset."
 community_summary:
   updated_at: 2026-03-08
   pro:
@@ -43,5 +47,3 @@ The field used 4D evidence to support infill-well planning and waterflood manage
 ## Transferable lesson
 
 High repeatability improves confidence, but it is not the only route to value. A project can extract useful 4D evidence from legacy streamer data when the expected signal, processing limits, and decision threshold are made explicit.
-
-[Read the technical source on OnePetro](https://onepetro.org/search?q=Gullfaks+4D)
