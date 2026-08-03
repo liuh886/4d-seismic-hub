@@ -1,93 +1,67 @@
 # Homepage experience system
 
-The homepage is a focused technical landing page built from real repository content rather than a simulated application interface.
+The homepage is a focused technical landing page built from real repository content and the native Minimal Mistakes shell.
 
-## Reference principles
+## Architecture
 
-The page retains the useful interaction discipline of Readest:
+`_layouts/home.html` inherits the theme `default` layout. This preserves the standard head, masthead, footer, scripts, and skip links while bypassing only the `splash` article and `page__content` wrappers that are inappropriate for a full-width landing page.
 
-- one clear value statement in the first screen;
-- small supporting collection statistics;
-- a limited number of primary routes;
-- one idea per section;
-- restrained motion that clarifies hierarchy;
-- a navigation bar that recedes at the top and becomes legible only when needed during scrolling.
+The homepage therefore uses one native `<main id="main" class="home-main">` element. It does not use `100vw`, negative viewport margins, or overflow masking. Inner content reuses the shared `--hub-content` width of 1,180 pixels so the masthead, homepage, and inner pages align to the same grid.
 
-The implementation does not reproduce Readest branding, imagery, typography, or application UI.
+Homepage assets are conditionally loaded from `_includes/head/custom.html`. Stylesheets and deferred JavaScript are emitted in the document head rather than inserted into page content.
 
-## Native theme integration
+## Navigation
 
-The homepage uses the custom `_layouts/home.html` layout. That layout inherits the Minimal Mistakes `default` shell so the standard head, masthead, footer, scripts, and accessibility links remain intact, but it does not route homepage content through the theme's `splash` article and `page__content` wrappers.
-
-This is intentional. The previous implementation attempted to escape the theme's padded and maximum-width `#main` container with `100vw` and viewport-relative negative margins. That mixed two incompatible width models, produced horizontal overflow, and made the page appear zoomed on wide desktop displays.
-
-The native homepage layout now provides a single full-width `<main>` element. Homepage CSS explicitly resets that element to `width: 100%`, `max-width: none`, and zero outer padding. Content sections use a normal 1,240-pixel inner shell. No viewport breakout calculation is required.
-
-## Primary navigation
-
-The site title already returns visitors to the homepage, so `Home` is not duplicated in the header. The primary navigation contains only:
+The site title returns to the homepage, so the primary navigation contains only:
 
 - **Cases**;
 - **Benchmark**;
 - **About**.
 
-The theme renders `body.layout--home` before CSS and JavaScript run. Homepage masthead styling therefore uses this stable body class instead of adding a temporary class to the document element.
+Minimal Mistakes renders `body.layout--home` before assets execute. The homepage masthead uses that native class: transparent at the top, then surfaced after 24 pixels of scrolling with a translucent background, border, shadow, and blur. Other layouts retain the normal masthead behavior.
 
-At the top of the homepage, the masthead is fixed over the hero with a transparent background. Once the page scroll position exceeds 24 pixels, the masthead gains a translucent surface, border, shadow, blur, and slightly tighter vertical padding. Other pages retain the standard surfaced masthead.
+## Typography and rhythm
 
-## Hero and typography
+Typography is bounded by explicit breakpoints instead of continuous viewport scaling:
 
-The hero spans the real page width through the native layout and uses a constrained inner content shell. It contains only:
+- hero title: 4.75rem on standard desktop, 4.25rem below 1,180px, 3.65rem below 980px, and 2.85rem on mobile;
+- section title: 2.75rem on desktop with stepped reductions below 980px and 700px;
+- hero introduction: centered within a 68-character measure;
+- standard sections: 3.75rem vertical padding;
+- cards: 210-pixel desktop minimum height and content-driven height on mobile.
 
-- the project value statement;
-- the case-library and Benchmark actions;
-- the project, source-record, and case-analysis counts.
+The desktop hero is 600 pixels high, contracts to 540 pixels on short laptop screens, and grows only to 620 pixels on large high-resolution displays. This keeps the first screen immersive without turning every section into a full-screen slide.
 
-Desktop typography uses bounded values rather than aggressive viewport-width scaling:
+## Content and semantics
 
-- the hero title is 5.6rem on large desktops, then steps down at 1,200px and 900px breakpoints;
-- section headings use a 3.25rem desktop size and step down at smaller breakpoints;
-- the hero introduction is centered within a 65-character line length;
-- cards and workflow copy retain readable sizes without forcing excessive minimum heights.
+The homepage contains no simulated product UI or decorative pseudo-screenshot. It presents actual collection counts, functioning routes, published posts, real case-study records, and the 4D decision chain.
 
-This prevents large monitors from magnifying the interface as though the browser had been zoomed, while preserving a strong product-led hierarchy.
+Collection counts use a semantic description list. Sections are associated with their headings through `aria-labelledby`. The custom main element remains keyboard-focusable so the theme's native skip link works correctly.
 
-## Vertical rhythm
+The compact SVG mark uses a 64×64 viewBox with no legacy 800×600 canvas or opaque page-sized background. The same asset is used as the masthead logo and SVG favicon.
 
-The hero uses a bounded 560–660 pixel height range. Standard sections use 4.25rem vertical padding, cards use a 220-pixel desktop minimum height, and workflow rows use compact content-driven padding. Mobile removes fixed hero height and reduces section spacing further.
+## Motion
 
-The goal is for a conventional desktop viewport to show a complete content unit and a clear indication of the next section, rather than treating every section as a full-screen slide.
+Motion is limited to progressive disclosure of real content:
 
-## Real-content rule
+- the hero is stable on first paint and is not reveal-animated;
+- `IntersectionObserver` reveals lower sections;
+- a passive scroll listener updates masthead state;
+- no animation framework, parallax, sticky scene switcher, or `requestAnimationFrame` loop is used;
+- reduced-motion users receive immediate content with effectively disabled transitions.
 
-The homepage must not imply product capability through invented imagery. Validation prohibits simulated workspaces, decorative seismic canvases presented as output, synthetic maps, fictional comparison panels, fabricated decision interfaces, and inline SVG pseudo-screenshots.
+## Quality gates
 
-The homepage instead presents actual collection counts, functioning product routes, published posts, real case-study records, and the 4D decision chain.
+`tests/validate_homepage_experience.rb` checks source structure, native layout integration, head asset placement, bounded type, semantic markup, logo dimensions, JavaScript syntax, and removal of old overflow workarounds.
 
-## Motion policy
+`scripts/validate_built_homepage.rb` checks the generated HTML after Jekyll build: one main element, one H1, no splash wrappers, stylesheet and deferred script in the head, semantic statistics, resolved Liquid, and compact built assets.
 
-Motion is limited to progressive disclosure of real text and content cards:
+`scripts/homepage_browser_smoke.mjs` renders the built site in system Chrome at five viewports:
 
-- `IntersectionObserver` reveals sections when they enter the viewport;
-- navigation state follows scroll position without a third-party runtime;
-- no parallax or sticky scene-switching interface is used;
-- no animation framework or external runtime is loaded;
-- content is immediately visible when JavaScript is unavailable;
-- `prefers-reduced-motion: reduce` disables reveal and navigation transitions.
+- 1366×768;
+- 1440×900;
+- 1920×1080;
+- 768×1024;
+- 390×844.
 
-## Validation
-
-`tests/validate_homepage_experience.rb` checks:
-
-- the header contains exactly the three intended destinations;
-- `index.md` uses the native `home` layout rather than `splash`;
-- `_layouts/home.html` inherits `default` and exposes one full-width main element;
-- the layered density stylesheet and temporary document-class workaround remain removed;
-- `100vw`, viewport-relative breakout margins, and aggressive wide-screen font scaling do not return;
-- transparent and scrolled masthead states remain implemented;
-- bounded hero, section, and card sizing remains present;
-- simulated visual scenes do not return;
-- real statistics, workflows, posts, and case records remain present;
-- homepage JavaScript passes `node --check` and CSS braces remain balanced.
-
-The shared repository CI runs this validator with the source, case, community, and Benchmark contracts before the production Jekyll build.
+The browser gate verifies horizontal overflow, full-width hero geometry, centered content shell and introduction, bounded hero height and title size, responsive grid columns, top-state transparency, and surfaced navigation after scrolling. Full-page screenshots are retained as a seven-day CI artifact for visual review.
