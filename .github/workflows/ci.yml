@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Contracts and Jekyll build
+    name: Contracts, browser QA, and Jekyll build
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -57,6 +57,57 @@ jobs:
             echo "Unresolved Liquid markup remains in the built site."
             exit 1
           fi
+          ruby scripts/validate_built_homepage.rb
+
+      - name: Set up Node for browser QA
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Run multi-viewport homepage browser QA
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [[ -z "${CHROME_BIN}" ]]; then
+            echo "A system Chrome binary is required for homepage browser QA."
+            exit 1
+          fi
+
+          npm install --no-save --no-package-lock --ignore-scripts playwright-core@1.61.1
+
+          rm -rf _site-preview _site-checks
+          mkdir -p _site-preview _site-checks
+          ln -s "${GITHUB_WORKSPACE}/_site" _site-preview/4d-seismic-hub
+
+          python3 -m http.server 4173 --directory _site-preview > /tmp/4d-home-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "${server_pid}" 2>/dev/null || true' EXIT
+
+          home_url="http://127.0.0.1:4173/4d-seismic-hub/"
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error "${home_url}" > /dev/null; then
+              break
+            fi
+            sleep 0.5
+          done
+          curl --fail --silent --show-error "${home_url}" > /dev/null
+
+          CHROME_BIN="${CHROME_BIN}" \
+          HOME_URL="${home_url}" \
+          SCREENSHOT_DIR="_site-checks" \
+          node scripts/homepage_browser_smoke.mjs
+
+      - name: Upload homepage visual QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-visual-qa-${{ github.run_id }}
+          path: _site-checks
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Retain validated site for Pages
         if: github.event_name == 'push'

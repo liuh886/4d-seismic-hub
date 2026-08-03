@@ -1,8 +1,13 @@
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="icon" href="{{ '/assets/images/logo.svg' | relative_url }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ '/assets/css/hub.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/case-study.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/evidence.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/community.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/benchmark.css' | relative_url }}">
+{% if page.layout == 'home' %}
+<link rel="stylesheet" href="{{ '/assets/css/home-readest.css' | relative_url }}">
+<script src="{{ '/assets/js/home-scroll.js' | relative_url }}" defer></script>
+{% endif %}
 <meta name="theme-color" content="#071923">
