@@ -8,11 +8,11 @@ classes: wide
 <div class="hub-page-hero">
   <p class="hub-kicker">Technical benchmarking</p>
   <h1>Compare the choices behind 4D performance.</h1>
-  <p>Filter global projects by sensor technology, monitoring driver, and region, then inspect how acquisition parameters and repeatability metrics vary across field settings.</p>
+  <p>Filter global projects by sensor technology, monitoring driver, region, and source provenance, then inspect how acquisition parameters and repeatability metrics vary across field settings.</p>
   <div class="hub-inline-stats">
     <span class="hub-inline-stat">Interactive map</span>
     <span class="hub-inline-stat">Linked charts and table</span>
-    <span class="hub-inline-stat">Explicit metric handling</span>
+    <span class="hub-inline-stat">Explicit metric and source handling</span>
   </div>
 </div>
 
@@ -56,6 +56,18 @@ classes: wide
         <option value="Brazil">Brazil</option>
       </select>
     </div>
+    <div class="hub-filter-group">
+      <label for="filter-source">Source provenance</label>
+      <select id="filter-source">
+        <option value="eligible">Benchmark eligible (A–C)</option>
+        <option value="AB">Canonical / project sources (A–B)</option>
+        <option value="A">Grade A only</option>
+        <option value="B">Grade B only</option>
+        <option value="C">Grade C discovery records</option>
+        <option value="D">Grade D provisional records</option>
+        <option value="all">All records</option>
+      </select>
+    </div>
   </div>
 </div>
 
@@ -69,20 +81,22 @@ classes: wide
 <div class="hub-chart-grid">
   <section class="hub-chart-card" aria-labelledby="scatter-title">
     <h3 id="scatter-title">NRMS vs. water depth</h3>
-    <div class="hub-chart-frame"><canvas id="scatterChart" role="img" aria-label="Scatter plot of NRMS against water depth for plottable projects"></canvas></div>
-    <p class="hub-chart-note">Ranges are plotted at their midpoint. Approximate and estimated values retain their original labels in the tooltip. Censored values such as “&lt;10%” and non-applicable values are not plotted as exact points.</p>
+    <div class="hub-chart-frame"><canvas id="scatterChart" role="img" aria-label="Scatter plot of NRMS against water depth for source-eligible projects"></canvas></div>
+    <p class="hub-chart-note">Ranges are plotted at their midpoint. Approximate values retain their original labels in the tooltip. Censored values and Grade D provisional records are not plotted as exact points.</p>
   </section>
   <section class="hub-chart-card" aria-labelledby="coverage-title">
-    <h3 id="coverage-title">Data completeness for current filter</h3>
-    <div class="hub-chart-frame"><canvas id="coverageChart" role="img" aria-label="Percentage of filtered projects with reported benchmark values"></canvas></div>
-    <p class="hub-chart-note">Coverage is a percentage of filtered records with a reported value. It does not compare the magnitude or quality of unlike engineering metrics.</p>
+    <h3 id="coverage-title">Data completeness for source-eligible records</h3>
+    <div class="hub-chart-frame"><canvas id="coverageChart" role="img" aria-label="Percentage of source-eligible filtered projects with reported benchmark values"></canvas></div>
+    <p class="hub-chart-note">Coverage is a percentage of filtered Grade A–C records with a reported value. It does not compare the magnitude or quality of unlike engineering metrics.</p>
   </section>
 </div>
 
 <details class="hub-methodology">
-  <summary>How the benchmark metrics are handled</summary>
+  <summary>How benchmark metrics and source grades are handled</summary>
   <div class="hub-methodology__body">
     <ul>
+      <li><strong>Grade A</strong> points to a canonical technical publication; <strong>Grade B</strong> to a direct project or operator publication; <strong>Grade C</strong> to a discovery or search record requiring item-level confirmation; <strong>Grade D</strong> is provisional or contains explicitly estimated fields.</li>
+      <li>Grade D records remain visible when requested but are excluded from medians, data-completeness percentages, and the scatter plot.</li>
       <li>Each median is calculated in its own unit; unlike metrics are never combined into one score.</li>
       <li>Numeric ranges use the midpoint only for plotting and summary calculations, while the original range remains visible in tooltips and the table.</li>
       <li>Censored values using “&lt;” or “&gt;” are counted as reported for data coverage but excluded from point estimates.</li>
@@ -97,6 +111,7 @@ classes: wide
     <thead>
       <tr>
         <th>Project / field</th>
+        <th>Source</th>
         <th>Sensor</th>
         <th>Bin size</th>
         <th>Repeat</th>
@@ -113,6 +128,7 @@ classes: wide
 document.addEventListener('DOMContentLoaded', function () {
   const papers = {{ site.data.papers | jsonify }};
   const mapData = {{ site.data.case_studies_map | jsonify }};
+  const sourceRegistry = {{ site.data.source_registry | jsonify }};
   const tableBody = document.getElementById('comparison-body');
   const statsText = document.getElementById('stats-text');
   const summaryNode = document.getElementById('benchmark-summary');
@@ -128,6 +144,27 @@ document.addEventListener('DOMContentLoaded', function () {
   let markers = [];
   let scatterChart;
   let coverageChart;
+
+  function sourceRecord(project) {
+    return sourceRegistry.find(function (record) { return record.map_id === project.map_id; }) || {
+      grade: 'D',
+      source_type: 'unregistered',
+      verification_status: 'provisional',
+      note: 'No source registry entry is available.'
+    };
+  }
+
+  function isSourceEligible(project) {
+    return sourceRecord(project).grade !== 'D';
+  }
+
+  function sourceMatches(project, filter) {
+    const grade = sourceRecord(project).grade;
+    if (filter === 'all') return true;
+    if (filter === 'eligible') return grade !== 'D';
+    if (filter === 'AB') return grade === 'A' || grade === 'B';
+    return grade === filter;
+  }
 
   function hasReportedValue(value) {
     const text = value === null || value === undefined ? '' : String(value).trim();
@@ -211,10 +248,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const depth = parsedValues(data, 'water_depth', parseMetric);
 
     summaryNode.innerHTML =
-      summaryCard('Median plottable NRMS', median(nrms) === null ? '—' : formatNumber(median(nrms), 1) + '%', nrms.length + ' of ' + total + ' records used') +
-      summaryCard('Median repeat interval', formatYears(median(repeat)), repeat.length + ' of ' + total + ' records used') +
-      summaryCard('Median first bin dimension', median(bin) === null ? '—' : formatNumber(median(bin), 2) + ' m', bin.length + ' of ' + total + ' records used') +
-      summaryCard('Median water depth', median(depth) === null ? '—' : formatNumber(median(depth), 0) + ' m', depth.length + ' of ' + total + ' records used');
+      summaryCard('Median plottable NRMS', median(nrms) === null ? '—' : formatNumber(median(nrms), 1) + '%', nrms.length + ' of ' + total + ' source-eligible records used') +
+      summaryCard('Median repeat interval', formatYears(median(repeat)), repeat.length + ' of ' + total + ' source-eligible records used') +
+      summaryCard('Median first bin dimension', median(bin) === null ? '—' : formatNumber(median(bin), 2) + ' m', bin.length + ' of ' + total + ' source-eligible records used') +
+      summaryCard('Median water depth', median(depth) === null ? '—' : formatNumber(median(depth), 0) + ' m', depth.length + ' of ' + total + ' source-eligible records used');
   }
 
   function updateCharts(data) {
@@ -226,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
         x: depth.value,
         y: nrms.value,
         label: projectName(project),
+        grade: sourceRecord(project).grade,
         depthRaw: depth.raw,
         nrmsRaw: nrms.raw,
         depthMethod: depth.method,
@@ -254,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
               title: function (items) { return items.length ? items[0].raw.label : ''; },
               label: function (context) {
                 return [
+                  'Source grade: ' + context.raw.grade,
                   'Water depth: ' + context.raw.depthRaw + ' (' + context.raw.depthMethod + ')',
                   'NRMS: ' + context.raw.nrmsRaw + ' (' + context.raw.nrmsMethod + ')'
                 ];
@@ -283,12 +322,12 @@ document.addEventListener('DOMContentLoaded', function () {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          x: { beginAtZero: true, max: 100, title: { display: true, text: 'Reported records (%)' }, grid: { color: '#e4ecee' } },
+          x: { beginAtZero: true, max: 100, title: { display: true, text: 'Reported source-eligible records (%)' }, grid: { color: '#e4ecee' } },
           y: { grid: { display: false } }
         },
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: function (context) { return context.raw + '% of filtered projects'; } } }
+          tooltip: { callbacks: { label: function (context) { return context.raw + '% of source-eligible filtered projects'; } } }
         }
       }
     });
@@ -315,6 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sensorFilter = document.getElementById('filter-sensor').value;
     const driverFilter = document.getElementById('filter-driver').value;
     const regionFilter = document.getElementById('filter-region').value;
+    const sourceFilter = document.getElementById('filter-source').value;
 
     const filtered = papers.filter(function (project) {
       const sensor = String(project.sensor_type || '');
@@ -322,22 +362,27 @@ document.addEventListener('DOMContentLoaded', function () {
       const tags = Array.isArray(project.tags) ? project.tags : [];
       return (sensorFilter === 'all' || sensor.includes(sensorFilter)) &&
         (driverFilter === 'all' || driver.includes(driverFilter)) &&
-        (regionFilter === 'all' || tags.some(function (tag) { return String(tag).includes(regionFilter); }));
+        (regionFilter === 'all' || tags.some(function (tag) { return String(tag).includes(regionFilter); })) &&
+        sourceMatches(project, sourceFilter);
     });
 
-    updateSummary(filtered);
-    const plottedCount = updateCharts(filtered);
+    const analysisData = filtered.filter(isSourceEligible);
+    updateSummary(analysisData);
+    const plottedCount = updateCharts(analysisData);
     tableBody.innerHTML = '';
 
     if (!filtered.length) {
-      tableBody.innerHTML = '<tr><td colspan="7" class="hub-empty">No projects match this filter combination.</td></tr>';
+      tableBody.innerHTML = '<tr><td colspan="8" class="hub-empty">No projects match this filter combination.</td></tr>';
     } else {
       filtered.forEach(function (project) {
+        const provenance = sourceRecord(project);
+        const grade = String(provenance.grade || 'D').toLowerCase();
         const row = document.createElement('tr');
         row.id = rowId(project);
         row.tabIndex = 0;
         row.innerHTML =
           '<td><strong>' + projectName(project) + '</strong><br><small>' + (project.year || 'Year not stated') + '</small></td>' +
+          '<td><span class="hub-source-grade hub-source-grade--' + grade + '">Grade ' + (provenance.grade || 'D') + '</span><span class="hub-source-note">' + String(provenance.source_type || 'unregistered').replace(/-/g, ' ') + '</span></td>' +
           '<td><span class="hub-sensor-badge">' + (project.sensor_type || 'N/A') + '</span></td>' +
           '<td>' + (project.bin_size || 'N/A') + '</td>' +
           '<td>' + (project.repeat_interval || 'N/A') + '</td>' +
@@ -356,26 +401,27 @@ document.addEventListener('DOMContentLoaded', function () {
       filtered.forEach(function (project) {
         const location = mapData.find(function (item) { return item.name === project.map_id; });
         if (!location || location.latitude === null || location.latitude === undefined || location.longitude === null || location.longitude === undefined) return;
+        const provenance = sourceRecord(project);
         const marker = L.circleMarker([location.latitude, location.longitude], {
           radius: 7,
-          fillColor: '#0b7f82',
+          fillColor: provenance.grade === 'D' ? '#b85c5c' : '#0b7f82',
           color: '#ffffff',
           weight: 2,
           opacity: 1,
           fillOpacity: 0.9,
           projectId: projectName(project)
         }).addTo(map);
-        marker.bindPopup('<strong>' + location.name + '</strong><br><span style="color:#536975">' + location.summary + '</span>');
+        marker.bindPopup('<strong>' + location.name + '</strong><br><span style="color:#536975">Source Grade ' + provenance.grade + ' · ' + String(provenance.source_type || '').replace(/-/g, ' ') + '</span><br><span style="color:#536975">' + location.summary + '</span>');
         marker.on('click', function () { activateProject(project, true); });
         markers.push(marker);
       });
       if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.12));
     }
 
-    statsText.innerHTML = '<strong>' + filtered.length + '</strong> projects in the current comparison; <strong>' + plottedCount + '</strong> have plottable NRMS and water-depth values';
+    statsText.innerHTML = '<strong>' + filtered.length + '</strong> visible projects; <strong>' + analysisData.length + '</strong> source-eligible for summaries; <strong>' + plottedCount + '</strong> plottable';
   }
 
-  ['filter-sensor', 'filter-driver', 'filter-region'].forEach(function (id) {
+  ['filter-sensor', 'filter-driver', 'filter-region', 'filter-source'].forEach(function (id) {
     document.getElementById(id).addEventListener('change', updateDisplay);
   });
 

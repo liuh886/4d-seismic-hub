@@ -77,6 +77,42 @@
   margin-top: .45rem;
 }
 
+.hub-source-grade {
+  display: inline-flex;
+  min-width: 2.2rem;
+  min-height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: .2rem .45rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--hub-mono);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.hub-source-grade--a { color: #126344; background: #e7f5ee; }
+.hub-source-grade--b { color: #155b70; background: #e5f2f6; }
+.hub-source-grade--c { color: #79510b; background: #fff4d8; }
+.hub-source-grade--d { color: #8f3434; background: #fdecec; }
+
+.hub-source-note {
+  display: block;
+  margin-top: .25rem;
+  color: var(--hub-ink-soft);
+  font-size: .66rem;
+  line-height: 1.35;
+  text-transform: capitalize;
+}
+
+@media (min-width: 981px) {
+  .hub-tool-panel .hub-filter-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 980px) {
   .hub-benchmark-summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
