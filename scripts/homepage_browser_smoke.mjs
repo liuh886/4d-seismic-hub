@@ -27,6 +27,7 @@ const browser = await chromium.launch({
 });
 
 const failures = [];
+const within = (actual, expected, tolerance = 1) => Math.abs((actual ?? -999) - expected) <= tolerance;
 
 for (const viewport of viewports) {
   const page = await browser.newPage({
@@ -56,8 +57,11 @@ for (const viewport of viewports) {
     const lede = document.querySelector('.hub-r-hero-lede');
     const shell = document.querySelector('.hub-r-section .hub-shell');
     const section = document.querySelector('.hub-r-section');
+    const sectionTitle = document.querySelector('.hub-r-section-heading h2');
     const editorialGrid = document.querySelector('.hub-r-editorial-grid');
     const masthead = document.querySelector('.masthead');
+    const navLink = document.querySelector('.greedy-nav .visible-links a');
+    const primaryButton = document.querySelector('.hub-r-button--primary');
 
     const visibleOverflow = Array.from(document.body.querySelectorAll('*')).filter((element) => {
       const rect = element.getBoundingClientRect();
@@ -70,6 +74,7 @@ for (const viewport of viewports) {
     const heroRect = hero?.getBoundingClientRect();
     const ledeRect = lede?.getBoundingClientRect();
     const shellRect = shell?.getBoundingClientRect();
+    const buttonRect = primaryButton?.getBoundingClientRect();
     const sectionStyle = section ? getComputedStyle(section) : null;
     const gridStyle = editorialGrid ? getComputedStyle(editorialGrid) : null;
     const mastheadStyle = masthead ? getComputedStyle(masthead) : null;
@@ -85,8 +90,12 @@ for (const viewport of viewports) {
       heroRight: heroRect?.right,
       heroHeight: heroRect?.height,
       titleFontSize: title ? Number.parseFloat(getComputedStyle(title).fontSize) : null,
+      ledeFontSize: lede ? Number.parseFloat(getComputedStyle(lede).fontSize) : null,
       ledeTextAlign: lede ? getComputedStyle(lede).textAlign : null,
       ledeCenterDelta: ledeRect ? Math.abs((ledeRect.left + ledeRect.right) / 2 - html.clientWidth / 2) : null,
+      sectionTitleFontSize: sectionTitle ? Number.parseFloat(getComputedStyle(sectionTitle).fontSize) : null,
+      navLinkFontSize: navLink ? Number.parseFloat(getComputedStyle(navLink).fontSize) : null,
+      primaryButtonHeight: buttonRect?.height,
       shellWidth: shellRect?.width,
       shellCenterDelta: shellRect ? Math.abs((shellRect.left + shellRect.right) / 2 - html.clientWidth / 2) : null,
       sectionPaddingTop: sectionStyle ? Number.parseFloat(sectionStyle.paddingTop) : null,
@@ -96,18 +105,30 @@ for (const viewport of viewports) {
     };
   });
 
-  const expectedColumns = viewport.width <= 700 ? 1 : viewport.width <= 980 ? 2 : 3;
-  const maxHeroHeight = viewport.width <= 700 ? 720 : viewport.height <= 820 ? 550 : viewport.width >= 1600 ? 630 : 610;
-  const expectedTitleRem = viewport.width <= 700
-    ? 2.85
-    : viewport.height <= 820
-      ? 4.1
-      : viewport.width <= 980
-        ? 3.65
+  const isMobile = viewport.width <= 700;
+  const isTablet = viewport.width > 700 && viewport.width <= 980;
+  const isShortDesktop = viewport.width >= 981 && viewport.height <= 820;
+  const isLargeDesktop = viewport.width >= 1600 && viewport.height >= 900;
+
+  const expectedColumns = isMobile ? 1 : viewport.width <= 980 ? 2 : 3;
+  const maxHeroHeight = isMobile ? 780 : isShortDesktop ? 580 : isLargeDesktop ? 660 : 640;
+  const minHeroHeight = isMobile ? 0 : isShortDesktop ? 560 : isLargeDesktop ? 640 : 620;
+  const expectedTitleRem = isMobile
+    ? 3.05
+    : isShortDesktop
+      ? 5.05
+      : isTablet
+        ? 4.1
         : viewport.width <= 1180
-          ? 4.25
-          : 4.75;
+          ? 4.8
+          : isLargeDesktop
+            ? 6.1
+            : 5.8;
+  const expectedLedeRem = isMobile ? 1.04 : 1.2;
+  const expectedSectionTitleRem = isMobile ? 2.35 : isTablet ? 2.7 : 3.15;
   const expectedTitlePx = expectedTitleRem * metrics.rootFontSize;
+  const expectedLedePx = expectedLedeRem * metrics.rootFontSize;
+  const expectedSectionTitlePx = expectedSectionTitleRem * metrics.rootFontSize;
 
   const checks = [
     [metrics.scrollWidth <= metrics.clientWidth + 1, `document scrollWidth ${metrics.scrollWidth} exceeds clientWidth ${metrics.clientWidth}`],
@@ -118,12 +139,17 @@ for (const viewport of viewports) {
     [Math.abs(metrics.heroLeft ?? 99) <= 1, `hero left edge is ${metrics.heroLeft}`],
     [Math.abs((metrics.heroRight ?? 0) - metrics.clientWidth) <= 1, `hero right edge is ${metrics.heroRight}`],
     [(metrics.heroHeight ?? 9999) <= maxHeroHeight, `hero height ${metrics.heroHeight} exceeds ${maxHeroHeight}`],
-    [Math.abs((metrics.titleFontSize ?? 0) - expectedTitlePx) <= 1, `title font size ${metrics.titleFontSize}px does not match ${expectedTitleRem}rem × ${metrics.rootFontSize}px = ${expectedTitlePx}px`],
+    [(metrics.heroHeight ?? -1) >= minHeroHeight, `hero height ${metrics.heroHeight} is below ${minHeroHeight}`],
+    [within(metrics.titleFontSize, expectedTitlePx), `title font size ${metrics.titleFontSize}px does not match ${expectedTitleRem}rem × ${metrics.rootFontSize}px = ${expectedTitlePx}px`],
+    [within(metrics.ledeFontSize, expectedLedePx), `lede font size ${metrics.ledeFontSize}px does not match ${expectedLedeRem}rem × ${metrics.rootFontSize}px = ${expectedLedePx}px`],
+    [within(metrics.sectionTitleFontSize, expectedSectionTitlePx), `section title font size ${metrics.sectionTitleFontSize}px does not match ${expectedSectionTitleRem}rem × ${metrics.rootFontSize}px = ${expectedSectionTitlePx}px`],
+    [isMobile || (metrics.navLinkFontSize ?? 0) >= metrics.rootFontSize, `desktop navigation font size ${metrics.navLinkFontSize}px is smaller than the root size ${metrics.rootFontSize}px`],
+    [(metrics.primaryButtonHeight ?? 0) >= (isMobile ? 47 : 49), `primary button height ${metrics.primaryButtonHeight}px is too small`],
     [metrics.ledeTextAlign === 'center', `hero lede text-align is ${metrics.ledeTextAlign}`],
     [(metrics.ledeCenterDelta ?? 99) <= 2, `hero lede center delta is ${metrics.ledeCenterDelta}`],
-    [(metrics.shellWidth ?? 9999) <= 1181, `content shell width ${metrics.shellWidth} exceeds native 1180px`],
+    [(metrics.shellWidth ?? 9999) <= 1241, `content shell width ${metrics.shellWidth} exceeds the 1240px homepage grid`],
     [(metrics.shellCenterDelta ?? 99) <= 2, `content shell center delta is ${metrics.shellCenterDelta}`],
-    [(metrics.sectionPaddingTop ?? 999) <= 61, `section padding ${metrics.sectionPaddingTop} exceeds 60px rhythm`],
+    [(metrics.sectionPaddingTop ?? 999) <= 60, `section padding ${metrics.sectionPaddingTop} exceeds the compact 60px rhythm`],
     [metrics.gridColumns === expectedColumns, `editorial grid has ${metrics.gridColumns} columns; expected ${expectedColumns}`],
     [metrics.mastheadTransparent === true, 'masthead is not transparent at the top']
   ];
@@ -164,4 +190,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Homepage browser smoke test passed at ${viewports.length} viewports.`);
+console.log(`Homepage browser smoke test passed at ${viewports.length} viewports with balanced scale.`);
