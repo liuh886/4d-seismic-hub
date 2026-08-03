@@ -47,6 +47,8 @@ for (const viewport of viewports) {
     continue;
   }
 
+  await page.evaluate(() => document.fonts?.ready);
+
   const metrics = await page.evaluate(() => {
     const html = document.documentElement;
     const hero = document.querySelector('.hub-r-hero');
@@ -73,6 +75,7 @@ for (const viewport of viewports) {
     const mastheadStyle = masthead ? getComputedStyle(masthead) : null;
 
     return {
+      rootFontSize: Number.parseFloat(getComputedStyle(html).fontSize),
       clientWidth: html.clientWidth,
       scrollWidth: html.scrollWidth,
       bodyScrollWidth: document.body.scrollWidth,
@@ -95,15 +98,16 @@ for (const viewport of viewports) {
 
   const expectedColumns = viewport.width <= 700 ? 1 : viewport.width <= 980 ? 2 : 3;
   const maxHeroHeight = viewport.width <= 700 ? 720 : viewport.height <= 820 ? 550 : viewport.width >= 1600 ? 630 : 610;
-  const titleRange = viewport.width <= 700
-    ? [40, 50]
+  const expectedTitleRem = viewport.width <= 700
+    ? 2.85
     : viewport.height <= 820
-      ? [62, 68]
+      ? 4.1
       : viewport.width <= 980
-        ? [54, 62]
+        ? 3.65
         : viewport.width <= 1180
-          ? [64, 72]
-          : [72, 80];
+          ? 4.25
+          : 4.75;
+  const expectedTitlePx = expectedTitleRem * metrics.rootFontSize;
 
   const checks = [
     [metrics.scrollWidth <= metrics.clientWidth + 1, `document scrollWidth ${metrics.scrollWidth} exceeds clientWidth ${metrics.clientWidth}`],
@@ -114,7 +118,7 @@ for (const viewport of viewports) {
     [Math.abs(metrics.heroLeft ?? 99) <= 1, `hero left edge is ${metrics.heroLeft}`],
     [Math.abs((metrics.heroRight ?? 0) - metrics.clientWidth) <= 1, `hero right edge is ${metrics.heroRight}`],
     [(metrics.heroHeight ?? 9999) <= maxHeroHeight, `hero height ${metrics.heroHeight} exceeds ${maxHeroHeight}`],
-    [(metrics.titleFontSize ?? 0) >= titleRange[0] && (metrics.titleFontSize ?? 999) <= titleRange[1], `title font size ${metrics.titleFontSize} outside ${titleRange.join('-')}`],
+    [Math.abs((metrics.titleFontSize ?? 0) - expectedTitlePx) <= 1, `title font size ${metrics.titleFontSize}px does not match ${expectedTitleRem}rem × ${metrics.rootFontSize}px = ${expectedTitlePx}px`],
     [metrics.ledeTextAlign === 'center', `hero lede text-align is ${metrics.ledeTextAlign}`],
     [(metrics.ledeCenterDelta ?? 99) <= 2, `hero lede center delta is ${metrics.ledeCenterDelta}`],
     [(metrics.shellWidth ?? 9999) <= 1181, `content shell width ${metrics.shellWidth} exceeds native 1180px`],
@@ -130,6 +134,12 @@ for (const viewport of viewports) {
 
   if (badResponses.length) failures.push(`${viewport.name}: failed assets: ${badResponses.join('; ')}`);
 
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({
+    path: path.join(screenshotDir, `${viewport.name}-top.png`),
+    fullPage: true
+  });
+
   await page.evaluate(() => window.scrollTo(0, 96));
   await page.waitForTimeout(100);
   const surfaced = await page.locator('.masthead').evaluate((element) => {
@@ -139,8 +149,8 @@ for (const viewport of viewports) {
   if (!surfaced) failures.push(`${viewport.name}: masthead did not surface after scrolling`);
 
   await page.screenshot({
-    path: path.join(screenshotDir, `${viewport.name}.png`),
-    fullPage: true
+    path: path.join(screenshotDir, `${viewport.name}-nav-scrolled.png`),
+    fullPage: false
   });
 
   await page.close();
