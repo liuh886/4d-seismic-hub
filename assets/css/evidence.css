@@ -19,6 +19,13 @@
   background: #fffaf2;
 }
 
+.case-source-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
 .case-evidence-card__label {
   display: block;
   color: var(--hub-accent-strong);
@@ -32,6 +39,26 @@
 .case-evidence-card--limits .case-evidence-card__label {
   color: #9a5d0d;
 }
+
+.source-grade {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: .2rem .5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--hub-mono);
+  font-size: .6rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.source-grade--a { color: #126344; background: #e7f5ee; }
+.source-grade--b { color: #155b70; background: #e5f2f6; }
+.source-grade--c { color: #79510b; background: #fff4d8; }
+.source-grade--d { color: #8f3434; background: #fdecec; }
 
 .case-evidence-card h3 {
   margin: .65rem 0 .4rem;
@@ -51,10 +78,15 @@
   margin: .65rem 0 0;
 }
 
-.case-evidence-card__meta {
+.case-evidence-card__meta,
+.case-source-type {
   color: var(--hub-ink) !important;
   font-family: var(--hub-mono);
   font-size: .68rem !important;
+}
+
+.case-source-type {
+  text-transform: capitalize;
 }
 
 .case-evidence-card ul {
@@ -91,5 +123,10 @@
 
   .case-evidence-card--source {
     grid-column: auto;
+  }
+
+  .case-source-heading {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
