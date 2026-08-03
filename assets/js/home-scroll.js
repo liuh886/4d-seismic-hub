@@ -2,7 +2,19 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  root.classList.add('has-home-motion');
+  root.classList.add('hub-home-page', 'has-home-motion');
+
+  function updateNavigation() {
+    const masthead = document.querySelector('.masthead');
+    if (!masthead) return;
+
+    const syncState = () => {
+      masthead.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+
+    syncState();
+    window.addEventListener('scroll', syncState, { passive: true });
+  }
 
   function revealContent() {
     const items = Array.from(document.querySelectorAll('.hub-readest-home [data-reveal]'));
@@ -28,6 +40,7 @@
   }
 
   function init() {
+    updateNavigation();
     revealContent();
   }
 
