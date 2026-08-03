@@ -12,6 +12,10 @@ case_study:
   decision_outcome: "Repeated surveys established a persistent, interpretable plume record that supports storage assurance and long-term monitoring."
   transferable_lesson: "Storage monitoring should connect repeatability, plume detectability, and containment questions rather than treat seismic as a stand-alone image."
   evidence_status: "Long-term field record"
+  evidence_scope: "Repeated seismic imaging supports interpretation of plume distribution and development within the storage interval; it is one part of the wider storage-assurance evidence base."
+  limitations:
+    - "Seismic detectability and resolution do not by themselves establish every aspect of storage integrity."
+    - "Transfer to another storage site depends on geology, plume response, survey design, and the other monitoring methods available."
 ---
 
 ## Decision context
@@ -35,5 +39,3 @@ The monitoring record supports assurance that the injected CO₂ remains within 
 ## Transferable lesson
 
 A mature storage-monitoring program links survey repeatability to a specific containment question. The value comes from the continuity of the evidence record, not from any single seismic image.
-
-[Read the technical source on OnePetro](https://onepetro.org/search?q=Sleipner+CO2+4D)
