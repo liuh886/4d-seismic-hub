@@ -10,6 +10,7 @@
   longitude: 2.27
   summary: The pioneer of 4D. Identified undrained compartments leading to over $1B
     in added value since 1996.
+  post_url: /4d-case-study/2026/03/07/gullfaks-4d-seismic/
 - name: Valhall LoFS
   location: North Sea, Norway
   latitude: 56.27
@@ -125,4 +126,5 @@
   latitude: -21.1
   longitude: -40.1
   summary: The world's first ultra-deepwater optical PRM system, proving fiber-optic
-    sensing at 1,300m depth and repositioning production wells by identifying previousl...
+    sensing at 1,300m water depth and informing production-well repositioning.
+  post_url: /4d-case-study/2026/03/05/jubarte-prm/

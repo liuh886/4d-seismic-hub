@@ -1,0 +1,59 @@
+{% assign case_meta = page.case_study %}
+{% assign benchmark_matches = site.data.papers | where: "map_id", case_meta.map_id %}
+{% assign benchmark = benchmark_matches | first %}
+{% assign map_matches = site.data.case_studies_map | where: "name", case_meta.map_id %}
+{% assign map_record = map_matches | first %}
+
+<section class="case-brief" aria-labelledby="case-brief-title">
+  <div class="case-brief__header">
+    <div>
+      <p class="case-brief__eyebrow">Structured case brief</p>
+      <h2 id="case-brief-title">{{ case_meta.map_id }}</h2>
+      <p class="case-brief__objective">{{ case_meta.monitoring_objective }}</p>
+    </div>
+    <span class="case-brief__status">{{ case_meta.evidence_status }}</span>
+  </div>
+
+  <dl class="case-brief__metrics">
+    <div>
+      <dt>Location</dt>
+      <dd>{{ map_record.location | default: "Not recorded" }}</dd>
+    </div>
+    <div>
+      <dt>Monitoring system</dt>
+      <dd>{{ benchmark.sensor_type | default: "Not recorded" }}</dd>
+    </div>
+    <div>
+      <dt>Repeat interval</dt>
+      <dd>{{ benchmark.repeat_interval | default: "Not recorded" }}</dd>
+    </div>
+    <div>
+      <dt>Repeatability</dt>
+      <dd>{{ benchmark.nrms_median | default: "Not recorded" }}</dd>
+    </div>
+    <div>
+      <dt>Main signal driver</dt>
+      <dd>{{ benchmark.main_driver | default: "Not recorded" }}</dd>
+    </div>
+    <div>
+      <dt>Water depth</dt>
+      <dd>{{ benchmark.water_depth | default: "Not recorded" }}</dd>
+    </div>
+  </dl>
+
+  <div class="case-brief__outcomes">
+    <article>
+      <span>Decision outcome</span>
+      <p>{{ case_meta.decision_outcome }}</p>
+    </article>
+    <article>
+      <span>Transferable lesson</span>
+      <p>{{ case_meta.transferable_lesson }}</p>
+    </article>
+  </div>
+
+  <div class="case-brief__provenance">
+    <span>Benchmark fields are linked to the shared project dataset.</span>
+    {% if benchmark.link %}<a href="{{ benchmark.link }}" target="_blank" rel="noopener noreferrer">Open technical source <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</section>

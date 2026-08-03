@@ -6,6 +6,7 @@ on:
     paths:
       - "**/*.md"
       - "**/*.html"
+      - "**/*.rb"
       - "**/*.yml"
       - "**/*.yaml"
       - "**/*.css"
@@ -18,11 +19,14 @@ permissions:
 
 jobs:
   build:
-    name: Jekyll build
+    name: Schema and Jekyll build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate case-study schema
+        run: ruby tests/validate_case_studies.rb
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

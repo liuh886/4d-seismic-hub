@@ -1,9 +1,17 @@
 ---
 layout: single
+classes: case-study
 title: "Gullfaks 4D seismic: 10 years of experience"
 date: 2026-03-07
 categories: 4d-case-study
 tags: ['North Sea', 'Legacy', 'Value Creation']
+excerpt: "How repeated streamer surveys moved 4D seismic from an experiment into routine reservoir-management decisions at Gullfaks."
+case_study:
+  map_id: Gullfaks Main Field
+  monitoring_objective: "Track pressure and saturation changes to identify bypassed oil, compartment behaviour, and better infill-well targets."
+  decision_outcome: "Time-lapse interpretation supported multiple infill decisions and established 4D seismic as a recurring reservoir-management input."
+  transferable_lesson: "A legacy acquisition system can still create material value when processing, uncertainty, and the decision question are managed together."
+  evidence_status: "Mature operating practice"
 community_summary:
   updated_at: 2026-03-08
   pro:
@@ -14,20 +22,26 @@ community_summary:
     - Geologic complexity in some segments required intensive re-processing to extract the 4D signal.
 ---
 
-### Project Overview
-The Gullfaks Field, located in the Norwegian North Sea, is a pioneer in 4D seismic monitoring. Over a decade of experience, the field transitioned from experimental 4D surveys to integrating time-lapse data as a standard reservoir management tool.
+## Decision context
 
-### 4D Seismic Contribution
-The Gullfaks case demonstrated that even with conventional streamer technology, significant 4D signals could be captured to monitor pressure and saturation changes.
-- **Value Realization**: Statoil (now Equinor) reported that 4D seismic contributed to over $1 billion in added value by identifying bypassed oil and optimizing well placement.
-- **Repeatability**: Despite the challenges of North Sea weather and early streamer limitations, re-processing later achieved NRMS values around 23.5%.
+Gullfaks is a mature, faulted North Sea field where reservoir compartments, water movement, and bypassed oil created repeated uncertainty for infill drilling. The value question was whether time-lapse seismic could reduce that uncertainty often enough to become part of routine asset management.
 
-### Impact
-- **Bypassed Oil**: 4D seismic was instrumental in identifying unswept oil in the complex, faulted Brent Group reservoirs.
-- **Well Planning**: Numerous infill wells were successfully targeted based on time-lapse amplitude anomalies.
-- **Water Flood Monitoring**: Provided a clear visualization of the water injection front moving through the various fault blocks.
+## Monitoring approach
 
-### Key Takeaway
-Gullfaks proved that 4D seismic is not just a scientific curiosity but a powerful economic engine for brownfield redevelopment, setting the stage for the widespread adoption of 4D across the North Sea.
+The field used repeated conventional streamer surveys rather than a permanent receiver system. This created repeatability constraints from changing geometry, weather, and acquisition conditions, so processing and interpretation had to separate reservoir change from survey differences.
 
-[Read more on source](https://onepetro.org/search?q=Gullfaks+4D)
+## Evidence
+
+- **Saturation and pressure response:** Time-lapse amplitudes helped track water movement and depletion effects across fault blocks.
+- **Bypassed oil:** The interpretation identified unswept compartments that were not sufficiently clear in the static model.
+- **Reprocessing value:** Later processing improved the usability of legacy surveys and extended the decision value of the historical dataset.
+
+## Operational outcome
+
+The field used 4D evidence to support infill-well planning and waterflood management. Over time, the workflow shifted from an experimental study to a recurring input into reservoir decisions.
+
+## Transferable lesson
+
+High repeatability improves confidence, but it is not the only route to value. A project can extract useful 4D evidence from legacy streamer data when the expected signal, processing limits, and decision threshold are made explicit.
+
+[Read the technical source on OnePetro](https://onepetro.org/search?q=Gullfaks+4D)

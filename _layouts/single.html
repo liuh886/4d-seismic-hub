@@ -16,6 +16,7 @@ layout: default
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
     {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+    {% if page.case_study.monitoring_objective %}<meta itemprop="about" content="{{ page.case_study.monitoring_objective | escape_once }}">{% endif %}
 
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
@@ -24,6 +25,10 @@ layout: default
           {% include page__meta.html %}
         </header>
       {% endunless %}
+
+      {% if page.case_study %}
+        {% include case-overview.html %}
+      {% endif %}
 
       <section class="page__content" itemprop="text">
         {% if page.toc %}
@@ -47,7 +52,7 @@ layout: default
       </footer>
 
       {% if page.share %}{% include social-share.html %}{% endif %}
-      
+
       {% if page.collection == 'posts' and page.community_perspectives != false %}
         {% include community-perspectives.html %}
       {% endif %}
