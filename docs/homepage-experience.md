@@ -1,69 +1,82 @@
 # Homepage experience system
 
-The homepage is structured as a product-led technical landing page rather than a portal dashboard.
+The homepage is a focused technical landing page built from real repository content rather than a simulated application interface.
 
 ## Reference principles
 
-The redesign draws on the interaction discipline of modern product sites such as Readest:
+The page retains the useful interaction discipline of Readest:
 
 - one clear value statement in the first screen;
-- a strong product demonstration immediately below the primary actions;
-- small, supporting collection statistics rather than dominant KPI cards;
-- one feature idea per scroll scene;
-- restrained motion that clarifies hierarchy instead of decorating every element.
+- very small supporting collection statistics;
+- a limited number of primary routes;
+- one idea per section;
+- restrained motion that clarifies hierarchy.
 
-The implementation does not copy Readest branding, imagery, typography, or product UI. The visual language remains specific to 4D seismic monitoring.
+The implementation does not reproduce Readest branding, imagery, typography, or application UI.
+
+## Primary navigation
+
+The site title already returns visitors to the homepage, so `Home` is not duplicated in the header.
+
+The primary navigation contains only:
+
+- **Cases**;
+- **Benchmark**;
+- **About**.
+
+Analysis, contribution, and working-group pages remain available through contextual homepage and footer links.
 
 ## Hero density
 
-The previous homepage used a two-column hero with a fixed minimum height and a separate statistics band. The new hero:
+The hero contains only:
 
-- has no fixed minimum viewport height;
-- centers the value statement and two primary actions;
-- renders project, source, and analysis counts in a compact inline statistics rail;
-- limits the technical product window to `380px` on desktop;
-- reduces top and bottom padding;
-- keeps the technical visual inside the hero rather than leaving a gap before the next section.
+- the project value statement;
+- the case-library and Benchmark actions;
+- the project, source-record, and case-analysis counts.
 
-## Product demonstration
+It does not contain a simulated product screenshot or a decorative technical illustration. The statistics remain a compact inline rail with small numerals.
 
-The hero product window previews a realistic Hub workflow:
+## Real-content rule
 
-- select a monitoring case;
-- inspect base-versus-monitor change;
-- connect repeatability, signal driver, and decision outcome.
+The homepage must not imply product capability through invented imagery. The following elements have been removed and are prohibited by validation:
 
-It is built from semantic HTML and inline SVG. No screenshots or external image assets are required.
+- simulated monitoring workspaces;
+- decorative seismic canvases presented as application output;
+- synthetic maps and project markers;
+- fictional base-versus-monitor comparison panels;
+- fabricated evidence-to-decision interfaces;
+- inline SVG illustrations used as pseudo-screenshots.
 
-## Scroll storytelling
+The homepage instead presents:
 
-The central section uses a sticky visual with three states:
-
-1. **Discover** — project context and field selection;
-2. **Compare** — base and monitor survey comparison;
-3. **Interpret** — evidence flow into a decision note.
-
-`IntersectionObserver` activates the scene nearest the reading focus. The text remains normal document content, so the workflow is still understandable when JavaScript is unavailable.
+- actual collection counts derived from repository data;
+- functioning links to the case library, Benchmark, and analysis pages;
+- real published posts;
+- real case-study records;
+- a concise description of the 4D decision chain.
 
 ## Motion policy
 
-- reveal transitions run only after JavaScript adds the `has-home-motion` class;
-- the hero receives a maximum 16px scroll-linked shift;
-- scene transitions use opacity and small transforms;
+Motion is limited to progressive disclosure of real text and content cards:
+
+- `IntersectionObserver` reveals sections when they enter the viewport;
+- no parallax or scroll-linked transformation is used;
+- no sticky scene-switching interface is used;
 - no animation framework or external runtime is loaded;
-- `prefers-reduced-motion: reduce` disables parallax, pulsing, reveal transforms, and scene transitions;
-- mobile layouts remove sticky behavior and show each story step in normal flow.
+- content is immediately visible when JavaScript is unavailable;
+- `prefers-reduced-motion: reduce` disables reveal transitions.
 
 ## Validation
 
 `tests/validate_homepage_experience.rb` checks:
 
-- the old tall hero and standalone statistics structures do not return;
-- the compact product window and small statistics styles remain present;
-- the Discover / Compare / Interpret story states remain wired;
-- reduced-motion support remains present;
-- no heavy animation dependency is introduced;
+- the header contains exactly the three intended destinations;
+- `Home` and `Analysis` do not return to the primary navigation;
+- simulated workspace, map, seismic, comparison, and interpretation scenes do not return;
+- the homepage contains no inline SVG pseudo-screenshot;
+- real collection statistics, workflows, posts, and case records remain present;
+- reveal behavior and reduced-motion support remain present;
 - homepage JavaScript passes `node --check`;
 - homepage CSS braces remain balanced.
 
-The shared repository CI runs this validator with the existing source, case, community, and Benchmark contracts before the production Jekyll build.
+The shared repository CI runs this validator with the source, case, community, and Benchmark contracts before the production Jekyll build.

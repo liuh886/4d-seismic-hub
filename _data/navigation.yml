@@ -1,11 +1,7 @@
 main:
-  - title: "Home"
-    url: "/"
-  - title: "Case Library"
+  - title: "Cases"
     url: "/pages/knowledge-base/"
   - title: "Benchmark"
     url: "/pages/comparison-tool/"
-  - title: "Analysis"
-    url: "/pages/analysis/"
   - title: "About"
     url: "/pages/about/"
