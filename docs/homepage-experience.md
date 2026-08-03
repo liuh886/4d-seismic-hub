@@ -15,6 +15,14 @@ The page retains the useful interaction discipline of Readest:
 
 The implementation does not reproduce Readest branding, imagery, typography, or application UI.
 
+## Native theme integration
+
+The homepage uses the custom `_layouts/home.html` layout. That layout inherits the Minimal Mistakes `default` shell so the standard head, masthead, footer, scripts, and accessibility links remain intact, but it does not route homepage content through the theme's `splash` article and `page__content` wrappers.
+
+This is intentional. The previous implementation attempted to escape the theme's padded and maximum-width `#main` container with `100vw` and viewport-relative negative margins. That mixed two incompatible width models, produced horizontal overflow, and made the page appear zoomed on wide desktop displays.
+
+The native homepage layout now provides a single full-width `<main>` element. Homepage CSS explicitly resets that element to `width: 100%`, `max-width: none`, and zero outer padding. Content sections use a normal 1,240-pixel inner shell. No viewport breakout calculation is required.
+
 ## Primary navigation
 
 The site title already returns visitors to the homepage, so `Home` is not duplicated in the header. The primary navigation contains only:
@@ -23,45 +31,36 @@ The site title already returns visitors to the homepage, so `Home` is not duplic
 - **Benchmark**;
 - **About**.
 
-On the homepage, the masthead is fixed over the hero with a transparent background. Once the page scroll position exceeds 24 pixels, the masthead gains a translucent surface, border, shadow, blur, and slightly tighter vertical padding. Other pages retain the standard surfaced masthead.
+The theme renders `body.layout--home` before CSS and JavaScript run. Homepage masthead styling therefore uses this stable body class instead of adding a temporary class to the document element.
 
-Analysis, contribution, and working-group pages remain available through contextual homepage and footer links.
+At the top of the homepage, the masthead is fixed over the hero with a transparent background. Once the page scroll position exceeds 24 pixels, the masthead gains a translucent surface, border, shadow, blur, and slightly tighter vertical padding. Other pages retain the standard surfaced masthead.
 
-## Full-bleed hero
+## Hero and typography
 
-The splash layout can place page content inside a theme-controlled content wrapper. To prevent visible white gutters, `.hub-readest-home` deliberately breaks out of that wrapper using a `100vw` width and viewport-relative margins. Individual content remains constrained by a 1,240-pixel inner shell.
-
-The hero uses the full viewport width and up to one small viewport height. It contains only:
+The hero spans the real page width through the native layout and uses a constrained inner content shell. It contains only:
 
 - the project value statement;
 - the case-library and Benchmark actions;
 - the project, source-record, and case-analysis counts.
 
-It does not contain a simulated product screenshot or a decorative technical illustration.
+Desktop typography uses bounded values rather than aggressive viewport-width scaling:
 
-## Typography and composition
+- the hero title is 5.6rem on large desktops, then steps down at 1,200px and 900px breakpoints;
+- section headings use a 3.25rem desktop size and step down at smaller breakpoints;
+- the hero introduction is centered within a 65-character line length;
+- cards and workflow copy retain readable sizes without forcing excessive minimum heights.
 
-The homepage uses a larger, more deliberate type scale:
+This prevents large monitors from magnifying the interface as though the browser had been zoomed, while preserving a strong product-led hierarchy.
 
-- the hero title scales from 3.6rem to 7.35rem;
-- the hero introduction scales up to 1.36rem;
-- section headings use a stacked editorial composition rather than a mechanical title-left/description-right grid;
-- section body copy starts around 1rem and uses generous line height;
-- cards, workflow rows, navigation, buttons, and metadata all use larger readable sizes;
-- line lengths are constrained and `text-wrap` is used to avoid awkward isolated words.
+## Vertical rhythm
 
-The hero headline has a deliberate two-line hierarchy without relying on a hard-coded `<br>` element.
+The hero uses a bounded 560–660 pixel height range. Standard sections use 4.25rem vertical padding, cards use a 220-pixel desktop minimum height, and workflow rows use compact content-driven padding. Mobile removes fixed hero height and reduces section spacing further.
+
+The goal is for a conventional desktop viewport to show a complete content unit and a clear indication of the next section, rather than treating every section as a full-screen slide.
 
 ## Real-content rule
 
-The homepage must not imply product capability through invented imagery. The following elements are prohibited by validation:
-
-- simulated monitoring workspaces;
-- decorative seismic canvases presented as application output;
-- synthetic maps and project markers;
-- fictional base-versus-monitor comparison panels;
-- fabricated evidence-to-decision interfaces;
-- inline SVG illustrations used as pseudo-screenshots.
+The homepage must not imply product capability through invented imagery. Validation prohibits simulated workspaces, decorative seismic canvases presented as output, synthetic maps, fictional comparison panels, fabricated decision interfaces, and inline SVG pseudo-screenshots.
 
 The homepage instead presents actual collection counts, functioning product routes, published posts, real case-study records, and the 4D decision chain.
 
@@ -81,15 +80,14 @@ Motion is limited to progressive disclosure of real text and content cards:
 `tests/validate_homepage_experience.rb` checks:
 
 - the header contains exactly the three intended destinations;
-- the homepage declares its navigation context before its stylesheet;
+- `index.md` uses the native `home` layout rather than `splash`;
+- `_layouts/home.html` inherits `default` and exposes one full-width main element;
+- the layered density stylesheet and temporary document-class workaround remain removed;
+- `100vw`, viewport-relative breakout margins, and aggressive wide-screen font scaling do not return;
 - transparent and scrolled masthead states remain implemented;
-- the homepage remains full bleed while its inner content stays constrained;
-- the enlarged typography and stacked section composition remain present;
-- simulated workspace, map, seismic, comparison, and interpretation scenes do not return;
-- the homepage contains no inline SVG pseudo-screenshot;
-- real collection statistics, workflows, posts, and case records remain present;
-- reveal behavior and reduced-motion support remain present;
-- homepage JavaScript passes `node --check`;
-- homepage CSS braces remain balanced.
+- bounded hero, section, and card sizing remains present;
+- simulated visual scenes do not return;
+- real statistics, workflows, posts, and case records remain present;
+- homepage JavaScript passes `node --check` and CSS braces remain balanced.
 
 The shared repository CI runs this validator with the source, case, community, and Benchmark contracts before the production Jekyll build.
