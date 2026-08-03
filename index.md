@@ -8,6 +8,7 @@ classes: wide
 {% assign paper_count = site.data.papers | size %}
 {% assign analysis_count = site.posts | size %}
 
+<script>document.documentElement.classList.add('hub-home-page');</script>
 <link rel="stylesheet" href="{{ '/assets/css/home-readest.css' | relative_url }}">
 <script src="{{ '/assets/js/home-scroll.js' | relative_url }}" defer></script>
 
@@ -16,8 +17,8 @@ classes: wide
     <div class="hub-shell hub-r-hero-inner">
       <div class="hub-r-hero-copy" data-reveal>
         <p class="hub-r-eyebrow">Time-lapse subsurface intelligence</p>
-        <h1>See the reservoir.<br><span>Understand the change.</span></h1>
-        <p class="hub-r-hero-lede">Explore documented 4D seismic projects, compare acquisition and repeatability choices, and connect field evidence to monitoring decisions.</p>
+        <h1>See the reservoir.<span>Understand the change.</span></h1>
+        <p class="hub-r-hero-lede">Explore documented 4D seismic projects, compare the acquisition choices behind repeatability, and connect observed change to monitoring decisions.</p>
 
         <div class="hub-r-actions">
           <a class="hub-r-button hub-r-button--primary" href="{{ '/pages/knowledge-base/' | relative_url }}">Explore cases <span aria-hidden="true">→</span></a>
@@ -25,7 +26,7 @@ classes: wide
         </div>
 
         <div class="hub-r-mini-stats" aria-label="Hub collection statistics">
-          <div class="hub-r-mini-stat"><strong>{{ case_count }}</strong><span>projects</span></div>
+          <div class="hub-r-mini-stat"><strong>{{ case_count }}</strong><span>field projects</span></div>
           <div class="hub-r-mini-stat"><strong>{{ paper_count }}</strong><span>source records</span></div>
           <div class="hub-r-mini-stat"><strong>{{ analysis_count }}</strong><span>case analyses</span></div>
         </div>
@@ -37,8 +38,8 @@ classes: wide
     <div class="hub-shell">
       <div class="hub-r-section-heading" data-reveal>
         <p class="hub-r-eyebrow">Three direct routes</p>
-        <h2>Use the Hub for a specific engineering question.</h2>
-        <p>The homepage now points directly to functioning tools and published material. No simulated interface is used to imply capabilities that the site does not provide.</p>
+        <h2>Start with the engineering question.</h2>
+        <p>The Hub is organized around three practical tasks: locate an analogous field project, compare the technical choices behind performance, and understand what the evidence can support.</p>
       </div>
 
       <div class="hub-r-workflow-list" data-reveal>
@@ -46,7 +47,7 @@ classes: wide
           <span>01</span>
           <div>
             <h3>Find a relevant field case.</h3>
-            <p>Browse real projects by monitoring objective, reservoir setting, sensor system, region, evidence scope, and source grade.</p>
+            <p>Browse projects by monitoring objective, reservoir setting, sensor system, region, evidence scope, and source grade.</p>
           </div>
           <b>Cases →</b>
         </a>
@@ -76,8 +77,8 @@ classes: wide
     <div class="hub-shell">
       <div class="hub-r-section-heading" data-reveal>
         <p class="hub-r-eyebrow">Latest field notes</p>
-        <h2>Published analysis, not promotional imagery.</h2>
-        <p>Recent posts focus on the monitoring problem, the evidence produced, and the operational judgment that followed.</p>
+        <h2>Evidence distilled for engineering reuse.</h2>
+        <p>Recent analyses focus on the monitoring problem, the evidence produced, and the operational judgment that followed.</p>
       </div>
 
       <div class="hub-r-editorial-grid" data-reveal>
@@ -97,8 +98,8 @@ classes: wide
     <div class="hub-shell">
       <div class="hub-r-section-heading" data-reveal>
         <p class="hub-r-eyebrow">Featured monitoring cases</p>
-        <h2>Real project records and explicit evidence boundaries.</h2>
-        <p>Each case is framed around the uncertainty, acquisition response, observed evidence, operational outcome, and transfer limits.</p>
+        <h2>Cases with explicit evidence boundaries.</h2>
+        <p>Each record connects the monitoring uncertainty, acquisition response, observed evidence, operational outcome, and limits on transferability.</p>
       </div>
 
       <div class="hub-r-case-grid" data-reveal>

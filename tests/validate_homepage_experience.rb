@@ -34,6 +34,7 @@ errors << "Home must use the site-title link rather than a duplicate nav item" i
 errors << "Analysis must remain a contextual link rather than a permanent nav item" if nav_titles.include?("Analysis")
 
 required_index = [
+  "document.documentElement.classList.add('hub-home-page')",
   "hub-readest-home",
   "hub-r-hero-copy",
   "hub-r-mini-stats",
@@ -44,12 +45,15 @@ required_index = [
   "/pages/comparison-tool/",
   "/pages/analysis/",
   "assets/css/home-readest.css",
-  "assets/js/home-scroll.js"
+  "assets/js/home-scroll.js",
+  "See the reservoir.<span>Understand the change.</span>"
 ]
 
 required_index.each do |fragment|
-  errors << "homepage is missing real-content element #{fragment.inspect}" unless index.include?(fragment)
+  errors << "homepage is missing required content or context #{fragment.inspect}" unless index.include?(fragment)
 end
+
+errors << "hero headline must not rely on a hard-coded line break" if index.include?("See the reservoir.<br>")
 
 forbidden_index = [
   "hub-home-hero",
@@ -70,8 +74,19 @@ forbidden_index.each do |fragment|
 end
 
 required_css = [
+  "width: 100vw",
+  "margin-inline: calc(50% - 50vw)",
+  ".hub-home-page .masthead",
+  ".hub-home-page .masthead.is-scrolled",
+  "background: transparent",
+  "background: rgba(250, 252, 249, .86)",
+  "min-height: min(780px, 100svh)",
+  "font-size: clamp(3.6rem, 8.6vw, 7.35rem)",
+  "font-size: clamp(1.08rem, 1.75vw, 1.36rem)",
+  ".hub-r-section-heading",
+  "max-width: 860px",
+  "font-size: clamp(2.45rem, 5vw, 4.35rem)",
   ".hub-r-mini-stat strong",
-  "font-size: clamp(.96rem, 1.4vw, 1.15rem)",
   ".hub-r-workflow-list",
   ".hub-r-editorial-grid",
   ".has-home-motion .hub-readest-home [data-reveal]",
@@ -79,7 +94,7 @@ required_css = [
 ]
 
 required_css.each do |fragment|
-  errors << "homepage CSS is missing #{fragment.inspect}" unless css.include?(fragment)
+  errors << "homepage CSS is missing immersive layout contract #{fragment.inspect}" unless css.include?(fragment)
 end
 
 forbidden_css = [
@@ -88,11 +103,12 @@ forbidden_css = [
   ".hub-r-story-visual",
   ".hub-r-map-scene",
   ".hub-r-compare-scene",
-  ".hub-r-interpret-scene"
+  ".hub-r-interpret-scene",
+  "grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr)"
 ]
 
 forbidden_css.each do |fragment|
-  errors << "homepage CSS still supports simulated visual #{fragment.inspect}" if css.include?(fragment)
+  errors << "homepage CSS still supports simulated or awkward layout #{fragment.inspect}" if css.include?(fragment)
 end
 
 if css.count("{") != css.count("}")
@@ -100,13 +116,17 @@ if css.count("{") != css.count("}")
 end
 
 required_js = [
+  "hub-home-page",
   "IntersectionObserver",
   "prefers-reduced-motion: reduce",
-  "data-reveal"
+  "data-reveal",
+  "is-scrolled",
+  "window.scrollY > 24",
+  "window.addEventListener('scroll', syncState, { passive: true })"
 ]
 
 required_js.each do |fragment|
-  errors << "homepage reveal behavior is missing #{fragment.inspect}" unless js.include?(fragment)
+  errors << "homepage interaction behavior is missing #{fragment.inspect}" unless js.include?(fragment)
 end
 
 forbidden_js = [
@@ -130,7 +150,7 @@ unless status.success?
 end
 
 if errors.empty?
-  puts "Minimal navigation and real-content homepage contract passed."
+  puts "Immersive homepage, typography, and navigation contract passed."
   exit 0
 end
 
