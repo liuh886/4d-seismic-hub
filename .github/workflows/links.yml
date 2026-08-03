@@ -1,18 +1,34 @@
-name: Link Check
+name: Link Health
+
 on:
   schedule:
-    - cron: "0 1 * * 1"   # run weekly on Monday at 01:00 UTC
+    - cron: "0 1 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 4d-seismic-hub-link-health
+  cancel-in-progress: true
 
 jobs:
   lychee:
-    runs-on: ubuntu-latest
+    name: Scheduled external-link diagnostics
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+
       - name: Run Lychee link checker
         uses: lycheeverse/lychee-action@v2
         with:
-          # --accept 200,206,429,403: Accept 403 as academic sites often block bots.
-          # --exclude "\{\{.*\}\}": Skip checking raw Liquid/Jekyll template tags.
-          # --exclude "onepetro.org": Skip academic databases known for anti-bot measures.
-          args: --verbose --no-progress --accept 200,206,429,403 --retry-wait-time 5 --max-retries 3 --exclude "\{\{.*\}\}" --exclude ".*onepetro.org.*" .
+          args: >-
+            --verbose
+            --no-progress
+            --accept 200,206,403,429
+            --retry-wait-time 5
+            --max-retries 3
+            --exclude "\{\{.*\}\}"
+            --exclude ".*onepetro.org.*"
+            .
