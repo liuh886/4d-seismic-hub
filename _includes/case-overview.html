@@ -3,6 +3,8 @@
 {% assign benchmark = benchmark_matches | first %}
 {% assign map_matches = site.data.case_studies_map | where: "name", case_meta.map_id %}
 {% assign map_record = map_matches | first %}
+{% assign source_matches = site.data.source_registry | where: "map_id", case_meta.map_id %}
+{% assign source_record = source_matches | first %}
 
 <section class="case-brief" aria-labelledby="case-brief-title">
   <div class="case-brief__header">
@@ -54,10 +56,14 @@
 
   <div class="case-evidence-grid">
     <article class="case-evidence-card case-evidence-card--source">
-      <span class="case-evidence-card__label">Technical source record</span>
+      <div class="case-source-heading">
+        <span class="case-evidence-card__label">Technical source record</span>
+        {% if source_record.grade %}<span class="source-grade source-grade--{{ source_record.grade | downcase }}">Grade {{ source_record.grade }}</span>{% endif %}
+      </div>
       <h3>{{ benchmark.title | default: "Source not recorded" }}</h3>
       {% if benchmark.authors %}<p class="case-evidence-card__meta">{{ benchmark.authors | join: ", " }}{% if benchmark.year %} · {{ benchmark.year }}{% endif %}</p>{% endif %}
-      <p>The benchmark fields above are resolved from the shared project dataset. This article is an editorial synthesis of that record.</p>
+      <p>{{ source_record.note | default: "The benchmark fields above are resolved from the shared project dataset. This article is an editorial synthesis of that record." }}</p>
+      {% if source_record.source_type %}<p class="case-source-type">{{ source_record.source_type | replace: "-", " " }} · reviewed {{ source_record.reviewed_at }}</p>{% endif %}
       {% if benchmark.link %}<a href="{{ benchmark.link }}" target="_blank" rel="noopener noreferrer">Open source record <span aria-hidden="true">↗</span></a>{% endif %}
     </article>
 
