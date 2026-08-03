@@ -1,26 +1,23 @@
 (() => {
+  const body = document.body;
+  if (!body.classList.contains('layout--home')) return;
+
   const root = document.documentElement;
+  const masthead = document.querySelector('.masthead');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  root.classList.add('has-home-motion');
-
-  function updateNavigation() {
-    const masthead = document.querySelector('.masthead');
+  function syncNavigation() {
     if (!masthead) return;
-
-    const syncState = () => {
-      masthead.classList.toggle('is-scrolled', window.scrollY > 24);
-    };
-
-    syncState();
-    window.addEventListener('scroll', syncState, { passive: true });
+    masthead.classList.toggle('is-scrolled', window.scrollY > 24);
   }
 
   function revealContent() {
     const items = Array.from(document.querySelectorAll('.hub-readest-home [data-reveal]'));
-    if (!items.length) return;
+    if (!items.length || reduceMotion) return;
 
-    if (reduceMotion || !('IntersectionObserver' in window)) {
+    root.classList.add('has-home-motion');
+
+    if (!('IntersectionObserver' in window)) {
       items.forEach((item) => item.classList.add('is-visible'));
       return;
     }
@@ -32,21 +29,16 @@
         observer.unobserve(entry.target);
       });
     }, {
-      rootMargin: '0px 0px -8% 0px',
-      threshold: 0.1
+      rootMargin: '0px 0px -6% 0px',
+      threshold: 0.08
     });
 
     items.forEach((item) => observer.observe(item));
   }
 
-  function init() {
-    updateNavigation();
-    revealContent();
-  }
+  syncNavigation();
+  revealContent();
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
+  window.addEventListener('scroll', syncNavigation, { passive: true });
+  window.addEventListener('pageshow', syncNavigation);
 })();
