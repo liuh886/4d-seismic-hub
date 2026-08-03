@@ -12,6 +12,10 @@ case_study:
   decision_outcome: "Targeted spot measurements demonstrated a lower-footprint route to recurring surveillance at selected monitoring locations."
   transferable_lesson: "When the monitoring question is spatially focused, a sparse system can complement full-field surveys rather than imitate them at reduced density."
   evidence_status: "Multi-year field demonstration"
+  evidence_scope: "The case supports recurring seismic surveillance at selected locations and addresses a focused local monitoring question rather than full-field plume imaging."
+  limitations:
+    - "A sparse spot does not provide the spatial coverage of a full-field 4D survey."
+    - "The monitoring locations and detection threshold must be justified before the system can be transferred to another site."
 ---
 
 ## Decision context
@@ -35,5 +39,3 @@ The multi-year program demonstrated that sparse seismic monitoring can provide a
 ## Transferable lesson
 
 Sparse monitoring is most credible when the project first defines where change matters and what threshold must be detected. It should complement broader imaging, not be presented as a universal substitute for full-field 4D seismic.
-
-[Read the published project update](https://spotlight-earth.com/whitecap-resources-publishes-4-year-spot-seismic-monitoring-results-at-weyburn/)
