@@ -1,0 +1,136 @@
+- map_id: Gullfaks Main Field
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Valhall LoFS
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Girassol
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Middle East Carbonate OBN
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Atlantis OBN
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Ekofisk
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Harding
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Schiehallion
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Sleipner CCS
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Pluto LNG
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Wister SAGD
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Johan Sverdrup
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Mars OBN
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Draugen
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Mariner
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Clair Ridge
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Weyburn-Midale (Spot)
+  grade: B
+  source_type: project-publication
+  verification_status: project-source
+  reviewed_at: 2026-08-03
+  note: "The source is a direct project publication from the monitoring provider and operator context. It is useful operational evidence but is not treated as an independently peer-reviewed technical paper."
+- map_id: Agogo OBN
+  grade: C
+  source_type: discovery-record
+  verification_status: discovery-only
+  reviewed_at: 2026-08-03
+  note: "The current URL is a OnePetro search result, not a canonical publication page. Bibliographic metadata and project metrics remain discoverable but require item-level confirmation."
+- map_id: Daqing
+  grade: D
+  source_type: provisional-record
+  verification_status: provisional
+  reviewed_at: 2026-08-03
+  provisional_fields:
+    - title
+    - authors
+    - year
+    - nrms_median
+  note: "The record currently uses a discovery search link and an explicitly estimated NRMS value. It should remain excluded from default benchmark summaries until a canonical technical source is confirmed."
+- map_id: Tarim (Halahatang)
+  grade: D
+  source_type: provisional-record
+  verification_status: provisional
+  reviewed_at: 2026-08-03
+  provisional_fields:
+    - title
+    - authors
+    - year
+    - nrms_median
+  note: "The record currently uses a discovery search link and an explicitly estimated NRMS value. It should remain excluded from default benchmark summaries until a canonical technical source is confirmed."
+- map_id: Jubarte PRM
+  grade: A
+  source_type: technical-publication
+  verification_status: canonical
+  reviewed_at: 2026-08-03
+  note: "The record points directly to a technical publication DOI landing page and is suitable as the strongest provenance tier in the current dataset."
