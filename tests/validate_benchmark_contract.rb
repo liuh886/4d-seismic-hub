@@ -13,8 +13,11 @@ head = File.read(HEAD, encoding: "UTF-8")
 errors = []
 
 required_fragments = [
-  "Data completeness for current filter",
-  "How the benchmark metrics are handled",
+  "Data completeness for source-eligible records",
+  "How benchmark metrics and source grades are handled",
+  "function sourceRecord",
+  "function isSourceEligible",
+  "function sourceMatches",
   "function parseMetric",
   "function parseDurationYears",
   "function median",
@@ -24,7 +27,11 @@ required_fragments = [
   "Median plottable NRMS",
   "Median repeat interval",
   "Median first bin dimension",
-  "Median water depth"
+  "Median water depth",
+  "Benchmark eligible (A–C)",
+  "Grade D provisional records",
+  "const analysisData = filtered.filter(isSourceEligible)",
+  "site.data.source_registry | jsonify"
 ]
 
 required_fragments.each do |fragment|
@@ -36,11 +43,13 @@ forbidden_fragments = [
   "Filtered technical profile",
   "Water depth / 20",
   "average(data, 'repeat_interval') * 10",
-  "average(data, 'water_depth') / 20"
+  "average(data, 'water_depth') / 20",
+  "updateSummary(filtered)",
+  "updateCharts(filtered)"
 ]
 
 forbidden_fragments.each do |fragment|
-  errors << "comparison tool still contains arbitrary mixed-unit logic #{fragment.inspect}" if source.include?(fragment)
+  errors << "comparison tool contains unsafe benchmark logic #{fragment.inspect}" if source.include?(fragment)
 end
 
 unless head.include?("assets/css/benchmark.css")
@@ -55,6 +64,7 @@ else
   sanitized = inline_script
     .gsub(/\{\{\s*site\.data\.papers\s*\|\s*jsonify\s*\}\}/, "[]")
     .gsub(/\{\{\s*site\.data\.case_studies_map\s*\|\s*jsonify\s*\}\}/, "[]")
+    .gsub(/\{\{\s*site\.data\.source_registry\s*\|\s*jsonify\s*\}\}/, "[]")
 
   Tempfile.create(["benchmark-contract", ".js"]) do |file|
     file.write(sanitized)
@@ -67,7 +77,7 @@ else
 end
 
 if errors.empty?
-  puts "Benchmark metric and JavaScript contract passed."
+  puts "Benchmark metric, provenance, and JavaScript contract passed."
   exit 0
 end
 
