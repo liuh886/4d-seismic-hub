@@ -7,11 +7,13 @@ require "yaml"
 ROOT = File.expand_path("..", __dir__)
 INDEX = File.join(ROOT, "index.md")
 CSS = File.join(ROOT, "assets", "css", "home-readest.css")
+DENSITY_CSS = File.join(ROOT, "assets", "css", "home-density.css")
 JS = File.join(ROOT, "assets", "js", "home-scroll.js")
 NAV = File.join(ROOT, "_data", "navigation.yml")
 
 index = File.read(INDEX, encoding: "UTF-8")
 css = File.read(CSS, encoding: "UTF-8")
+density_css = File.read(DENSITY_CSS, encoding: "UTF-8")
 js = File.read(JS, encoding: "UTF-8")
 navigation = YAML.safe_load(File.read(NAV, encoding: "UTF-8")) || {}
 errors = []
@@ -45,6 +47,7 @@ required_index = [
   "/pages/comparison-tool/",
   "/pages/analysis/",
   "assets/css/home-readest.css",
+  "assets/css/home-density.css",
   "assets/js/home-scroll.js",
   "See the reservoir.<span>Understand the change.</span>"
 ]
@@ -80,7 +83,6 @@ required_css = [
   ".hub-home-page .masthead.is-scrolled",
   "background: transparent",
   "background: rgba(250, 252, 249, .86)",
-  "min-height: min(780px, 100svh)",
   "font-size: clamp(3.6rem, 8.6vw, 7.35rem)",
   "font-size: clamp(1.08rem, 1.75vw, 1.36rem)",
   ".hub-r-section-heading",
@@ -95,6 +97,22 @@ required_css = [
 
 required_css.each do |fragment|
   errors << "homepage CSS is missing immersive layout contract #{fragment.inspect}" unless css.include?(fragment)
+end
+
+required_density_css = [
+  ".hub-r-hero-lede",
+  "width: min(100%, 64ch)",
+  "text-align: center",
+  "text-wrap: balance",
+  "min-height: min(700px, 88svh)",
+  "padding-block: clamp(3.25rem, 5vw, 4.75rem)",
+  "margin-bottom: clamp(1.75rem, 3vw, 2.6rem)",
+  "min-height: 240px",
+  "@media (min-width: 901px) and (max-height: 900px)"
+]
+
+required_density_css.each do |fragment|
+  errors << "homepage density CSS is missing compact rhythm contract #{fragment.inspect}" unless density_css.include?(fragment)
 end
 
 forbidden_css = [
@@ -113,6 +131,10 @@ end
 
 if css.count("{") != css.count("}")
   errors << "homepage CSS has unbalanced braces"
+end
+
+if density_css.count("{") != density_css.count("}")
+  errors << "homepage density CSS has unbalanced braces"
 end
 
 required_js = [
@@ -150,7 +172,7 @@ unless status.success?
 end
 
 if errors.empty?
-  puts "Immersive homepage, typography, and navigation contract passed."
+  puts "Immersive homepage, centered lede, and compact density contract passed."
   exit 0
 end
 
