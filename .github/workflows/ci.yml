@@ -23,18 +23,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-
-      - name: Install locked project dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          bundle config set path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
       - name: Run discovered repository validators
         shell: bash
         run: |
@@ -50,10 +38,14 @@ jobs:
             done
           fi
 
-      - name: Build production Jekyll site
-        env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace
+      - name: Configure Pages-compatible build
+        uses: actions/configure-pages@v5
+
+      - name: Build with the GitHub Pages Jekyll runtime
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Verify deployable artifact
         shell: bash
