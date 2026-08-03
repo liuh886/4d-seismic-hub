@@ -12,7 +12,7 @@ classes: wide
   <div class="hub-inline-stats">
     <span class="hub-inline-stat">Interactive map</span>
     <span class="hub-inline-stat">Linked charts and table</span>
-    <span class="hub-inline-stat">Decision-oriented parameters</span>
+    <span class="hub-inline-stat">Explicit metric handling</span>
   </div>
 </div>
 
@@ -64,16 +64,33 @@ classes: wide
   <span>Select a row or map marker to connect the project context.</span>
 </div>
 
+<div id="benchmark-summary" class="hub-benchmark-summary" aria-live="polite"></div>
+
 <div class="hub-chart-grid">
   <section class="hub-chart-card" aria-labelledby="scatter-title">
     <h3 id="scatter-title">NRMS vs. water depth</h3>
-    <div class="hub-chart-frame"><canvas id="scatterChart"></canvas></div>
+    <div class="hub-chart-frame"><canvas id="scatterChart" role="img" aria-label="Scatter plot of NRMS against water depth for plottable projects"></canvas></div>
+    <p class="hub-chart-note">Ranges are plotted at their midpoint. Approximate and estimated values retain their original labels in the tooltip. Censored values such as “&lt;10%” and non-applicable values are not plotted as exact points.</p>
   </section>
-  <section class="hub-chart-card" aria-labelledby="radar-title">
-    <h3 id="radar-title">Filtered technical profile</h3>
-    <div class="hub-chart-frame"><canvas id="radarChart"></canvas></div>
+  <section class="hub-chart-card" aria-labelledby="coverage-title">
+    <h3 id="coverage-title">Data completeness for current filter</h3>
+    <div class="hub-chart-frame"><canvas id="coverageChart" role="img" aria-label="Percentage of filtered projects with reported benchmark values"></canvas></div>
+    <p class="hub-chart-note">Coverage is a percentage of filtered records with a reported value. It does not compare the magnitude or quality of unlike engineering metrics.</p>
   </section>
 </div>
+
+<details class="hub-methodology">
+  <summary>How the benchmark metrics are handled</summary>
+  <div class="hub-methodology__body">
+    <ul>
+      <li>Each median is calculated in its own unit; unlike metrics are never combined into one score.</li>
+      <li>Numeric ranges use the midpoint only for plotting and summary calculations, while the original range remains visible in tooltips and the table.</li>
+      <li>Censored values using “&lt;” or “&gt;” are counted as reported for data coverage but excluded from point estimates.</li>
+      <li>Repeat intervals are converted to years before calculating the median; months and weeks are converted proportionally.</li>
+      <li>Land projects and fields marked N/A are excluded from water-depth calculations rather than assigned a zero.</li>
+    </ul>
+  </div>
+</details>
 
 <div class="hub-table-wrap" role="region" aria-label="Project comparison table" tabindex="0">
   <table class="hub-table">
@@ -98,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mapData = {{ site.data.case_studies_map | jsonify }};
   const tableBody = document.getElementById('comparison-body');
   const statsText = document.getElementById('stats-text');
+  const summaryNode = document.getElementById('benchmark-summary');
   const mapNode = document.getElementById('tool-map');
   const map = window.L ? L.map(mapNode, { scrollWheelZoom: false }).setView([20, 0], 2) : null;
 
@@ -109,12 +127,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let markers = [];
   let scatterChart;
-  let radarChart;
+  let coverageChart;
 
-  function parseNum(value) {
-    if (value === null || value === undefined || String(value).includes('N/A')) return null;
-    const match = String(value).match(/[\d.]+/);
-    return match ? parseFloat(match[0]) : null;
+  function hasReportedValue(value) {
+    const text = value === null || value === undefined ? '' : String(value).trim();
+    return Boolean(text) && !/\bN\/A\b/i.test(text) && !/not (stated|recorded)/i.test(text);
+  }
+
+  function parseMetric(value) {
+    const raw = value === null || value === undefined ? '' : String(value).trim();
+    if (!hasReportedValue(raw)) return { value: null, raw: raw, method: 'missing' };
+    if (/^[<>≤≥]/.test(raw)) return { value: null, raw: raw, method: 'censored' };
+
+    const range = raw.match(/(\d+(?:\.\d+)?)\s*(?:-|–|—|to)\s*(\d+(?:\.\d+)?)/i);
+    if (range) {
+      const lower = parseFloat(range[1]);
+      const upper = parseFloat(range[2]);
+      return { value: (lower + upper) / 2, raw: raw, method: 'range midpoint' };
+    }
+
+    const number = raw.match(/\d+(?:\.\d+)?/);
+    if (!number) return { value: null, raw: raw, method: 'unparsed' };
+    const method = /~|approx|estimated|variable/i.test(raw) ? 'approximate' : 'reported';
+    return { value: parseFloat(number[0]), raw: raw, method: method };
+  }
+
+  function parseDurationYears(value) {
+    const parsed = parseMetric(value);
+    if (parsed.value === null) return parsed;
+    const raw = parsed.raw.toLowerCase();
+    let years = parsed.value;
+    if (/month/.test(raw)) years = years / 12;
+    if (/week/.test(raw)) years = years / 52;
+    return { value: years, raw: parsed.raw, method: parsed.method };
   }
 
   function projectName(project) {
@@ -125,18 +170,70 @@ document.addEventListener('DOMContentLoaded', function () {
     return 'row-' + projectName(project).replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
   }
 
-  function average(data, field) {
-    const values = data.map(function (item) { return parseNum(item[field]); }).filter(function (value) { return value !== null; });
-    if (!values.length) return 0;
-    return values.reduce(function (sum, value) { return sum + value; }, 0) / values.length;
+  function parsedValues(data, field, parser) {
+    return data.map(function (item) { return parser(item[field]); })
+      .filter(function (item) { return item.value !== null && Number.isFinite(item.value); });
+  }
+
+  function median(items) {
+    if (!items.length) return null;
+    const sorted = items.map(function (item) { return item.value; }).sort(function (a, b) { return a - b; });
+    const middle = Math.floor(sorted.length / 2);
+    return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+
+  function coverage(data, field) {
+    if (!data.length) return 0;
+    const reported = data.filter(function (item) { return hasReportedValue(item[field]); }).length;
+    return Math.round((reported / data.length) * 100);
+  }
+
+  function formatNumber(value, digits) {
+    if (value === null) return '—';
+    return value.toLocaleString(undefined, { maximumFractionDigits: digits });
+  }
+
+  function formatYears(value) {
+    if (value === null) return '—';
+    if (value < 1) return formatNumber(value * 12, 1) + ' mo';
+    return formatNumber(value, 2) + ' yr';
+  }
+
+  function summaryCard(label, value, detail) {
+    return '<article class="hub-benchmark-stat"><span>' + label + '</span><strong>' + value + '</strong><small>' + detail + '</small></article>';
+  }
+
+  function updateSummary(data) {
+    const total = data.length;
+    const nrms = parsedValues(data, 'nrms_median', parseMetric);
+    const repeat = parsedValues(data, 'repeat_interval', parseDurationYears);
+    const bin = parsedValues(data, 'bin_size', parseMetric);
+    const depth = parsedValues(data, 'water_depth', parseMetric);
+
+    summaryNode.innerHTML =
+      summaryCard('Median plottable NRMS', median(nrms) === null ? '—' : formatNumber(median(nrms), 1) + '%', nrms.length + ' of ' + total + ' records used') +
+      summaryCard('Median repeat interval', formatYears(median(repeat)), repeat.length + ' of ' + total + ' records used') +
+      summaryCard('Median first bin dimension', median(bin) === null ? '—' : formatNumber(median(bin), 2) + ' m', bin.length + ' of ' + total + ' records used') +
+      summaryCard('Median water depth', median(depth) === null ? '—' : formatNumber(median(depth), 0) + ' m', depth.length + ' of ' + total + ' records used');
   }
 
   function updateCharts(data) {
-    if (!window.Chart) return;
-
     const scatterData = data.map(function (project) {
-      return { x: parseNum(project.water_depth), y: parseNum(project.nrms_median), label: projectName(project) };
-    }).filter(function (point) { return point.x !== null && point.y !== null; });
+      const depth = parseMetric(project.water_depth);
+      const nrms = parseMetric(project.nrms_median);
+      if (depth.value === null || nrms.value === null) return null;
+      return {
+        x: depth.value,
+        y: nrms.value,
+        label: projectName(project),
+        depthRaw: depth.raw,
+        nrmsRaw: nrms.raw,
+        depthMethod: depth.method,
+        nrmsMethod: nrms.method
+      };
+    }).filter(Boolean);
+
+    if (!window.Chart) return scatterData.length;
 
     if (scatterChart) scatterChart.destroy();
     scatterChart = new Chart(document.getElementById('scatterChart'), {
@@ -145,31 +242,58 @@ document.addEventListener('DOMContentLoaded', function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        parsing: false,
         scales: {
-          x: { title: { display: true, text: 'Water depth (m)' }, grid: { color: '#e4ecee' } },
-          y: { title: { display: true, text: 'NRMS (%)' }, grid: { color: '#e4ecee' } }
+          x: { title: { display: true, text: 'Water depth plot estimate (m)' }, grid: { color: '#e4ecee' } },
+          y: { title: { display: true, text: 'NRMS plot estimate (%)' }, grid: { color: '#e4ecee' } }
         },
-        plugins: { tooltip: { callbacks: { label: function (context) { return context.raw.label + ': ' + context.raw.x + ' m, ' + context.raw.y + '%'; } } } }
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: function (items) { return items.length ? items[0].raw.label : ''; },
+              label: function (context) {
+                return [
+                  'Water depth: ' + context.raw.depthRaw + ' (' + context.raw.depthMethod + ')',
+                  'NRMS: ' + context.raw.nrmsRaw + ' (' + context.raw.nrmsMethod + ')'
+                ];
+              }
+            }
+          }
+        }
       }
     });
 
-    if (radarChart) radarChart.destroy();
-    radarChart = new Chart(document.getElementById('radarChart'), {
-      type: 'radar',
+    const coverageData = [
+      coverage(data, 'nrms_median'),
+      coverage(data, 'repeat_interval'),
+      coverage(data, 'bin_size'),
+      coverage(data, 'water_depth')
+    ];
+
+    if (coverageChart) coverageChart.destroy();
+    coverageChart = new Chart(document.getElementById('coverageChart'), {
+      type: 'bar',
       data: {
-        labels: ['NRMS', 'Repeat interval', 'Bin size', 'Water depth / 20'],
-        datasets: [{
-          label: 'Filtered average',
-          data: [average(data, 'nrms_median'), average(data, 'repeat_interval') * 10, average(data, 'bin_size'), average(data, 'water_depth') / 20],
-          fill: true,
-          backgroundColor: 'rgba(11, 127, 130, 0.16)',
-          borderColor: '#0b7f82',
-          pointBackgroundColor: '#f2a33a',
-          pointBorderColor: '#ffffff'
-        }]
+        labels: ['NRMS', 'Repeat interval', 'Bin size', 'Water depth'],
+        datasets: [{ label: 'Reported records', data: coverageData, backgroundColor: 'rgba(11, 127, 130, 0.72)', borderColor: '#06666a', borderWidth: 1 }]
       },
-      options: { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true, grid: { color: '#dfe8ea' }, angleLines: { color: '#dfe8ea' }, pointLabels: { color: '#38515d' } } } }
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { beginAtZero: true, max: 100, title: { display: true, text: 'Reported records (%)' }, grid: { color: '#e4ecee' } },
+          y: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: function (context) { return context.raw + '% of filtered projects'; } } }
+        }
+      }
     });
+
+    return scatterData.length;
   }
 
   function activateProject(project, shouldScroll) {
@@ -201,7 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
         (regionFilter === 'all' || tags.some(function (tag) { return String(tag).includes(regionFilter); }));
     });
 
-    updateCharts(filtered);
+    updateSummary(filtered);
+    const plottedCount = updateCharts(filtered);
     tableBody.innerHTML = '';
 
     if (!filtered.length) {
@@ -230,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
       markers = [];
       filtered.forEach(function (project) {
         const location = mapData.find(function (item) { return item.name === project.map_id; });
-        if (!location || !location.latitude || !location.longitude) return;
+        if (!location || location.latitude === null || location.latitude === undefined || location.longitude === null || location.longitude === undefined) return;
         const marker = L.circleMarker([location.latitude, location.longitude], {
           radius: 7,
           fillColor: '#0b7f82',
@@ -247,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.12));
     }
 
-    statsText.innerHTML = '<strong>' + filtered.length + '</strong> projects in the current comparison';
+    statsText.innerHTML = '<strong>' + filtered.length + '</strong> projects in the current comparison; <strong>' + plottedCount + '</strong> have plottable NRMS and water-depth values';
   }
 
   ['filter-sensor', 'filter-driver', 'filter-region'].forEach(function (id) {
