@@ -6,14 +6,15 @@ require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
 INDEX = File.join(ROOT, "index.md")
+HOME_LAYOUT = File.join(ROOT, "_layouts", "home.html")
 CSS = File.join(ROOT, "assets", "css", "home-readest.css")
 DENSITY_CSS = File.join(ROOT, "assets", "css", "home-density.css")
 JS = File.join(ROOT, "assets", "js", "home-scroll.js")
 NAV = File.join(ROOT, "_data", "navigation.yml")
 
 index = File.read(INDEX, encoding: "UTF-8")
+home_layout = File.read(HOME_LAYOUT, encoding: "UTF-8")
 css = File.read(CSS, encoding: "UTF-8")
-density_css = File.read(DENSITY_CSS, encoding: "UTF-8")
 js = File.read(JS, encoding: "UTF-8")
 navigation = YAML.safe_load(File.read(NAV, encoding: "UTF-8")) || {}
 errors = []
@@ -36,7 +37,7 @@ errors << "Home must use the site-title link rather than a duplicate nav item" i
 errors << "Analysis must remain a contextual link rather than a permanent nav item" if nav_titles.include?("Analysis")
 
 required_index = [
-  "document.documentElement.classList.add('hub-home-page')",
+  "layout: home",
   "hub-readest-home",
   "hub-r-hero-copy",
   "hub-r-mini-stats",
@@ -47,18 +48,19 @@ required_index = [
   "/pages/comparison-tool/",
   "/pages/analysis/",
   "assets/css/home-readest.css",
-  "assets/css/home-density.css",
   "assets/js/home-scroll.js",
   "See the reservoir.<span>Understand the change.</span>"
 ]
 
 required_index.each do |fragment|
-  errors << "homepage is missing required content or context #{fragment.inspect}" unless index.include?(fragment)
+  errors << "homepage is missing required content or native layout context #{fragment.inspect}" unless index.include?(fragment)
 end
 
-errors << "hero headline must not rely on a hard-coded line break" if index.include?("See the reservoir.<br>")
-
 forbidden_index = [
+  "layout: splash",
+  "classes: wide",
+  "document.documentElement.classList.add('hub-home-page')",
+  "assets/css/home-density.css",
   "hub-home-hero",
   "hub-stat-band",
   "hub-r-product-window",
@@ -69,25 +71,46 @@ forbidden_index = [
   "hub-r-interpret-scene",
   "data-hero-stage",
   "data-story-step",
-  "<svg"
+  "<svg",
+  "See the reservoir.<br>"
 ]
 
 forbidden_index.each do |fragment|
-  errors << "homepage still contains simulated or superseded visual #{fragment.inspect}" if index.include?(fragment)
+  errors << "homepage still contains superseded framework or visual structure #{fragment.inspect}" if index.include?(fragment)
 end
 
+required_layout = [
+  "layout: default",
+  "id=\"main\"",
+  "class=\"home-main\"",
+  "{{ content }}"
+]
+
+required_layout.each do |fragment|
+  errors << "native homepage layout is missing #{fragment.inspect}" unless home_layout.include?(fragment)
+end
+
+errors << "layered homepage density stylesheet must be removed" if File.exist?(DENSITY_CSS)
+
 required_css = [
-  "width: 100vw",
-  "margin-inline: calc(50% - 50vw)",
-  ".hub-home-page .masthead",
-  ".hub-home-page .masthead.is-scrolled",
+  ".layout--home",
+  ".layout--home .initial-content",
+  "#main.home-main",
+  "max-width: none",
+  "width: 100%",
+  ".layout--home .masthead",
+  ".layout--home .masthead.is-scrolled",
   "background: transparent",
-  "background: rgba(250, 252, 249, .86)",
-  "font-size: clamp(3.6rem, 8.6vw, 7.35rem)",
-  "font-size: clamp(1.08rem, 1.75vw, 1.36rem)",
-  ".hub-r-section-heading",
-  "max-width: 860px",
-  "font-size: clamp(2.45rem, 5vw, 4.35rem)",
+  "background: rgba(250, 252, 249, .88)",
+  "min-height: clamp(560px, 72svh, 660px)",
+  "font-size: 5.6rem",
+  "@media (max-width: 1200px)",
+  "font-size: 4.9rem",
+  "width: min(100%, 65ch)",
+  "text-align: center",
+  "padding-block: 4.25rem",
+  "font-size: 3.25rem",
+  "min-height: 220px",
   ".hub-r-mini-stat strong",
   ".hub-r-workflow-list",
   ".hub-r-editorial-grid",
@@ -96,26 +119,16 @@ required_css = [
 ]
 
 required_css.each do |fragment|
-  errors << "homepage CSS is missing immersive layout contract #{fragment.inspect}" unless css.include?(fragment)
-end
-
-required_density_css = [
-  ".hub-r-hero-lede",
-  "width: min(100%, 64ch)",
-  "text-align: center",
-  "text-wrap: balance",
-  "min-height: min(700px, 88svh)",
-  "padding-block: clamp(3.25rem, 5vw, 4.75rem)",
-  "margin-bottom: clamp(1.75rem, 3vw, 2.6rem)",
-  "min-height: 240px",
-  "@media (min-width: 901px) and (max-height: 900px)"
-]
-
-required_density_css.each do |fragment|
-  errors << "homepage density CSS is missing compact rhythm contract #{fragment.inspect}" unless density_css.include?(fragment)
+  errors << "homepage CSS is missing native-layout contract #{fragment.inspect}" unless css.include?(fragment)
 end
 
 forbidden_css = [
+  "width: 100vw",
+  "max-width: 100vw",
+  "margin-inline: calc(50% - 50vw)",
+  ".hub-home-page",
+  "8.6vw",
+  "font-size: clamp(2.45rem, 5vw, 4.35rem)",
   ".hub-r-product-window",
   ".hub-r-seismic-canvas",
   ".hub-r-story-visual",
@@ -126,19 +139,12 @@ forbidden_css = [
 ]
 
 forbidden_css.each do |fragment|
-  errors << "homepage CSS still supports simulated or awkward layout #{fragment.inspect}" if css.include?(fragment)
+  errors << "homepage CSS still contains overflow-prone or superseded rule #{fragment.inspect}" if css.include?(fragment)
 end
 
-if css.count("{") != css.count("}")
-  errors << "homepage CSS has unbalanced braces"
-end
-
-if density_css.count("{") != density_css.count("}")
-  errors << "homepage density CSS has unbalanced braces"
-end
+errors << "homepage CSS has unbalanced braces" if css.count("{") != css.count("}")
 
 required_js = [
-  "hub-home-page",
   "IntersectionObserver",
   "prefers-reduced-motion: reduce",
   "data-reveal",
@@ -152,6 +158,7 @@ required_js.each do |fragment|
 end
 
 forbidden_js = [
+  "hub-home-page",
   "requestAnimationFrame",
   "data-story-step",
   "data-story-visual",
@@ -163,7 +170,7 @@ forbidden_js = [
 ]
 
 forbidden_js.each do |fragment|
-  errors << "homepage script still contains unnecessary scene or animation logic #{fragment.inspect}" if js.downcase.include?(fragment.downcase)
+  errors << "homepage script still contains framework workaround or unnecessary animation #{fragment.inspect}" if js.downcase.include?(fragment.downcase)
 end
 
 stdout, stderr, status = Open3.capture3("node", "--check", JS)
@@ -172,7 +179,7 @@ unless status.success?
 end
 
 if errors.empty?
-  puts "Immersive homepage, centered lede, and compact density contract passed."
+  puts "Native homepage layout, bounded typography, and overflow contract passed."
   exit 0
 end
 

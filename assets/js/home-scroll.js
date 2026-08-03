@@ -2,7 +2,7 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  root.classList.add('hub-home-page', 'has-home-motion');
+  root.classList.add('has-home-motion');
 
   function updateNavigation() {
     const masthead = document.querySelector('.masthead');

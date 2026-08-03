@@ -1,16 +1,13 @@
 ---
-layout: splash
+layout: home
 author_profile: false
-classes: wide
 ---
 
 {% assign case_count = site.data.case_studies_map | size %}
 {% assign paper_count = site.data.papers | size %}
 {% assign analysis_count = site.posts | size %}
 
-<script>document.documentElement.classList.add('hub-home-page');</script>
 <link rel="stylesheet" href="{{ '/assets/css/home-readest.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/home-density.css' | relative_url }}">
 <script src="{{ '/assets/js/home-scroll.js' | relative_url }}" defer></script>
 
 <div class="hub-readest-home">
