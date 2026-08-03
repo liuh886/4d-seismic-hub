@@ -38,20 +38,21 @@ def build_template(frontmatter: dict[str, str], post_path: Path) -> str:
 
     return f"""post_title: "{title}"
 issue_term_hint: "{issue_term}"
+review_note: "Community synthesis is a review input, not a replacement for the technical source or evidence scope."
 community_summary:
   updated_at: YYYY-MM-DD
   pro:
-    - Technical upside worth preserving from the forum discussion.
-    - Another evidence-based supporting point.
+    - Supporting evidence or field experience tied to a specific article claim.
+    - A second evidence-based supporting signal.
   con:
-    - Technical limitation or deployment risk raised in the forum thread.
-    - Another skeptical point that should remain visible.
+    - A limitation, counterexample, or transfer condition tied to a specific claim.
+    - A second skeptical point that should remain visible.
 """
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Generate a community_summary YAML template for a post."
+        description="Generate a community review synthesis template for a post."
     )
     parser.add_argument("post", help="Path to the post markdown file")
     args = parser.parse_args()
