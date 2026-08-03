@@ -54,7 +54,6 @@ required_index = [
   "/pages/comparison-tool/",
   "/pages/analysis/"
 ]
-
 required_index.each do |fragment|
   errors << "homepage is missing semantic native content #{fragment.inspect}" unless index.include?(fragment)
 end
@@ -75,7 +74,6 @@ forbidden_index = [
   "<svg",
   "<br>"
 ]
-
 forbidden_index.each do |fragment|
   errors << "homepage still contains body-level assets or superseded structure #{fragment.inspect}" if index.include?(fragment)
 end
@@ -104,17 +102,23 @@ end
 errors << "layered homepage density stylesheet must remain removed" if File.exist?(DENSITY_CSS)
 
 required_css = [
+  "--hub-content: 1240px",
   ".layout--home .masthead",
   ".layout--home .masthead.is-scrolled",
   "-webkit-backdrop-filter",
   "#main.home-main",
-  "min-height: 600px",
-  "font-size: 4.75rem",
-  "font-size: 4.25rem",
-  "font-size: 3.65rem",
-  "width: min(100%, 68ch)",
-  "padding-block: 3.75rem",
-  "font-size: 2.75rem",
+  "min-height: 630px",
+  "font-size: 5.8rem",
+  "font-size: 6.1rem",
+  "font-size: 5.05rem",
+  "font-size: 4.1rem",
+  "width: min(100%, 72ch)",
+  "font-size: 1.2rem",
+  "min-height: 50px",
+  "padding-block: 3.9rem",
+  "font-size: 3.15rem",
+  "font-size: 1.82rem",
+  "font-size: 1.5rem",
   "grid-template-columns: repeat(2, minmax(0, 1fr))",
   ".hub-r-mini-stats dt",
   ".hub-r-workflow-link",
@@ -123,7 +127,7 @@ required_css = [
   "@media (prefers-reduced-motion: reduce)"
 ]
 required_css.each do |fragment|
-  errors << "homepage CSS is missing final native contract #{fragment.inspect}" unless css.include?(fragment)
+  errors << "homepage CSS is missing balanced native-scale contract #{fragment.inspect}" unless css.include?(fragment)
 end
 
 forbidden_css = [
@@ -133,9 +137,6 @@ forbidden_css = [
   "overflow-x:",
   ".hub-readest-home .hub-shell",
   ".layout--home .masthead__inner-wrap {\n  width:",
-  "8.6vw",
-  "7.35rem",
-  "5.6rem",
   "72svh",
   ".hub-home-page",
   ".hub-r-product-window",
@@ -143,8 +144,9 @@ forbidden_css = [
   ".hub-r-story-visual"
 ]
 forbidden_css.each do |fragment|
-  errors << "homepage CSS still contains scaling, overflow masking, or old workaround #{fragment.inspect}" if css.include?(fragment)
+  errors << "homepage CSS contains overflow masking or a superseded workaround #{fragment.inspect}" if css.include?(fragment)
 end
+errors << "homepage typography must not scale continuously with viewport width" if css.match?(/font-size\s*:[^;]*vw/)
 errors << "homepage CSS has unbalanced braces" if css.count("{") != css.count("}")
 
 required_js = [
@@ -192,7 +194,7 @@ unless status.success?
 end
 
 if errors.empty?
-  puts "Final native homepage structure, typography, assets, and interaction contract passed."
+  puts "Balanced native homepage scale, structure, assets, and interaction contract passed."
   exit 0
 end
 

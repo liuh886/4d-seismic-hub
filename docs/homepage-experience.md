@@ -6,7 +6,7 @@ The homepage is a focused technical landing page built from real repository cont
 
 `_layouts/home.html` inherits the theme `default` layout. This preserves the standard head, masthead, footer, scripts, and skip links while bypassing only the `splash` article and `page__content` wrappers that are inappropriate for a full-width landing page.
 
-The homepage therefore uses one native `<main id="main" class="home-main">` element. It does not use `100vw`, negative viewport margins, or overflow masking. Inner content reuses the shared `--hub-content` width of 1,180 pixels so the masthead, homepage, and inner pages align to the same grid.
+The homepage uses one native `<main id="main" class="home-main">` element. It does not use `100vw`, negative viewport margins, viewport-scaled typography, or overflow masking. The homepage raises the shared `--hub-content` grid from 1,180 to 1,240 pixels so the masthead and landing-page sections retain one aligned grid while using wide desktop space more effectively.
 
 Homepage assets are conditionally loaded from `_includes/head/custom.html`. Stylesheets and deferred JavaScript are emitted in the document head rather than inserted into page content.
 
@@ -20,17 +20,24 @@ The site title returns to the homepage, so the primary navigation contains only:
 
 Minimal Mistakes renders `body.layout--home` before assets execute. The homepage masthead uses that native class: transparent at the top, then surfaced after 24 pixels of scrolling with a translucent background, border, shadow, and blur. Other layouts retain the normal masthead behavior.
 
+The desktop logo is 2.15rem, the site title is 1.12rem, and navigation links are 1.02rem. These values remain tied to the theme root size rather than the viewport.
+
 ## Typography and rhythm
 
-Typography is bounded by explicit breakpoints instead of continuous viewport scaling:
+Typography uses explicit breakpoint values rather than continuous viewport scaling:
 
-- hero title: 4.75rem on standard desktop, 4.25rem below 1,180px, 3.65rem below 980px, and 2.85rem on mobile;
-- section title: 2.75rem on desktop with stepped reductions below 980px and 700px;
-- hero introduction: centered within a 68-character measure;
-- standard sections: 3.75rem vertical padding;
-- cards: 210-pixel desktop minimum height and content-driven height on mobile.
+- hero title: 5.8rem on standard desktop and 6.1rem only on large high-resolution screens;
+- short laptop hero title: 5.05rem;
+- tablet hero title: 4.1rem;
+- mobile hero title: 3.05rem;
+- hero introduction: 1.2rem on desktop, centered within a 72-character measure;
+- section title: 3.15rem on desktop, 2.7rem on tablet, and 2.35rem on mobile;
+- workflow title: 1.82rem on desktop;
+- card title: 1.5rem on desktop;
+- standard sections: 3.9rem vertical padding;
+- cards: 220-pixel desktop minimum height and content-driven height on mobile.
 
-The desktop hero is 600 pixels high, contracts to 540 pixels on short laptop screens, and grows only to 620 pixels on large high-resolution displays. This keeps the first screen immersive without turning every section into a full-screen slide.
+The desktop hero is 630 pixels high, contracts to 570 pixels on short laptop screens, and grows only to 650 pixels on large high-resolution displays. The type scale grows without restoring the old zoom-like behavior or excessive section height.
 
 ## Content and semantics
 
@@ -52,7 +59,7 @@ Motion is limited to progressive disclosure of real content:
 
 ## Quality gates
 
-`tests/validate_homepage_experience.rb` checks source structure, native layout integration, head asset placement, bounded type, semantic markup, logo dimensions, JavaScript syntax, and removal of old overflow workarounds.
+`tests/validate_homepage_experience.rb` checks source structure, native layout integration, head asset placement, bounded type, semantic markup, logo dimensions, JavaScript syntax, the 1,240-pixel homepage grid, and removal of old overflow workarounds.
 
 `scripts/validate_built_homepage.rb` checks the generated HTML after Jekyll build: one main element, one H1, no splash wrappers, stylesheet and deferred script in the head, semantic statistics, resolved Liquid, and compact built assets.
 
@@ -64,4 +71,4 @@ Motion is limited to progressive disclosure of real content:
 - 768×1024;
 - 390×844.
 
-The browser gate verifies horizontal overflow, full-width hero geometry, centered content shell and introduction, bounded hero height and title size, responsive grid columns, top-state transparency, and surfaced navigation after scrolling. Full-page screenshots are retained as a seven-day CI artifact for visual review.
+The browser gate verifies horizontal overflow, full-width hero geometry, centered content shell and introduction, hero height, exact breakpoint title scale, introduction and section-title scale, navigation size, button height, responsive grid columns, top-state transparency, and surfaced navigation after scrolling. Full-page screenshots are retained as a seven-day CI artifact for visual review.
