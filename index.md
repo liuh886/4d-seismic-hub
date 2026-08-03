@@ -10,6 +10,7 @@ classes: wide
 
 <script>document.documentElement.classList.add('hub-home-page');</script>
 <link rel="stylesheet" href="{{ '/assets/css/home-readest.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/home-density.css' | relative_url }}">
 <script src="{{ '/assets/js/home-scroll.js' | relative_url }}" defer></script>
 
 <div class="hub-readest-home">
