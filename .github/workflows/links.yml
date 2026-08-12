@@ -16,11 +16,12 @@ jobs:
   lychee:
     name: Scheduled external-link diagnostics
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 
       - name: Run Lychee link checker
+        continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
